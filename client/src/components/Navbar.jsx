@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
 
 const navLinks = [
-  { name: 'Home',      path: '/'          },
-  { name: 'About Us',  path: '/about'     },
-  { name: 'Portfolio', path: '/portfolio' },
-  { name: 'Gallery',   path: '/gallery'   },
-  { name: 'Enquire',   path: '/booking'   },
+  { name: 'Home',          path: '/'          },
+  { name: 'About Us',      path: '/about'     },
+  { name: 'Gallery',       path: '/gallery'   },
+  { name: 'Wedding Films', path: '/portfolio' },
+  { name: 'Book Us',       path: '/booking'   },
 ];
 
 const Navbar = () => {
@@ -35,6 +36,26 @@ const Navbar = () => {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  // Framer Motion variants for elegant menu links stagger load
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
   return (
     <>
       {/* ── Top Bar ── */}
@@ -54,7 +75,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Hamburger */}
+          {/* Hamburger Menu Toggle */}
           <button
             className={`nb-burger ${menuOpen ? 'nb-burger--active' : ''}`}
             onClick={() => setMenuOpen(v => !v)}
@@ -69,45 +90,115 @@ const Navbar = () => {
       </nav>
 
       {/* ── Backdrop ── */}
-      <div
-        className={`nb-backdrop ${menuOpen ? 'nb-backdrop--visible' : ''}`}
-        onClick={() => setMenuOpen(false)}
-      />
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="nb-backdrop nb-backdrop--visible"
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
-      {/* ── Right Drawer ── */}
-      <div className={`nb-drawer ${menuOpen ? 'nb-drawer--open' : ''}`}>
+      {/* ── Left/Right Drawer ── */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div 
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'tween', ease: [0.76, 0, 0.24, 1], duration: 0.65 }}
+            className="nb-drawer nb-drawer--open"
+          >
+            {/* Close button */}
+            <button className="nb-drawer__close" onClick={() => setMenuOpen(false)}>
+              <span className="nb-drawer__close-text">CLOSE</span>
+              <span className="nb-drawer__close-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </span>
+            </button>
 
-        {/* Close button */}
-        <button className="nb-drawer__close" onClick={() => setMenuOpen(false)}>
-          <span className="nb-drawer__close-text">CLOSE</span>
-          <span className="nb-drawer__close-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </span>
-        </button>
+            {/* Central content wrapper */}
+            <div className="nb-drawer__content">
+              <motion.nav 
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="nb-drawer__nav"
+              >
+                {navLinks.map((link) => (
+                  <motion.div key={link.path} variants={itemVariants}>
+                    <Link
+                      to={link.path}
+                      className={`nb-drawer__link ${location.pathname === link.path ? 'nb-drawer__link--active' : ''}`}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
 
-        {/* Nav Links */}
-        <nav className="nb-drawer__nav">
-          {navLinks.map((link, i) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`nb-drawer__link ${location.pathname === link.path ? 'nb-drawer__link--active' : ''}`}
-              style={{ transitionDelay: menuOpen ? `${i * 0.06 + 0.1}s` : '0s' }}
-              onClick={() => setMenuOpen(false)}
-            >
-              <span className="nb-drawer__link-num">0{i + 1}</span>
-              <span className="nb-drawer__link-name">{link.name}</span>
-              <span className="nb-drawer__link-arrow">→</span>
-            </Link>
-          ))}
-        </nav>
-        {/* Decorative Watermark */}
-        <div className="nb-drawer__watermark">DREAMDAY</div>
+                {/* Admin Link */}
+                <motion.div variants={itemVariants}>
+                  <Link 
+                    to="/admin" 
+                    className={`nb-drawer__admin ${location.pathname.startsWith('/admin') ? 'nb-drawer__admin--active' : ''}`}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <svg className="nb-drawer__lock-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    <span>ADMIN</span>
+                  </Link>
+                </motion.div>
+              </motion.nav>
 
-      </div>
+              {/* Divider Line */}
+              <motion.div 
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="nb-drawer__rule"
+              />
+
+              {/* Tagline */}
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="nb-drawer__tagline"
+              >
+                Artistic wedding photography company<br />in Coimbatore and Chennai.
+              </motion.p>
+
+              {/* Instagram Handle info */}
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="nb-drawer__social"
+              >
+                <p className="nb-drawer__social-label">INSTAGRAM</p>
+                <a 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="nb-drawer__social-link"
+                >
+                  @ TheLumoraWeddings
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
