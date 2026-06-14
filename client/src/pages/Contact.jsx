@@ -42,7 +42,7 @@ const Contact = () => (
           {[
             { icon: <Phone size={18} />, label: 'Call Us',    value: '+91 88836 21113' },
             { icon: <Mail size={18} />, label: 'Email Us',   value: 'studio@dreamdayweddingphotography.com' },
-            { icon: <MapPin size={18} />, label: 'Our Studio', value: 'Colaba, Mumbai, India' },
+            { icon: <MapPin size={18} />, label: 'Our Studio', value: 'Coimbatore & Tirupur, India' },
           ].map((item, i) => (
             <motion.div key={i} {...vUp(i * 0.1)} className="contact-info-item">
               <div className="contact-icon-box">{item.icon}</div>

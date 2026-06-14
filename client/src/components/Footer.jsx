@@ -16,7 +16,7 @@ const Footer = () => {
                         </Link>
                         <p className="mt-6 pr-10">
                             A premier luxury photography studio specializing in cinematic storytelling.
-                            Based in Mumbai, serving worldwide commissions with heart and artistry.
+                            Based in Coimbatore & Tirupur, serving worldwide commissions with heart and artistry.
                         </p>
                         <div className="footer-social-modern mt-8">
                             <a href="https://www.instagram.com/dreamday_weddingphotography/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
@@ -59,7 +59,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <MapPin size={18} color="#C8A165" />
-                                <span>Colaba, Mumbai, India</span>
+                                <span>Coimbatore & Tirupur, India</span>
                             </li>
                         </ul>
                     </div>
