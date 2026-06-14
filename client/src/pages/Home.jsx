@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -48,7 +48,40 @@ const StarRating = () => (
   </div>
 );
 
+const instaContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    }
+  }
+};
+
+const instaItemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
+
+const ruleLeftVariants = {
+  hidden: { scaleX: 0, originX: 1 },
+  visible: { scaleX: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+};
+
+const ruleRightVariants = {
+  hidden: { scaleX: 0, originX: 0 },
+  visible: { scaleX: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+};
+
 const Home = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
@@ -91,24 +124,56 @@ const Home = () => {
       </section>
 
       {/* ── 2. Instagram Clean Strip ── */}
-      <section className="home-section instagram-clean-section" style={{ paddingBottom: '0' }}>
+      <section className="home-section instagram-clean-section" style={{ paddingBottom: '0', overflow: 'hidden' }}>
         <div className="container">
-          <motion.div {...vUp(0)} className="insta-clean-header">
-            <div className="insta-clean-rule"></div>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            className="insta-clean-header"
+          >
+            <motion.div variants={ruleLeftVariants} className="insta-clean-rule"></motion.div>
             <div className="insta-clean-center">
-              <div className="insta-clean-icon">
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="insta-clean-icon"
+              >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              </div>
+              </motion.div>
               <p className="insta-clean-label">Follow our journey</p>
               <h2 className="insta-clean-handle">@dreamdayweddingphotography</h2>
             </div>
-            <div className="insta-clean-rule"></div>
+            <motion.div variants={ruleRightVariants} className="insta-clean-rule"></motion.div>
           </motion.div>
         </div>
 
-        <motion.div {...vUp(0.1)} className="insta-strip">
+        <motion.div 
+          variants={instaContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="insta-strip"
+        >
           {row1.map((src, i) => (
-            <a key={i} href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="insta-strip-item">
+            <motion.a 
+              key={i} 
+              variants={instaItemVariants}
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="insta-strip-item"
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              style={{
+                opacity: hoveredIndex !== null && hoveredIndex !== i ? 0.55 : 1,
+                transform: hoveredIndex === i ? 'scale(1.025)' : 'scale(1)',
+                transition: 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                zIndex: hoveredIndex === i ? 10 : 1,
+              }}
+            >
               <div className="insta-strip-img">
                 <img src={src} alt={`Instagram capture ${i + 1}`} />
                 <div className="insta-strip-hover">
@@ -118,15 +183,22 @@ const Home = () => {
                 </div>
               </div>
               <p className="insta-strip-tag">#dreamdaywedding</p>
-            </a>
+            </motion.a>
           ))}
         </motion.div>
 
         <div className="container">
           <motion.div {...vUp(0.2)} className="insta-clean-footer">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="insta-clean-btn">
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="insta-clean-btn"
+            >
               Follow on Instagram
-            </a>
+            </motion.a>
           </motion.div>
         </div>
       </section>
