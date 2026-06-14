@@ -145,6 +145,23 @@
 
 .pr-10 { padding-right: 2.5rem; }
 
+/* ── ALIGNMENT ENHANCEMENTS ── */
+.footer-modern .grid-container {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.footer-modern .grid-container > div:first-child {
+  grid-column: 1 / span 4 !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.footer-logo-modern {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
 @media (max-width: 768px) {
   .footer-bottom-modern {
     flex-direction: column;
