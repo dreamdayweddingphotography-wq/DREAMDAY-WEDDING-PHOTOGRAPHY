@@ -90,57 +90,45 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── 2. Instagram Marquee Reel ── */}
-      <section className="reel-section">
-
-        {/* Header */}
-        <motion.div {...vUp(0)} className="reel-header">
-          <div className="reel-header-top">
-            <span className="reel-eyebrow">As seen on</span>
-            <div className="reel-ig-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              Instagram
+      {/* ── 2. Instagram Clean Strip ── */}
+      <section className="home-section instagram-clean-section" style={{ paddingBottom: '0' }}>
+        <div className="container">
+          <motion.div {...vUp(0)} className="insta-clean-header">
+            <div className="insta-clean-rule"></div>
+            <div className="insta-clean-center">
+              <div className="insta-clean-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <p className="insta-clean-label">Follow our journey</p>
+              <h2 className="insta-clean-handle">@dreamdayweddingphotography</h2>
             </div>
-          </div>
-          <h2 className="reel-title">Follow our journey <em>@dreamday</em></h2>
-        </motion.div>
-
-        {/* Row 1 — scrolls LEFT */}
-        <div className="reel-track-wrap reel-track-wrap--fade">
-          <div className="reel-track reel-track--left">
-            {[...row1, ...row1].map((src, i) => (
-              <a key={i} href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="reel-card">
-                <img src={src} alt="Instagram" />
-                <div className="reel-card-overlay">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                </div>
-              </a>
-            ))}
-          </div>
+            <div className="insta-clean-rule"></div>
+          </motion.div>
         </div>
 
-        {/* Row 2 — scrolls RIGHT */}
-        <div className="reel-track-wrap reel-track-wrap--fade">
-          <div className="reel-track reel-track--right">
-            {[...row2, ...row2].map((src, i) => (
-              <a key={i} href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="reel-card">
-                <img src={src} alt="Instagram" />
-                <div className="reel-card-overlay">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <motion.div {...vUp(0.1)} className="insta-strip">
+          {row1.map((src, i) => (
+            <a key={i} href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="insta-strip-item">
+              <div className="insta-strip-img">
+                <img src={src} alt={`Instagram capture ${i + 1}`} />
+                <div className="insta-strip-hover">
+                  <div className="insta-strip-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                  </div>
                 </div>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Footer CTA */}
-        <motion.div {...vUp(0.2)} className="reel-footer">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="reel-cta">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            Follow on Instagram
-          </a>
+              </div>
+              <p className="insta-strip-tag">#dreamdaywedding</p>
+            </a>
+          ))}
         </motion.div>
 
+        <div className="container">
+          <motion.div {...vUp(0.2)} className="insta-clean-footer">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="insta-clean-btn">
+              Follow on Instagram
+            </a>
+          </motion.div>
+        </div>
       </section>
 
       {/* ── 3. Kind Words ── */}
