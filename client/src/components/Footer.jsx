@@ -12,7 +12,10 @@ const Footer = () => {
                     <div className="col-span-4">
                         <Link to="/" className="footer-logo-modern">
                             <img src="/logo.png" alt="DREAMDAY WEDDING PHOTOGRAPHY Logo" className="footer-logo-img" />
-                            DREAMDAY WEDDING PHOTOGRAPHY <span>Photography</span>
+                            <div className="footer-logo-text">
+                                <span className="footer-logo-name">DREAMDAY WEDDING PHOTOGRAPHY</span>
+                                <span className="footer-logo-sub">Photography</span>
+                            </div>
                         </Link>
                         <p className="mt-6 pr-10" style={{ lineHeight: '1.8' }}>
                             Premium Wedding Photography & Cinematography.<br />
