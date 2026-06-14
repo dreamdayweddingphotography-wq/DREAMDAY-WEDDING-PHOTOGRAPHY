@@ -143,11 +143,11 @@ const Home = () => {
 
       </section>
 
-      {/* ── 3. Real Experiences ── */}
+      {/* ── 3. Kind Words ── */}
       <section className="home-section reviews-section bg-alt">
         <div className="pg-container">
           <motion.div {...vUp(0)} className="reviews-header">
-            <h2 className="reviews-title">REAL EXPERIENCES</h2>
+            <h2 className="reviews-title">KIND WORDS</h2>
           </motion.div>
 
           <motion.div {...vUp(0.2)} className="reviews-carousel-wrapper">
