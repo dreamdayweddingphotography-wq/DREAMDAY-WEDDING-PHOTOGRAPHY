@@ -17,7 +17,7 @@ const Footer = () => {
                                 <span className="footer-logo-sub">Photography</span>
                             </div>
                         </Link>
-                        <p className="mt-6 pr-10" style={{ lineHeight: '1.8' }}>
+                        <p className="mt-6" style={{ lineHeight: '1.8' }}>
                             Premium Wedding Photography & Cinematography.<br />
                             <strong>CANDID-WEDDING | PRE-POST WEDDING | MATERNITY</strong><br />
                             Coimbatore & Tirupur
