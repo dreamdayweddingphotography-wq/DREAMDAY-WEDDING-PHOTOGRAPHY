@@ -145,14 +145,14 @@
   width: 440px;
   max-width: 100vw;
   height: 100dvh;
-  background-color: #001c15; /* Luxurious dark forest green */
+  background: radial-gradient(circle at top right, #A44A4A 0%, #8B3A3A 100%);
   z-index: 1200;
   display: flex;
   flex-direction: column;
   padding: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  border-left: 1px solid rgba(200, 161, 101, 0.1);
+  border-left: 1px solid rgba(200, 161, 101, 0.15);
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.35);
 }
 

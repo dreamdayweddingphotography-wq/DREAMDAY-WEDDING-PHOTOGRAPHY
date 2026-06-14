@@ -192,7 +192,7 @@ const Navbar = () => {
                   rel="noopener noreferrer" 
                   className="nb-drawer__social-link"
                 >
-                  @ TheLumoraWeddings
+                  @dreamdayweddingphotography
                 </a>
               </motion.div>
             </div>
