@@ -12,11 +12,12 @@ const Footer = () => {
                     <div className="col-span-4">
                         <Link to="/" className="footer-logo-modern">
                             <img src="/logo.png" alt="DREAMDAY WEDDING PHOTOGRAPHY Logo" className="footer-logo-img" />
-                            DREAMDAY WEDDING PHOTOGRAPHY <span>Photography</span>
+                            DREAMDAY WEDDING PHOTOGRAPHY <span>Photographer</span>
                         </Link>
-                        <p className="mt-6 pr-10">
-                            A premier luxury photography studio specializing in cinematic storytelling.
-                            Based in Coimbatore & Tirupur, serving worldwide commissions with heart and artistry.
+                        <p className="mt-6 pr-10" style={{ lineHeight: '1.8' }}>
+                            Premium Wedding Photography & Cinematography.<br />
+                            <strong>CANDID-WEDDING | PRE-POST WEDDING | MATERNITY</strong><br />
+                            Coimbatore & Tirupur
                         </p>
                         <div className="footer-social-modern mt-8">
                             <a href="https://www.instagram.com/dreamday_weddingphotography/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
@@ -51,7 +52,7 @@ const Footer = () => {
                         <ul className="footer-contact-list">
                             <li>
                                 <Phone size={18} color="#C8A165" />
-                                <span>+91 88836 21113</span>
+                                <span>Ring us: +91 88836 21113</span>
                             </li>
                             <li>
                                 <Mail size={18} color="#C8A165" />

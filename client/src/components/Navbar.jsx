@@ -71,7 +71,7 @@ const Navbar = () => {
             <img src="/logo.png" alt="DREAMDAY" className="nb-logo__img" />
             <div className="nb-logo__text">
               <span className="nb-logo__name">DREAMDAY WEDDING PHOTOGRAPHY</span>
-              <span className="nb-logo__sub">Photography</span>
+              <span className="nb-logo__sub">Photographer</span>
             </div>
           </Link>
 
