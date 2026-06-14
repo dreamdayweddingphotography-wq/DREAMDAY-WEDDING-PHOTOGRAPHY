@@ -1,0 +1,1055 @@
+/* ============================================================
+   HOME PAGE STYLES — Lumora Aesthetic
+   ============================================================ */
+
+.home-wrapper {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.home-section {
+  padding: 80px 0;
+}
+
+.home-section.bg-alt {
+  background-color: var(--bg-secondary);
+}
+
+/* ── 1. Introduction & Grid ── */
+.intro-section {
+  padding-top: 100px;
+}
+
+.intro-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 60px;
+}
+
+.intro-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1.3;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.intro-desc {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-img-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.grid-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.grid-img-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+.grid-label {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #9e9e9e;
+}
+
+.grid-subtitle {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+
+/* ── 2. Instagram Marquee Reel ── */
+.reel-section {
+  padding: 100px 0 0;
+  background: #F8F2EA;
+  overflow: hidden;
+}
+
+/* Header */
+.reel-header {
+  text-align: center;
+  padding: 0 40px 56px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.reel-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.reel-eyebrow {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C8A165;
+}
+
+.reel-ig-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: #FFF9F2;
+  border: 1px solid #E8DCCB;
+  border-radius: 100px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #A44A4A;
+}
+
+.reel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: #A44A4A;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.reel-title em {
+  font-style: italic;
+  color: #C8A165;
+}
+
+/* Track wrapper — clips overflow and adds side fade */
+.reel-track-wrap {
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.reel-track-wrap--fade {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+/* Track — flex row of cards */
+.reel-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  padding: 8px 0;
+}
+
+.reel-track--left {
+  animation: reelLeft 35s linear infinite;
+}
+
+.reel-track--right {
+  animation: reelRight 40s linear infinite;
+}
+
+@keyframes reelLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes reelRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Pause on hover */
+.reel-track-wrap:hover .reel-track {
+  animation-play-state: paused;
+}
+
+/* Individual photo card */
+.reel-card {
+  position: relative;
+  width: 260px;
+  height: 340px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  border: 1px solid #F0F0F0;
+}
+
+.reel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+
+.reel-card:hover img {
+  transform: scale(1.06);
+}
+
+/* Overlay on hover */
+.reel-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(164, 74, 74, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  color: #FFFFFF;
+}
+
+.reel-card:hover .reel-card-overlay {
+  opacity: 1;
+}
+
+/* Footer */
+.reel-footer {
+  display: flex;
+  justify-content: center;
+  padding: 56px 0 100px;
+}
+
+.reel-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 44px;
+  background: #A44A4A;
+  color: #FFFFFF;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 100px;
+  border: 1.5px solid #A44A4A;
+  transition: all 0.35s ease;
+}
+
+.reel-cta:hover {
+  background: transparent;
+  color: #A44A4A;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(164, 74, 74, 0.12);
+}
+
+
+
+/* Header with flanking rules */
+.insta-clean-header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+.insta-clean-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-color));
+}
+
+.insta-clean-rule:last-child {
+  background: linear-gradient(to left, transparent, var(--border-color));
+}
+
+.insta-clean-center {
+  text-align: center;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.insta-clean-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #A44A4A, #C8A165);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.insta-clean-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin: 0;
+}
+
+.insta-clean-handle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* Photo Strip — 6 equal squares */
+.insta-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+}
+
+.insta-strip-item {
+  display: block;
+  text-decoration: none;
+  position: relative;
+}
+
+.insta-strip-img {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.insta-strip-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.insta-strip-item:hover .insta-strip-img img {
+  transform: scale(1.08);
+}
+
+/* Gold border on hover */
+.insta-strip-item:hover .insta-strip-img::after {
+  opacity: 1;
+}
+
+.insta-strip-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 3px solid #C8A165;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Instagram icon reveal on hover */
+.insta-strip-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(164, 74, 74, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+.insta-strip-item:hover .insta-strip-hover {
+  opacity: 1;
+}
+
+.insta-strip-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #A44A4A;
+  transform: scale(0.8);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.insta-strip-item:hover .insta-strip-icon {
+  transform: scale(1);
+}
+
+/* Hashtag below each photo */
+.insta-strip-tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-color);
+  text-align: center;
+  padding: 12px 8px 0;
+  margin: 0;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Footer CTA */
+.insta-clean-footer {
+  display: flex;
+  justify-content: center;
+  padding: 52px 0 100px;
+}
+
+.insta-clean-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: var(--text-primary);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: all 0.35s ease;
+}
+
+.insta-clean-btn:hover {
+  background: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(164, 74, 74, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .insta-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .insta-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .insta-clean-header {
+    gap: 16px;
+  }
+}
+
+
+
+/* Header strip */
+.insta-wall-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 52px 60px 44px;
+  border-bottom: 1px solid rgba(200, 161, 101, 0.12);
+}
+
+.insta-wall-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.insta-ig-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #C8A165, #C8A165);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(200, 161, 101, 0.3);
+}
+
+.insta-wall-label {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C8A165;
+  margin: 0 0 4px 0;
+}
+
+.insta-wall-handle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* Follow button */
+.insta-follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: transparent;
+  border: 1.5px solid #C8A165;
+  color: #C8A165;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+.insta-follow-btn:hover {
+  background: #C8A165;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(200, 161, 101, 0.35);
+}
+
+/* Photo Wall Grid — mosaic layout */
+.insta-wall-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 300px 220px;
+  gap: 4px;
+}
+
+/* tall = spans 2 rows on left */
+.insta-wall-tall {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+/* wide = full width of remaining cols, top row */
+.insta-wall-wide {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+}
+
+/* square fills remaining spots */
+.insta-wall-square {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.insta-wall-item {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background: #A44A4A;
+}
+
+.insta-wall-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.insta-wall-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Overlay on hover */
+.insta-wall-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 30, 30, 0.85) 0%, rgba(30, 30, 30, 0.2) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.insta-wall-item:hover .insta-wall-overlay {
+  opacity: 1;
+}
+
+.insta-wall-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  transform: translateY(12px);
+  transition: transform 0.4s ease;
+}
+
+.insta-wall-item:hover .insta-wall-meta {
+  transform: translateY(0);
+}
+
+.insta-wall-tag {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+}
+
+.insta-wall-likes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.insta-wall-likes svg {
+  color: #C8A165;
+}
+
+/* ── Scrolling Ticker ── */
+.insta-wall-ticker {
+  border-top: 1px solid rgba(200, 161, 101, 0.12);
+  overflow: hidden;
+  padding: 18px 0;
+  background: rgba(200, 161, 101, 0.04);
+}
+
+.insta-ticker-track {
+  display: flex;
+  gap: 0;
+  animation: tickerScroll 28s linear infinite;
+  white-space: nowrap;
+}
+
+.insta-ticker-item {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(200, 161, 101, 0.6);
+  padding: 0 40px;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (max-width: 1024px) {
+  .insta-wall-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 260px 200px 200px;
+  }
+  .insta-wall-tall { grid-column: 1; grid-row: 1 / span 2; }
+  .insta-wall-wide { grid-column: 2; grid-row: 1; }
+  .insta-wall-header { padding: 40px; }
+}
+
+@media (max-width: 640px) {
+  .insta-wall-header { flex-direction: column; gap: 24px; align-items: flex-start; padding: 28px 24px; }
+  .insta-wall-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 180px);
+  }
+  .insta-wall-tall { grid-column: 1; grid-row: 1 / 3; }
+  .insta-wall-wide { grid-column: 2; grid-row: 1; }
+}
+
+
+
+.insta-badge {
+  display: inline-block;
+  background-color: #A44A4A;
+  color: #ffffff;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+.insta-handle {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #A44A4A;
+  font-weight: 400;
+  margin: 0;
+}
+
+.insta-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 44px;
+}
+
+.insta-bento-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  display: block;
+  background: var(--bg-secondary);
+}
+
+.insta-bento-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.insta-bento-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Hover Overlay */
+.insta-bento-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 24, 27, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  color: #ffffff;
+}
+
+.insta-bento-item:hover .insta-bento-overlay {
+  opacity: 1;
+}
+
+.insta-bento-overlay svg {
+  transform: translateY(10px);
+  transition: transform 0.4s ease;
+}
+
+.insta-bento-item:hover .insta-bento-overlay svg {
+  transform: translateY(0);
+}
+
+.insta-bento-overlay span {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transform: translateY(10px);
+  transition: transform 0.4s ease 0.05s;
+}
+
+.insta-bento-item:hover .insta-bento-overlay span {
+  transform: translateY(0);
+}
+
+/* Specific Grid Placements */
+.insta-bento-large {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: 4 / 4.1; /* Tall square */
+}
+
+.insta-bento-small {
+  grid-column: span 1;
+  grid-row: span 1;
+  aspect-ratio: 1 / 1; /* Perfect square */
+}
+
+@media (max-width: 1024px) {
+  .insta-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+  .insta-bento-large {
+    grid-column: span 2;
+    grid-row: span 1;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 640px) {
+  .insta-bento-grid {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+  }
+  .insta-bento-large, .insta-bento-small {
+    grid-column: span 1;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+
+/* ── 3. Real Experiences ── */
+.reviews-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.reviews-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.reviews-swiper {
+  padding-bottom: 50px !important; /* Space for pagination dots */
+}
+
+.review-card {
+  background: #F8F2EA;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(164, 74, 74, 0.15);
+}
+
+.review-author-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.review-meta {
+  flex-grow: 1;
+}
+
+.review-name {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #A44A4A;
+  margin: 0 0 2px 0;
+}
+
+.review-date {
+  font-size: 11px;
+  color: #9e9e9e;
+  margin: 0;
+}
+
+.review-google-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.review-stars-row {
+  margin-bottom: 12px;
+}
+
+.star-rating {
+  color: #A44A4A;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.review-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #C8A165;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Summary Card specific */
+.summary-card {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-logo-placeholder {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 600;
+  color: #002d24;
+  margin-bottom: 8px;
+}
+
+.review-brand-name {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: #A44A4A;
+  margin-bottom: 12px;
+}
+
+.summary-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.summary-score {
+  font-size: 32px;
+  font-weight: 700;
+  color: #A44A4A;
+  line-height: 1;
+}
+
+.summary-total {
+  font-size: 12px;
+  color: #9e9e9e;
+  margin-bottom: 24px;
+}
+
+.write-review-btn {
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  padding: 8px 24px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: #A44A4A;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.write-review-btn:hover {
+  background: #FFF9F2;
+}
+
+
+/* ── 4. CTA Banner ── */
+.cta-section {
+  padding: 80px 0 120px;
+}
+
+.cta-banner {
+  background: #FFF9F2;
+  border-radius: 4px;
+  padding: 100px 40px;
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.04);
+  border: 1px solid #E8DCCB;
+}
+
+.cta-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  color: #A44A4A;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.cta-desc {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: #C8A165;
+  margin-bottom: 40px;
+}
+
+.cta-btn {
+  display: inline-block;
+  background-color: #A44A4A;
+  color: #FFFFFF;
+  padding: 18px 48px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-btn:hover {
+  background-color: #C8A165;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(164, 74, 74, 0.2);
+}
+
+/* Swiper overrides */
+.swiper-pagination-bullet {
+  background: #ccc;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background: #A44A4A; /* Dark active bullet */
+}

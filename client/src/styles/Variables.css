@@ -1,0 +1,31 @@
+/* ── Design System Variables ── */
+:root {
+  --pg-black:       #8B3A3A; /* Deep Rose */
+  --pg-surface:     #F8F2EA; /* Soft Beige Paper */
+  --pg-surface-2:   #FFF9F2; /* Cream */
+  --pg-cream:       #3F322D; /* Warm Charcoal Brown text */
+  --pg-cream-dim:   rgba(63, 50, 45, 0.7);
+  --pg-muted:       rgba(63, 50, 45, 0.45);
+  --pg-gold:        #C8A165; /* Accent Gold */
+  --pg-gold-2:      #E8DCCB; /* Soft Beige */
+  --pg-gold-glow:   rgba(200, 161, 101, 0.1);
+  --pg-border:      rgba(232, 220, 203, 0.4);
+  --pg-border-soft: rgba(164, 74, 74, 0.08);
+  --pg-ease:        cubic-bezier(0.16, 1, 0.3, 1);
+  --pg-ease-out:    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Light Mode Override ── */
+[data-theme="light"] {
+  --pg-black:       #8B3A3A; /* Deep Rose */
+  --pg-surface:     #F8F2EA; /* Soft Beige Paper */
+  --pg-surface-2:   #FFF9F2; /* Cream */
+  --pg-cream:       #3F322D; /* Warm Charcoal Brown text */
+  --pg-cream-dim:   rgba(63, 50, 45, 0.7);
+  --pg-muted:       rgba(63, 50, 45, 0.45);
+  --pg-gold:        #C8A165; /* Accent Gold */
+  --pg-gold-2:      #E8DCCB; /* Soft Beige */
+  --pg-gold-glow:   rgba(200, 161, 101, 0.1);
+  --pg-border:      rgba(232, 220, 203, 0.4);
+  --pg-border-soft: rgba(164, 74, 74, 0.08);
+}

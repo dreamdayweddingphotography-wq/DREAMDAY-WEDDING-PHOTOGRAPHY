@@ -1,0 +1,137 @@
+.footer-modern {
+  background-color: #8B3A3A; /* Deep Navy */
+  color: #F8F2EA; /* Ivory White */
+  border-top: 1px solid rgba(200, 161, 101, 0.15);
+  padding-bottom: 40px;
+}
+
+.footer-logo-modern {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.footer-logo-modern span {
+  font-weight: 300;
+  color: #C8A165; /* Champagne Gold */
+}
+
+.footer-logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #F8F2EA;
+}
+
+.footer-heading-modern {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #C8A165; /* Champagne Gold */
+  margin-bottom: 30px;
+}
+
+.footer-modern p {
+  color: rgba(255, 249, 242, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.footer-list-modern {
+  list-style: none;
+}
+
+.footer-list-modern li {
+  margin-bottom: 15px;
+}
+
+.footer-list-modern a {
+  color: rgba(255, 249, 242, 0.8);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.footer-list-modern a:hover {
+  color: #C8A165;
+  padding-left: 5px;
+}
+
+.footer-contact-list {
+  list-style: none;
+}
+
+.footer-contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  color: rgba(255, 249, 242, 0.8);
+  font-weight: 500;
+}
+
+.footer-social-modern {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social-modern a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 249, 242, 0.1);
+  border: 1px solid rgba(255, 249, 242, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F8F2EA;
+  transition: var(--transition-base);
+}
+
+.footer-social-modern a:hover {
+  background: #C8A165;
+  color: #8B3A3A;
+  transform: translateY(-5px);
+}
+
+.footer-bottom-modern {
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 249, 242, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: rgba(255, 249, 242, 0.6);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-legal-links a {
+  color: rgba(255, 249, 242, 0.6);
+  text-decoration: none;
+}
+
+.footer-legal-links a:hover {
+  color: #C8A165;
+  text-decoration: underline;
+}
+
+.pr-10 { padding-right: 2.5rem; }
+
+@media (max-width: 768px) {
+  .footer-bottom-modern {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}

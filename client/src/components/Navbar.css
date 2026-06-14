@@ -1,0 +1,389 @@
+/* ============================================================
+   NAVBAR — Premium Right-Side Drawer
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap');
+
+/* ── TOP BAR ── */
+.nb-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 72px;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.95), transparent);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.nb-bar--solid {
+  background: rgba(255, 255, 255, 0.97) !important;
+  border-bottom: 1px solid #E8DCCB;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nb-bar--open {
+  background: transparent !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+}
+
+.nb-bar__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 44px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── LOGO ── */
+.nb-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  z-index: 1501;
+}
+
+.nb-logo__img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #E0E0E0;
+  flex-shrink: 0;
+}
+
+.nb-logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.nb-logo__name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #8B3A3A;
+  transition: color 0.3s ease;
+}
+
+.nb-logo__sub {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #C8A165;
+}
+
+/* ── HAMBURGER ── */
+.nb-burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1501;
+}
+
+.nb-burger__line {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: #8B3A3A;
+  border-radius: 2px;
+  transition: all 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+  transform-origin: center;
+}
+
+.nb-burger--active .nb-burger__line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nb-burger--active .nb-burger__line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nb-burger--active .nb-burger__line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── BACKDROP ── */
+.nb-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+
+.nb-backdrop--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── RIGHT DRAWER ── */
+.nb-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  max-width: 90vw;
+  height: 100dvh;
+  background: radial-gradient(circle at top right, #A44A4A 0%, #8B3A3A 100%);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  transform: translateX(100%);
+  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Subtle left border */
+  border-left: 1px solid rgba(200, 161, 101, 0.15);
+}
+
+.nb-drawer--open {
+  transform: translateX(0);
+}
+
+/* ── CLOSE BUTTON ── */
+.nb-drawer__close {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 249, 242, 0.5);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 40px 44px 0;
+  margin-left: auto;
+  transition: color 0.3s ease;
+  z-index: 5;
+}
+
+.nb-drawer__close:hover {
+  color: #C8A165;
+}
+
+.nb-drawer__close-text { letter-spacing: 4px; }
+
+.nb-drawer__close-icon {
+  display: flex;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 249, 242, 0.15);
+  border-radius: 50%;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nb-drawer__close:hover .nb-drawer__close-icon {
+  border-color: #C8A165;
+  background: rgba(200, 161, 101, 0.1);
+  transform: rotate(90deg);
+}
+
+/* ── NAV LINKS ── */
+.nb-drawer__nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 30px 44px 0;
+  gap: 0;
+  z-index: 5;
+}
+
+.nb-drawer__link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 249, 242, 0.04);
+  position: relative;
+  overflow: hidden;
+
+  /* Slide-in animation */
+  transform: translateX(30px);
+  opacity: 0;
+  transition:
+    color 0.3s ease,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nb-drawer--open .nb-drawer__link {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Number label */
+.nb-drawer__link-num {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgba(200, 161, 101, 0.45);
+  flex-shrink: 0;
+  width: 28px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Main link name */
+.nb-drawer__link-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: rgba(255, 249, 242, 0.65);
+  line-height: 1;
+  letter-spacing: -0.5px;
+  flex: 1;
+  transition: color 0.3s ease, transform 0.35s ease, font-style 0.35s ease;
+}
+
+/* Arrow — hidden by default */
+.nb-drawer__link-arrow {
+  font-size: 1.1rem;
+  color: #C8A165;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s ease, transform 0.35s ease;
+  flex-shrink: 0;
+}
+
+/* Hover state */
+.nb-drawer__link:hover .nb-drawer__link-name {
+  color: #FFFFFF;
+  transform: translateX(12px);
+  font-style: italic;
+}
+
+.nb-drawer__link:hover .nb-drawer__link-num {
+  color: #C8A165;
+  transform: translateY(-2px);
+}
+
+.nb-drawer__link:hover .nb-drawer__link-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nb-drawer__link:hover {
+  border-bottom-color: rgba(200, 161, 101, 0.2);
+}
+
+/* Active state */
+.nb-drawer__link--active .nb-drawer__link-name {
+  color: #C8A165;
+  font-style: italic;
+}
+
+.nb-drawer__link--active .nb-drawer__link-num {
+  color: #C8A165;
+  opacity: 1;
+}
+
+/* ── DIVIDER RULE ── */
+.nb-drawer__rule {
+  height: 1px;
+  background: linear-gradient(to right, rgba(200, 161, 101, 0.25), transparent);
+  margin: 30px 44px 24px;
+  z-index: 5;
+}
+
+/* ── STUDIO DESCRIPTION ── */
+.nb-drawer__desc {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 249, 242, 0.55);
+  line-height: 1.8;
+  margin: 0 44px 28px;
+  letter-spacing: 0.5px;
+  z-index: 5;
+}
+
+/* ── INSTAGRAM ── */
+.nb-drawer__insta {
+  padding: 0 44px 40px;
+  z-index: 5;
+}
+
+.nb-drawer__insta-label {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255, 249, 242, 0.35);
+  margin: 0 0 10px 0;
+}
+
+.nb-drawer__insta-handle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(200, 161, 101, 0.75);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.nb-drawer__insta-handle:hover {
+  color: #C8A165;
+  transform: translateX(4px);
+}
+
+/* Watermark background text */
+.nb-drawer__watermark {
+  position: absolute;
+  bottom: -15px;
+  right: -25px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem;
+  font-weight: 700;
+  color: rgba(255, 249, 242, 0.02);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -2px;
+  z-index: 1;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .nb-bar__inner { padding: 0 24px; }
+  .nb-logo__name { font-size: 0.85rem; }
+  .nb-drawer {
+    width: 100vw;
+    max-width: 100vw;
+    border-left: none;
+  }
+  .nb-drawer__nav { padding: 32px 28px 0; }
+  .nb-drawer__close { padding: 28px 28px 0; }
+  .nb-drawer__rule { margin: 28px 28px 20px; }
+  .nb-drawer__desc { margin: 0 28px 24px; }
+  .nb-drawer__insta { padding: 0 28px 40px; }
+  .nb-drawer__link-name { font-size: 2.3rem; }
+  .nb-drawer__watermark { font-size: 6rem; right: -10px; }
+}

@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Pinyon+Script&family=Great+Vibes&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Romantic Scrapbook Wedding Palette */
+  --bg-primary:     #F8F2EA; /* Soft Beige */
+  --bg-secondary:   #FFF9F2; /* Cream */
+  --text-primary:   #3F322D; /* Warm Charcoal Brown */
+  --text-secondary: #8B3A3A; /* Deep Rose */
+  --accent-color:   #A44A4A; /* Primary Red */
+  --accent-hover:   #8B3A3A; /* Deep Rose Accent */
+  --glass-bg:       rgba(255, 249, 242, 0.85);
+  --glass-border:   rgba(164, 74, 74, 0.08);
+  --border-color:   #E8DCCB;
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body:    'Instrument Sans', sans-serif;
+  --font-script:  'Pinyon Script', cursive;
+
+  /* Spacing */
+  --section-padding:    120px;
+  --container-max-width: 1400px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='light'] {
+  --bg-primary:     #F8F2EA;
+  --bg-secondary:   #FFF9F2;
+  --text-primary:   #3F322D;
+  --text-secondary: #8B3A3A;
+  --accent-color:   #A44A4A;
+  --accent-hover:   #8B3A3A;
+  --glass-bg:       rgba(255, 249, 242, 0.85);
+  --glass-border:   rgba(164, 74, 74, 0.08);
+  --border-color:   #E8DCCB;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* 12-Column Grid System */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 30px;
+  width: 100%;
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .grid-container { gap: 20px; }
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -1px; }
+h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; letter-spacing: -0.5px; }
+h3 { font-size: 2rem; font-weight: 400; }
+h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; font-family: var(--font-body); color: var(--accent-color); font-weight: 600; }
+
+p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: var(--transition-base);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--accent-color); /* Primary Red */
+  color: #FFF9F2; /* Cream text */
+}
+
+.btn-primary:hover {
+  background-color: var(--text-secondary); /* Deep Rose */
+  color: #FFF9F2;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(139, 58, 58, 0.2);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-color);
+  color: #FFF9F2;
+  border-color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+/* Generic Layout Helpers */
+.section-padding { padding: var(--section-padding) 0; }
+.text-center { text-align: center; }
+.w-full { width: 100%; }
+.relative { position: relative; }
+.overflow-hidden { overflow: hidden; }
+
+/* Images & Hover Effects */
+.img-zoom-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.img-zoom-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-slow);
+}
+
+.img-zoom-container:hover img {
+  transform: scale(1.1);
+}
+
+/* Navbar Sticky */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Fade In Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   ROMANTIC SCRAPBOOK & POLAROID DETAILS
+   ============================================================ */
+
+/* Soft background paper texture */
+.paper-texture {
+  background-color: #F8F2EA;
+  background-image: radial-gradient(rgba(63, 50, 45, 0.03) 1px, transparent 0),
+                    radial-gradient(rgba(63, 50, 45, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* Polaroid image container */
+.scrapbook-polaroid {
+  background: #FFF9F2; /* Cream paper */
+  padding: 16px 16px 48px 16px;
+  border-radius: 2px;
+  box-shadow: 0 12px 30px rgba(63, 50, 45, 0.1);
+  border: 1px solid #E8DCCB;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  position: relative;
+  display: block;
+  text-decoration: none;
+}
+
+.scrapbook-polaroid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid rgba(63, 50, 45, 0.06);
+  display: block;
+}
+
+/* Handwritten captions */
+.scrapbook-caption {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: #8B3A3A; /* Deep Rose script */
+  text-align: center;
+  margin-top: 14px;
+  line-height: 0.9;
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+/* Washi tape effect */
+.scrapbook-tape {
+  position: absolute;
+  width: 90px;
+  height: 28px;
+  background: rgba(232, 220, 203, 0.55);
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  border-left: 2px dashed rgba(63, 50, 45, 0.15);
+  border-right: 2px dashed rgba(63, 50, 45, 0.15);
+  box-shadow: 0 2px 5px rgba(63, 50, 45, 0.03);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.scrapbook-polaroid:hover {
+  transform: rotate(0deg) scale(1.025);
+  box-shadow: 0 20px 40px rgba(63, 50, 45, 0.16);
+}
+
+.scrapbook-polaroid:hover .scrapbook-caption {
+  color: #A44A4A;
+}
