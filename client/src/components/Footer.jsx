@@ -19,7 +19,7 @@ const Footer = () => {
                             Based in Mumbai, serving worldwide commissions with heart and artistry.
                         </p>
                         <div className="footer-social-modern mt-8">
-                            <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
+                            <a href="https://www.instagram.com/dreamday_weddingphotography/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
                             <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
                             <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
                         </div>
@@ -51,7 +51,7 @@ const Footer = () => {
                         <ul className="footer-contact-list">
                             <li>
                                 <Phone size={18} color="#C8A165" />
-                                <span>+91 625 89 9999</span>
+                                <span>+91 88836 21113</span>
                             </li>
                             <li>
                                 <Mail size={18} color="#C8A165" />

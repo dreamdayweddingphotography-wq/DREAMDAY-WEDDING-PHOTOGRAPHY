@@ -222,7 +222,7 @@ const HeroCarousel = () => {
 
       {/* WhatsApp floating button (fixed position, always visible) */}
       <a
-        href="https://wa.me/919876543210"
+        href="https://wa.me/918883621113"
         target="_blank"
         rel="noopener noreferrer"
         className="hero-whatsapp"

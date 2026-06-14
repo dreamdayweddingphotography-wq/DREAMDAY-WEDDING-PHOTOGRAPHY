@@ -187,12 +187,12 @@ const Navbar = () => {
               >
                 <p className="nb-drawer__social-label">INSTAGRAM</p>
                 <a 
-                  href="https://instagram.com" 
+                  href="https://www.instagram.com/dreamday_weddingphotography/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="nb-drawer__social-link"
                 >
-                  @dreamdayweddingphotography
+                  @dreamday_weddingphotography
                 </a>
               </motion.div>
             </div>

@@ -40,7 +40,7 @@ const Contact = () => (
         <motion.aside {...vUp(0)} className="contact-sidebar">
 
           {[
-            { icon: <Phone size={18} />, label: 'Call Us',    value: '+91 625 89 9999' },
+            { icon: <Phone size={18} />, label: 'Call Us',    value: '+91 88836 21113' },
             { icon: <Mail size={18} />, label: 'Email Us',   value: 'studio@dreamdayweddingphotography.com' },
             { icon: <MapPin size={18} />, label: 'Our Studio', value: 'Colaba, Mumbai, India' },
           ].map((item, i) => (
