@@ -110,12 +110,14 @@
   justify-content: center;
   color: #F8F2EA;
   transition: var(--transition-base);
+  text-decoration: none !important;
 }
 
 .footer-social-modern a:hover {
   background: #C8A165;
   color: #8B3A3A;
   transform: translateY(-5px);
+  text-decoration: none !important;
 }
 
 .footer-bottom-modern {
