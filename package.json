@@ -1,0 +1,13 @@
+{
+  "name": "dreamday-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "build:client": "npm run build --workspace=client",
+    "build:server": "echo 'No build step for server'"
+  }
+}
