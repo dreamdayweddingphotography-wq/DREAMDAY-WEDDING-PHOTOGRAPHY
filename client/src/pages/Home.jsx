@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, FreeMode } from 'swiper/modules';
+import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import HeroCarousel from '../components/HeroCarousel';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 import './Home.css';
 
@@ -19,10 +20,11 @@ const vUp = (delay = 0) => ({
 
 const reviews = [
   { isSummary: true, name: 'DREAMDAY WEDDING PHOTOGRAPHY', rating: '5.0', total: '5 Google reviews' },
-  { initial: 'K', name: 'KARTHIK M', text: 'Excellent studio with a great environment and professional setup. Friendly service and attention to detail make it a wonderful experience. Highly recommended!', color: '#A44A4A' },
-  { initial: 'P', name: 'PRABAVATHI M', text: 'Excellent service and stunning wedding photography. DREAMDAY WEDDING PHOTOGRAPHY captured every moment beautifully. Highly recommended!', color: '#A44A4A' },
-  { initial: 'J', name: 'JOTHIKA J', text: 'A friendly cameraman and excellent photography skills that make you feel comfortable. The output was stunning!', color: '#A44A4A' },
-  { initial: 'S', name: 'SURESH K', text: 'Very professional team. They captured all the right moments without being intrusive. The album quality is top notch.', color: '#A44A4A' },
+  { initial: 'P', name: 'PRAVEEN KUMAR', text: 'Positive: Responsiveness, Quality, Professionalism, Value', color: '#A44A4A' },
+  { initial: 'M', name: 'MITHUN RAGU', text: 'Thank you for capturing our wedding memories so beautifully. The team was friendly, punctual, and incredibly talented. Every photo reflects genuine emotions and special moments. The editing quality and album design were excellent. We are extremely happy with the service and would highly recommend them to anyone looking for professional wedding photography.', color: '#A44A4A' },
+  { initial: 'S', name: 'SEKAR', text: 'We had an amazing experience with the photography team. From the initial discussion to the final delivery of photos and videos, everything was handled professionally. The team was punctual, friendly, and captured every special moment beautifully.', color: '#A44A4A' },
+  { initial: 'Y', name: 'YAMLIN FACTS', text: 'Positive: Quality, Value', color: '#A44A4A' },
+  { initial: 'N', name: 'NEGATIVE FILM', text: 'Exceptional photography service! The team was professional, creative, and easy to work with. They captured every important moment perfectly and delivered stunning photos. Highly recommended!', color: '#A44A4A' },
 ];
 
 const row1 = [
@@ -150,42 +152,26 @@ const Home = () => {
           </motion.div>
         </div>
 
-        <motion.div 
-          variants={instaContainerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          className="insta-strip"
-        >
-          {row1.map((src, i) => (
-            <motion.a 
-              key={i} 
-              variants={instaItemVariants}
-              href="https://www.instagram.com/dreamday_weddingphotography/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="insta-strip-item"
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              style={{
-                opacity: hoveredIndex !== null && hoveredIndex !== i ? 0.55 : 1,
-                transform: hoveredIndex === i ? 'scale(1.025)' : 'scale(1)',
-                transition: 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                zIndex: hoveredIndex === i ? 10 : 1,
-              }}
-            >
-              <div className="insta-strip-img">
+        <div className="reel-track-wrap reel-track-wrap--fade" style={{ marginTop: '40px' }}>
+          <div className="reel-track reel-track--left">
+            {[...row1, ...row2, ...row1, ...row2].map((src, i) => (
+              <a 
+                key={i} 
+                href="https://www.instagram.com/dreamday_weddingphotography/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="reel-card"
+              >
                 <img src={src} alt={`Instagram capture ${i + 1}`} />
-                <div className="insta-strip-hover">
-                  <div className="insta-strip-icon">
+                <div className="reel-card-overlay">
+                  <div className="insta-strip-icon" style={{ transform: 'scale(1)' }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                   </div>
                 </div>
-              </div>
-              <p className="insta-strip-tag">#dreamdaywedding</p>
-            </motion.a>
-          ))}
-        </motion.div>
+              </a>
+            ))}
+          </div>
+        </div>
 
         <div className="container">
           <motion.div {...vUp(0.2)} className="insta-clean-footer">
@@ -203,60 +189,66 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── 3. Kind Words ── */}
-      <section className="home-section reviews-section bg-alt">
-        <div className="pg-container">
-          <motion.div {...vUp(0)} className="reviews-header">
-            <h2 className="reviews-title">KIND WORDS</h2>
+      {/* ── 3. Kind Words (Glassmorphic Parallax) ── */}
+      <section 
+        className="home-section reviews-section parallax-reviews"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80')` }}
+      >
+        <div className="parallax-overlay"></div>
+        <div className="pg-container relative-z">
+          <motion.div {...vUp(0)} className="reviews-header parallax-header">
+            <span className="editorial-eyebrow light-eyebrow">HEARTFELT EXPERIENCES</span>
+            <h2 className="reviews-title light-title">Kind Words</h2>
           </motion.div>
 
-          <motion.div {...vUp(0.2)} className="reviews-carousel-wrapper">
+          <motion.div {...vUp(0.2)} className="glass-carousel-wrapper">
             <Swiper
-              modules={[Pagination]}
+              modules={[Pagination, Autoplay]}
               pagination={{ clickable: true }}
-              spaceBetween={30}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              spaceBetween={40}
               slidesPerView={1}
               breakpoints={{
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
-                1280: { slidesPerView: 4 },
               }}
-              className="reviews-swiper"
+              className="glass-swiper"
             >
-              {reviews.map((rev, i) => (
-                <SwiperSlide key={i} className="review-slide">
-                  {rev.isSummary ? (
-                    <div className="review-card summary-card">
-                      <div className="review-logo-placeholder">DREAMDAY</div>
-                      <h4 className="review-brand-name">{rev.name}</h4>
-                      <div className="summary-rating-row">
-                        <span className="summary-score">{rev.rating}</span>
-                        <StarRating />
+              {reviews.filter(r => !r.isSummary).map((rev, i) => (
+                <SwiperSlide key={i} className="glass-slide">
+                  <div className="glass-review-card">
+                    <div className="glass-stars">★★★★★</div>
+                    <p className="glass-review-text">"{rev.text}"</p>
+                    <div className="glass-review-author">
+                      <div className="glass-avatar">{rev.initial}</div>
+                      <div className="glass-author-meta">
+                        <h4>{rev.name}</h4>
+                        <span>Google Review</span>
                       </div>
-                      <p className="summary-total">{rev.total}</p>
-                      <button className="write-review-btn">Write a review</button>
                     </div>
-                  ) : (
-                    <div className="review-card">
-                      <div className="review-author-row">
-                        <div className="review-avatar" style={{ backgroundColor: rev.color }}>{rev.initial}</div>
-                        <div className="review-meta">
-                          <h4 className="review-name">{rev.name}</h4>
-                          <p className="review-date">Recent</p>
-                        </div>
-                        <div className="review-google-icon">
-                          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="16" />
-                        </div>
-                      </div>
-                      <div className="review-stars-row">
-                        <StarRating />
-                      </div>
-                      <p className="review-text">{rev.text}</p>
-                    </div>
-                  )}
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
+
+            <div className="editorial-google-link">
+              <a 
+                href="https://www.google.com/maps/place/DREAMDAY+WEDDING+PHOTOGRAPHY/@11.0188648,76.9551384,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba85943a8c48c9f:0xce215e2f7a9dfbbe!8m2!3d11.0188595!4d76.9577133!16s%2Fg%2F11lkj34ryh?entry=ttu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-read-reviews"
+              >
+                Read all our 5-Star Reviews
+              </a>
+              <a 
+                href="https://www.google.com/maps/place/DREAMDAY+WEDDING+PHOTOGRAPHY/@11.0188648,76.9551384,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba85943a8c48c9f:0xce215e2f7a9dfbbe!8m2!3d11.0188595!4d76.9577133!16s%2Fg%2F11lkj34ryh?entry=ttu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-write-review"
+              >
+                Write a Review
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -267,7 +259,7 @@ const Home = () => {
           <motion.div {...vUp(0)} className="cta-banner">
             <h2 className="cta-title">Ready to capture your story?</h2>
             <p className="cta-desc">Book a consultation today and let's discuss your vision.</p>
-            <Link to="/booking" className="cta-btn">ENQUIRE NOW</Link>
+            <Link to="/booking" className="cta-btn">START YOUR STORY</Link>
           </motion.div>
         </div>
       </section>

@@ -19,7 +19,7 @@ app.use('/api/gallery', require('./routes/gallery'));
 app.use('/api/bookings', require('./routes/bookings'));
 app.use('/api/blogs', require('./routes/blogs'));
 app.use('/api/home-images', require('./routes/homeImages'));
-
+app.use('/api/quotations', require('./routes/quotations'));
 
 // Basic Route
 app.get('/', (req, res) => {

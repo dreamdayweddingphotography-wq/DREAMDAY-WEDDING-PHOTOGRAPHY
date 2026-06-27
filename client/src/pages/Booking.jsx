@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Clock, User, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { Calendar, Clock, User, MessageCircle, CheckCircle2, Mail, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import './Booking.css';
@@ -10,7 +10,8 @@ const Booking = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    eventType: 'Wedding Photography',
+    phone: '',
+    eventType: '',
     date: '',
     location: '',
     message: ''
@@ -91,7 +92,7 @@ const Booking = () => {
           <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
 
             {/* ── Hero ── */}
-            <section className="pg-hero">
+            <section className="pg-hero booking-hero">
               <div className="pg-container">
                 <motion.div
                   className="pg-hero-inner"
@@ -99,7 +100,6 @@ const Booking = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <p className="pg-hero-eyebrow">Reservation</p>
                   <h1 className="pg-hero-title">Book Your <em>Session</em></h1>
                   <p className="pg-hero-sub">
                     Ready to capture your story? Select your preferred date and tell us
@@ -124,13 +124,17 @@ const Booking = () => {
                     {/* Step 1 */}
                     <div className="booking-step-label">Personal Information</div>
                     <div className="booking-form-grid">
-                      <div className="pg-form-group">
+                      <div className="pg-form-group full">
                         <label><User size={12} style={{ display: 'inline', marginRight: 6 }} />Full Name</label>
                         <input name="name" type="text" placeholder="Your full name" value={formData.name} onChange={handleChange} required />
                       </div>
                       <div className="pg-form-group">
-                        <label><Calendar size={12} style={{ display: 'inline', marginRight: 6 }} />Email Address</label>
+                        <label><Mail size={12} style={{ display: 'inline', marginRight: 6 }} />Email Address</label>
                         <input name="email" type="email" placeholder="email@example.com" value={formData.email} onChange={handleChange} required />
+                      </div>
+                      <div className="pg-form-group">
+                        <label><Phone size={12} style={{ display: 'inline', marginRight: 6 }} />Phone Number</label>
+                        <input name="phone" type="tel" placeholder="+91 98765 43210" value={formData.phone} onChange={handleChange} required />
                       </div>
                     </div>
 
@@ -139,12 +143,7 @@ const Booking = () => {
                     <div className="booking-form-grid">
                       <div className="pg-form-group">
                         <label>Inquiry Type</label>
-                        <select name="eventType" value={formData.eventType} onChange={handleChange}>
-                          <option>Wedding Photography</option>
-                          <option>Portrait Session</option>
-                          <option>Commercial / Editorial</option>
-                          <option>Engagement / Pre-Wedding</option>
-                        </select>
+                        <input name="eventType" type="text" placeholder="e.g., Wedding Photography, Birthday..." value={formData.eventType} onChange={handleChange} required />
                       </div>
                       <div className="pg-form-group">
                         <label>Preferred Date</label>
@@ -156,19 +155,11 @@ const Booking = () => {
                       </div>
                     </div>
 
-                    {/* Step 3 */}
-                    <div className="booking-step-label">Your Vision</div>
-                    <div className="booking-form-grid">
-                      <div className="pg-form-group full">
-                        <label><MessageCircle size={12} style={{ display: 'inline', marginRight: 6 }} />Message / Requirements</label>
-                        <textarea name="message" rows={5} placeholder="Tell us more about what you're looking for…" value={formData.message} onChange={handleChange} />
-                      </div>
-                      <div className="pg-form-group full" style={{ marginTop: 16 }}>
+                      <div className="pg-form-group full" style={{ marginTop: 32 }}>
                         <button type="submit" className="pg-btn-primary" disabled={loading} style={{ width: '100%', justifyContent: 'center', padding: '16px', fontSize: '13px' }}>
                           {loading ? 'Processing...' : 'Confirm Inquiry Request'}
                         </button>
                       </div>
-                    </div>
                   </form>
                 </div>
               </motion.div>

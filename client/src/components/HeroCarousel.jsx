@@ -184,7 +184,7 @@ const HeroCarousel = () => {
                 transition={{ delay: 0.5, duration: 0.7 }}
               >
                 <Link to="/booking" className="hero-cta">
-                  <span>BOOK YOUR SESSION</span>
+                  <span>START YOUR STORY</span>
                   <span className="hero-cta-arrow"><ArrowRight size={16} /></span>
                 </Link>
               </motion.div>

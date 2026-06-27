@@ -13,6 +13,7 @@ import Testimonials from './pages/Testimonials';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
+import ScrollToTop from './components/ScrollToTop';
 import Gallery from './pages/Gallery';
 import CategoryGalleryPage from './pages/CategoryGalleryPage';
 import { Toaster } from 'react-hot-toast';
@@ -26,13 +27,16 @@ import Engagement from './pages/work/Engagement';
 
 // Admin Pages
 import AdminLogin from './pages/Admin/AdminLogin';
-import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminDashboard from './pages/Admin/AdminDashboard'; // This is actually the Quotations list
+import MainDashboard from './pages/Admin/MainDashboard';
 import GalleryManager from './pages/Admin/GalleryManager';
 import BookingManager from './pages/Admin/BookingManager';
 import BlogManager from './pages/Admin/BlogManager';
 import ServiceManager from './pages/Admin/ServiceManager';
 import TestimonialManager from './pages/Admin/TestimonialManager';
 import AdminLayout from './pages/Admin/AdminLayout';
+import CreateQuotation from './pages/Admin/CreateQuotation';
+import ViewQuotation from './pages/Admin/ViewQuotation';
 
 const ProtectedRoute = ({ children }) => {
   const { isAdmin, loading } = useAuth();
@@ -50,6 +54,7 @@ function App() {
         {!appLoaded && <Loader onLoaded={() => setAppLoaded(true)} />}
         {appLoaded && (
           <Router>
+            <ScrollToTop />
             <Routes>
               {/* MAIN WEBSITE — Navbar + Footer on every public page */}
               <Route path="/*" element={
@@ -89,6 +94,10 @@ function App() {
                 </ProtectedRoute>
               }>
                 <Route index element={<AdminDashboard />} />
+                <Route path="dashboard" element={<MainDashboard />} />
+                <Route path="quotation/new" element={<CreateQuotation />} />
+                <Route path="quotation/:id" element={<ViewQuotation />} />
+                <Route path="quotation/:id/edit" element={<CreateQuotation />} />
                 <Route path="gallery" element={<GalleryManager />} />
                 <Route path="bookings" element={<BookingManager />} />
                 <Route path="blogs" element={<BlogManager />} />

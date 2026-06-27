@@ -1,0 +1,373 @@
+.cq-container {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Instrument Sans', sans-serif;
+  color: var(--al-text);
+}
+
+.cq-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.cq-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--al-border);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--al-text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cq-back-btn:hover {
+  background: var(--al-surface);
+  border-color: var(--al-gold);
+}
+
+.cq-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--al-bg);
+}
+
+.cq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+/* Common Card Styling */
+.cq-card {
+  background: #fff;
+  border: 1px solid var(--al-border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.3s ease;
+}
+.cq-card:hover {
+  box-shadow: 0 8px 30px rgba(90, 12, 29, 0.05);
+}
+
+.cq-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--al-gold);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+/* Form Groups */
+.cq-form-group {
+  margin-bottom: 20px;
+}
+.cq-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.cq-form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--al-text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.cq-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--al-border);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--al-text);
+  background: var(--al-surface);
+  transition: all 0.3s ease;
+}
+.cq-input:focus {
+  outline: none;
+  border-color: var(--al-gold);
+  box-shadow: 0 0 0 3px rgba(194, 124, 115, 0.1);
+  background: #fff;
+}
+.cq-input::placeholder {
+  color: #ccc;
+}
+.cq-input.error {
+  border-color: #ff4d4d;
+  background-color: #fffafa;
+}
+.cq-error-text {
+  color: #ff4d4d;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}
+
+textarea.cq-input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Event Box */
+.cq-event-box {
+  background: var(--al-surface);
+  border: 1px solid var(--al-border);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.cq-event-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.cq-req-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.cq-remove-btn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.cq-remove-btn:hover {
+  opacity: 1;
+}
+
+.cq-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(194, 124, 115, 0.08);
+  border: 1px dashed var(--al-gold);
+  color: var(--al-bg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 20px;
+  margin-top: 12px;
+  transition: all 0.3s ease;
+}
+.cq-add-btn:hover {
+  background: var(--al-gold);
+  color: #fff;
+  border-style: solid;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(194, 124, 115, 0.2);
+}
+
+/* Deliverables & Additional Services */
+.cq-checkbox-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--al-border-soft);
+}
+.cq-checkbox-row:last-child {
+  border-bottom: none;
+}
+
+.cq-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--al-text);
+  cursor: pointer;
+}
+
+.cq-price-tag {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--al-text-muted);
+}
+
+/* Pricing Summary */
+.cq-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 2px dashed var(--al-border);
+}
+.cq-total-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--al-bg);
+}
+.cq-total-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--al-bg);
+}
+
+.cq-action-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.cq-btn-outline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--al-border);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--al-text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cq-btn-outline:hover {
+  border-color: var(--al-bg);
+  color: var(--al-bg);
+}
+
+.cq-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--al-bg);
+  border: 1px solid var(--al-bg);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cq-btn-primary:hover {
+  background: #3b0611;
+}
+
+/* ── Responsive Styling (max-width: 768px) ── */
+@media (max-width: 768px) {
+  .cq-container {
+    padding: 20px 12px;
+  }
+
+  .cq-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .cq-header h1 {
+    font-size: 24px;
+  }
+
+  .cq-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cq-card {
+    padding: 20px 16px;
+    margin-bottom: 16px;
+  }
+
+  .cq-card-title {
+    margin-bottom: 16px;
+  }
+
+  /* Stack event input fields (Date, Detail text, Remove button) */
+  .cq-event-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  .cq-event-row input {
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Make event remove button position nicely on mobile */
+  .cq-event-row .cq-remove-btn {
+    align-self: flex-end;
+    margin-top: -4px;
+    padding: 4px 8px;
+    background: rgba(255, 77, 77, 0.05);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 77, 77, 0.1);
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Requirements row */
+  .cq-req-row {
+    gap: 8px;
+  }
+
+  .cq-req-row input {
+    width: 100% !important;
+  }
+
+  /* Pricing rows and summaries */
+  .cq-total-row {
+    margin-top: 24px;
+    padding-top: 16px;
+  }
+
+  /* Actions floating bar at bottom */
+  .cq-action-bar {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .cq-action-bar button {
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+  }
+}

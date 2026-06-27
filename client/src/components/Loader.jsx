@@ -1,21 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Loader.css';
 
 const Loader = ({ onLoaded }) => {
   const [loading, setLoading] = useState(true);
+  const audioRef = useRef(null);
 
   useEffect(() => {
+    // Attempt to play sound automatically (may be blocked by browser autoplay policy)
+    if (audioRef.current) {
+      audioRef.current.volume = 0.6;
+      audioRef.current.play().catch(e => console.log("Auto-play blocked by browser:", e));
+    }
+
+    // Loader timeout
     const timer = setTimeout(() => {
       setLoading(false);
-      setTimeout(onLoaded, 900);
+      setTimeout(onLoaded, 1000);
     }, 2800);
+
     return () => clearTimeout(timer);
   }, [onLoaded]);
 
   return (
-    <AnimatePresence>
-      {loading && (
+    <>
+      {/* Hidden Audio Element - Using Google's Free Sound Library */}
+      <audio ref={audioRef} src="https://actions.google.com/sounds/v1/foley/camera_shutter.ogg" preload="auto" />
+
+      <AnimatePresence>
+        {loading && (
         <motion.div
           className="loading-screen"
           initial={{ opacity: 1 }}
@@ -27,58 +40,42 @@ const Loader = ({ onLoaded }) => {
 
           <motion.div
             className="loading-content"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Logo */}
-            <motion.div
-              className="loading-logo-box"
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            {/* Pulsing Camera Logo with CSS Magic */}
+            <motion.div 
+              className="loading-camera-pulse"
+              animate={{ 
+                scale: [1, 1.05, 1],
+                opacity: [0.7, 1, 0.7],
+                filter: ["drop-shadow(0 0 10px rgba(200, 161, 101, 0.3))", "drop-shadow(0 0 30px rgba(200, 161, 101, 0.8))", "drop-shadow(0 0 10px rgba(200, 161, 101, 0.3))"]
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
             >
-              <img src="/logo.png" alt="DREAMDAY WEDDING PHOTOGRAPHY" className="loading-logo" />
+              <img src="/logo.png" alt="Dream Day Logo" className="loading-magic-logo" />
             </motion.div>
 
-            {/* Brand name */}
+            {/* Subtle Text */}
             <motion.h2
-              className="loading-brand-text"
+              className="loading-subtitle"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.9 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              style={{ marginTop: '40px' }}
             >
-              DREAMDAY WEDDING PHOTOGRAPHY <span>Photography</span>
+              DREAMDAY WEDDING PHOTOGRAPHY
             </motion.h2>
-
-            {/* Sub */}
-            <motion.p
-              className="loading-sub"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.65, duration: 0.8 }}
-            >
-              Cinematic Storytelling
-            </motion.p>
-
-            {/* Progress bar */}
-            <motion.div
-              className="loading-bar-container"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-            >
-              <motion.div
-                className="loading-bar-fill"
-                initial={{ width: 0 }}
-                animate={{ width: '100%' }}
-                transition={{ delay: 1, duration: 1.6, ease: [0.4, 0, 0.2, 1] }}
-              />
-            </motion.div>
           </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
+    </>
   );
 };
 

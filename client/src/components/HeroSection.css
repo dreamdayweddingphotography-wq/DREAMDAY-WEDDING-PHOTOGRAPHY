@@ -143,10 +143,7 @@
 .hero-logo-img {
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #000;
-  border: 1px solid var(--hs-border);
+  object-fit: contain;
   flex-shrink: 0;
 }
 

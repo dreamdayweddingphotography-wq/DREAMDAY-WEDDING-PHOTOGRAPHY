@@ -40,8 +40,8 @@ const Contact = () => (
         <motion.aside {...vUp(0)} className="contact-sidebar">
 
           {[
-            { icon: <Phone size={18} />, label: 'Call Us',    value: '+91 88836 21113' },
-            { icon: <Mail size={18} />, label: 'Email Us',   value: 'studio@dreamdayweddingphotography.com' },
+            { icon: <Phone size={18} />, label: 'Call Us',    value: <a href="tel:+918883621113" style={{ color: 'inherit', textDecoration: 'none' }}>+91 88836 21113</a> },
+            { icon: <Mail size={18} />, label: 'Email Us',   value: <a href="mailto:dreamdayweddingphotography@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>dreamdayweddingphotography@gmail.com</a> },
             { icon: <MapPin size={18} />, label: 'Our Studio', value: 'Coimbatore & Tirupur, India' },
           ].map((item, i) => (
             <motion.div key={i} {...vUp(i * 0.1)} className="contact-info-item">

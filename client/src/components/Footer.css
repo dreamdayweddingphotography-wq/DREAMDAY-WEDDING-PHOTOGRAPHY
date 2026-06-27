@@ -26,6 +26,7 @@
   color: #FFFFFF;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  word-break: break-word;
 }
 
 .footer-logo-sub {
@@ -87,11 +88,13 @@
 
 .footer-contact-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Changed from center to flex-start for wrapped text */
   gap: 15px;
   margin-bottom: 20px;
   color: rgba(255, 249, 242, 0.8);
   font-weight: 500;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .footer-social-modern {
@@ -165,6 +168,22 @@
 }
 
 @media (max-width: 768px) {
+  .footer-modern .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 20px;
+  }
+  
+  .footer-modern .grid-container > div:nth-child(1),
+  .footer-modern .grid-container > div:nth-child(4) {
+    grid-column: 1 / -1 !important;
+  }
+
+  .footer-modern .grid-container > div:nth-child(2),
+  .footer-modern .grid-container > div:nth-child(3) {
+    grid-column: span 1 !important;
+  }
+
   .footer-bottom-modern {
     flex-direction: column;
     gap: 20px;

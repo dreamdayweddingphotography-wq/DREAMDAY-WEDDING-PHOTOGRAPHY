@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
 
@@ -8,7 +9,8 @@ const navLinks = [
   { name: 'About Us',      path: '/about'     },
   { name: 'Gallery',       path: '/gallery'   },
   { name: 'Wedding Films', path: '/portfolio' },
-  { name: 'Book Us',       path: '/booking'   },
+  { name: 'Start Your Story',  path: '/booking'   },
+  { name: 'Admin Panel',   path: '/admin/login', isAdmin: true },
 ];
 
 const Navbar = () => {
@@ -75,17 +77,52 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Hamburger Menu Toggle */}
-          <button
-            className={`nb-burger ${menuOpen ? 'nb-burger--active' : ''}`}
-            onClick={() => setMenuOpen(v => !v)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-          >
-            <span className="nb-burger__line" />
-            <span className="nb-burger__line" />
-            <span className="nb-burger__line" />
-          </button>
+          {/* Desktop Links */}
+          <div className="nb-desktop-links">
+            {navLinks.map((link) => {
+              if (link.isAdmin) {
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className="nb-desktop-link"
+                    title="Admin Panel"
+                  >
+                    <Lock size={16} />
+                  </Link>
+                );
+              }
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`nb-desktop-link ${location.pathname === link.path ? 'nb-desktop-link--active' : ''}`}
+                  onClick={() => {
+                    if (location.pathname === link.path) {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+
+          </div>
+
+          {/* Right Actions (Info + Hamburger) */}
+          <div className="nb-right-actions">
+            <span className="nb-info-text">EXPLORE</span>
+            <button
+              className={`nb-burger ${menuOpen ? 'nb-burger--active' : ''}`}
+              onClick={() => setMenuOpen(v => !v)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+            >
+              <span className="nb-burger__line" />
+              <span className="nb-burger__line" />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -133,31 +170,33 @@ const Navbar = () => {
                 className="nb-drawer__nav"
               >
                 {navLinks.map((link) => (
-                  <motion.div key={link.path} variants={itemVariants}>
-                    <Link
-                      to={link.path}
-                      className={`nb-drawer__link ${location.pathname === link.path ? 'nb-drawer__link--active' : ''}`}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
+                  <motion.div key={link.name} variants={itemVariants}>
+                    {link.isAdmin ? (
+                      <Link
+                        to={link.path}
+                        className="nb-drawer__link"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        <Lock size={18} style={{ display: 'inline', marginRight: 8 }} /> Admin Panel
+                      </Link>
+                    ) : (
+                      <Link
+                        to={link.path}
+                        className={`nb-drawer__link ${location.pathname === link.path ? 'nb-drawer__link--active' : ''}`}
+                        onClick={() => {
+                          setMenuOpen(false);
+                          if (location.pathname === link.path) {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }
+                        }}
+                      >
+                        {link.name}
+                      </Link>
+                    )}
                   </motion.div>
                 ))}
 
-                {/* Admin Link */}
-                <motion.div variants={itemVariants}>
-                  <Link 
-                    to="/admin" 
-                    className={`nb-drawer__admin ${location.pathname.startsWith('/admin') ? 'nb-drawer__admin--active' : ''}`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <svg className="nb-drawer__lock-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                    </svg>
-                    <span>ADMIN</span>
-                  </Link>
-                </motion.div>
+
               </motion.nav>
 
               {/* Divider Line */}
