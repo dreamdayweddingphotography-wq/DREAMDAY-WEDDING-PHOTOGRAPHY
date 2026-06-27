@@ -50,7 +50,7 @@ const CreateQuotation = () => {
         if (isEditMode) {
             const fetchQuotation = async () => {
                 try {
-                    const res = await axios.get(`http://localhost:5000/api/quotations/${id}`);
+                    const res = await axios.get(`/api/quotations/${id}`);
                     const q = res.data.data;
                     
                     setClientInfo(q.clientInfo || { name: '', phone: '' });
@@ -201,10 +201,10 @@ const CreateQuotation = () => {
             };
 
             if (isEditMode) {
-                await axios.put(`http://localhost:5000/api/quotations/${id}`, payload);
+                await axios.put(`/api/quotations/${id}`, payload);
                 toast.success('Quotation updated successfully!');
             } else {
-                await axios.post('http://localhost:5000/api/quotations', payload);
+                await axios.post('/api/quotations', payload);
                 toast.success('Quotation saved successfully!');
             }
             navigate('/admin');

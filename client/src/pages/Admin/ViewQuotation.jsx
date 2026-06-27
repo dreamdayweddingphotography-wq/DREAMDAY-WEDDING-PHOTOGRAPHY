@@ -17,7 +17,7 @@ const ViewQuotation = () => {
     useEffect(() => {
         const fetchQuotation = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/quotations/${id}`);
+                const res = await axios.get(`/api/quotations/${id}`);
                 setQuotation(res.data.data);
             } catch (error) {
                 console.error("Error fetching quotation:", error);

@@ -41,7 +41,7 @@ const AdminDashboard = () => {
 
     const fetchQuotations = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/quotations');
+            const res = await axios.get('/api/quotations');
             setQuotations(res.data.data);
         } catch (error) {
             console.error("Error fetching quotations:", error);
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
 
     const confirmDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/quotations/${id}`);
+            await axios.delete(`/api/quotations/${id}`);
             toast.success('Quotation deleted successfully');
             fetchQuotations();
         } catch (error) {
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
 
     const handleStatusChange = async (id, newStatus) => {
         try {
-            await axios.put(`http://localhost:5000/api/quotations/${id}`, { status: newStatus });
+            await axios.put(`/api/quotations/${id}`, { status: newStatus });
             toast.success(`Status updated to ${newStatus}`);
             fetchQuotations();
         } catch (error) {

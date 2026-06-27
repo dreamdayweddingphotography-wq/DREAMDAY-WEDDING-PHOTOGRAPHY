@@ -17,7 +17,7 @@ const MainDashboard = () => {
 
     const fetchQuotations = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/quotations');
+            const res = await axios.get('/api/quotations');
             setQuotations(res.data.data);
         } catch (error) {
             console.error("Error fetching quotations:", error);
