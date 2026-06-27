@@ -395,8 +395,22 @@
 @media (max-width: 900px) {
   .about-hero-split {
     grid-template-columns: 1fr;
-    gap: 60px;
-    padding: 100px 0;
+    gap: 40px;
+    padding: 80px 0 60px;
+  }
+  .about-hero-logo {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 18px;
+  }
+  .about-hero-title {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+    margin-bottom: 20px;
+  }
+  .about-hero-text-col p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
   }
 }
 
@@ -472,11 +486,19 @@
 @media (max-width: 900px) {
   .visionary-split {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 0 80px;
+    gap: 30px;
+    padding: 40px 0 60px;
   }
   .visionary-img-col img {
-    height: 400px;
+    height: 320px;
+  }
+  .visionary-subtitle {
+    margin-bottom: 18px;
+  }
+  .visionary-text-col p:not(.visionary-subtitle):not(.pg-section-eyebrow) {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
   }
 }
 
@@ -585,19 +607,29 @@
 @media (max-width: 1024px) {
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
   .team-card:nth-child(even) {
-    margin-top: 40px;
+    margin-top: 30px;
   }
 }
 
 @media (max-width: 600px) {
   .team-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
   .team-card:nth-child(even) {
     margin-top: 0;
+  }
+  .team-info-overlay {
+    padding: 20px 12px 12px;
+  }
+  .team-info-overlay h3 {
+    font-size: 1.2rem;
+  }
+  .team-info-overlay p {
+    font-size: 9px;
   }
 }
 
@@ -698,6 +730,13 @@
 @media (max-width: 900px) {
   .location-split {
     grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .location-detail-box {
+    padding: 24px;
+  }
+  .location-detail-box p {
+    margin-bottom: 20px;
   }
 }
 

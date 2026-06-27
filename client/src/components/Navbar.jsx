@@ -72,8 +72,8 @@ const Navbar = () => {
           <Link to="/" className="nb-logo" onClick={() => setMenuOpen(false)}>
             <img src="/logo.png" alt="DREAMDAY" className="nb-logo__img" />
             <div className="nb-logo__text">
-              <span className="nb-logo__name">DREAMDAY WEDDING PHOTOGRAPHY</span>
-              <span className="nb-logo__sub">Photography</span>
+              <span className="nb-logo__name">DREAMDAY</span>
+              <span className="nb-logo__sub">WEDDING PHOTOGRAPHY</span>
             </div>
           </Link>
 
