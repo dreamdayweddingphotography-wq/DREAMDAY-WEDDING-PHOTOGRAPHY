@@ -51,15 +51,15 @@ const Footer = () => {
                         <h4 className="footer-heading-modern">Get In Touch</h4>
                         <ul className="footer-contact-list">
                             <li>
-                                <Phone size={18} color="#C8A165" />
+                                <Phone size={18} color="#8A9BA8" />
                                 <span>Ring us: <a href="tel:+918883621113" style={{ color: 'inherit', textDecoration: 'none' }}>+91 88836 21113</a></span>
                             </li>
                             <li>
-                                <Mail size={18} color="#C8A165" />
+                                <Mail size={18} color="#8A9BA8" />
                                 <span><a href="mailto:dreamdayweddingphotography@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>dreamdayweddingphotography@gmail.com</a></span>
                             </li>
                             <li>
-                                <MapPin size={18} color="#C8A165" />
+                                <MapPin size={18} color="#8A9BA8" />
                                 <span>Coimbatore & Tirupur, India</span>
                             </li>
                         </ul>

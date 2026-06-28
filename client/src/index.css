@@ -1,21 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Pinyon+Script&family=Great+Vibes&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Alex+Brush&display=swap');
 
 :root {
-  /* Romantic Scrapbook Wedding Palette */
-  --bg-primary:     #F8F2EA; /* Soft Beige */
-  --bg-secondary:   #FFF9F2; /* Cream */
-  --text-primary:   #3F322D; /* Warm Charcoal Brown */
-  --text-secondary: #8B3A3A; /* Deep Rose */
-  --accent-color:   #A44A4A; /* Primary Red */
-  --accent-hover:   #8B3A3A; /* Deep Rose Accent */
-  --glass-bg:       rgba(255, 249, 242, 0.85);
-  --glass-border:   rgba(164, 74, 74, 0.08);
-  --border-color:   #E8DCCB;
+  /* Minimalist Light & Gold Palette */
+  --bg-primary:     #FAFAFA; /* Very subtle off-white background */
+  --bg-secondary:   #FFFFFF; /* Pure White for cards/containers */
+  --text-primary:   #1A1A1A; /* Near Black Text for crisp readability */
+  --text-secondary: #666666; /* Elegant Dark Gray Text */
+  --accent-color:   #111111; /* Champagne Gold */
+  --accent-hover:   #000000; /* Darker Gold for hover */
+  --glass-bg:       rgba(255, 255, 255, 0.85); /* Frosty glass */
+  --glass-border:   rgba(17, 17, 17, 0.2); /* Gold glow border */
+  --border-color:   #EAEAEA;
+  
+  /* Luxury Effects */
+  --shadow-premium: 0 12px 30px rgba(0, 0, 0, 0.05); /* Soft, airy shadow */
+  --shadow-glow:    0 8px 30px rgba(17, 17, 17, 0.15);
+  --gradient-primary: linear-gradient(135deg, #333333 0%, #111111 50%, #000000 100%);
 
   /* Typography */
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body:    'Instrument Sans', sans-serif;
-  --font-script:  'Pinyon Script', cursive;
+  --font-heading: 'Playfair Display', serif;
+  --font-body:    'Montserrat', sans-serif;
+  --font-script:  'Alex Brush', cursive;
 
   /* Spacing */
   --section-padding:    120px;
@@ -28,15 +33,15 @@
 }
 
 [data-theme='light'] {
-  --bg-primary:     #F8F2EA;
-  --bg-secondary:   #FFF9F2;
-  --text-primary:   #3F322D;
-  --text-secondary: #8B3A3A;
-  --accent-color:   #A44A4A;
-  --accent-hover:   #8B3A3A;
-  --glass-bg:       rgba(255, 249, 242, 0.85);
-  --glass-border:   rgba(164, 74, 74, 0.08);
-  --border-color:   #E8DCCB;
+  --bg-primary:     #FAFAFA;
+  --bg-secondary:   #FFFFFF;
+  --text-primary:   #1A1A1A;
+  --text-secondary: #666666;
+  --accent-color:   #111111;
+  --accent-hover:   #000000;
+  --glass-bg:       rgba(255, 255, 255, 0.95);
+  --glass-border:   rgba(17, 17, 17, 0.2);
+  --border-color:   #EAEAEA;
 }
 
 * {
@@ -136,15 +141,17 @@ p {
 }
 
 .btn-primary {
-  background-color: var(--accent-color); /* Primary Red */
-  color: #FFF9F2; /* Cream text */
+  background: var(--gradient-primary);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: var(--shadow-glow);
 }
 
 .btn-primary:hover {
-  background-color: var(--text-secondary); /* Deep Rose */
-  color: #FFF9F2;
+  background: linear-gradient(135deg, #EBA093 0%, #333333 50%, #9F4132 100%);
+  color: #FFFFFF;
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(139, 58, 58, 0.2);
+  box-shadow: 0 12px 28px rgba(216, 106, 88, 0.4);
 }
 
 .btn-secondary {
@@ -155,7 +162,7 @@ p {
 
 .btn-secondary:hover {
   background-color: var(--accent-color);
-  color: #FFF9F2;
+  color: #FFFFFF;
   border-color: var(--accent-color);
   transform: translateY(-3px);
 }
@@ -210,20 +217,19 @@ p {
 
 /* Soft background paper texture */
 .paper-texture {
-  background-color: #F8F2EA;
-  background-image: radial-gradient(rgba(63, 50, 45, 0.03) 1px, transparent 0),
-                    radial-gradient(rgba(63, 50, 45, 0.03) 1px, transparent 0);
+  background-color: #FFFCFB;
+  background-image: radial-gradient(rgba(46, 30, 28, 0.03) 1px, transparent 0),
+                    radial-gradient(rgba(46, 30, 28, 0.03) 1px, transparent 0);
   background-size: 24px 24px;
   background-position: 0 0, 12px 12px;
 }
 
-/* Polaroid image container */
 .scrapbook-polaroid {
-  background: #FFF9F2; /* Cream paper */
+  background: #FFFFFF;
   padding: 16px 16px 48px 16px;
-  border-radius: 2px;
-  box-shadow: 0 12px 30px rgba(63, 50, 45, 0.1);
-  border: 1px solid #E8DCCB;
+  border-radius: 4px;
+  box-shadow: var(--shadow-premium);
+  border: 1px solid rgba(216, 106, 88, 0.15);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   position: relative;
   display: block;
@@ -234,7 +240,7 @@ p {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border: 1px solid rgba(63, 50, 45, 0.06);
+  border: 1px solid rgba(46, 30, 28, 0.06);
   display: block;
 }
 
@@ -242,7 +248,7 @@ p {
 .scrapbook-caption {
   font-family: var(--font-script);
   font-size: 2.2rem;
-  color: #8B3A3A; /* Deep Rose script */
+  color: #7A6663; /* Medium Dusty Blue script */
   text-align: center;
   margin-top: 14px;
   line-height: 0.9;
@@ -261,18 +267,28 @@ p {
   transform: translateX(-50%) rotate(-4deg);
   backdrop-filter: blur(1.5px);
   -webkit-backdrop-filter: blur(1.5px);
-  border-left: 2px dashed rgba(63, 50, 45, 0.15);
-  border-right: 2px dashed rgba(63, 50, 45, 0.15);
-  box-shadow: 0 2px 5px rgba(63, 50, 45, 0.03);
+  border-left: 2px dashed rgba(46, 30, 28, 0.15);
+  border-right: 2px dashed rgba(46, 30, 28, 0.15);
+  box-shadow: 0 2px 5px rgba(46, 30, 28, 0.03);
   pointer-events: none;
   z-index: 10;
 }
 
 .scrapbook-polaroid:hover {
   transform: rotate(0deg) scale(1.025);
-  box-shadow: 0 20px 40px rgba(63, 50, 45, 0.16);
+  box-shadow: 0 20px 40px rgba(46, 30, 28, 0.12);
 }
 
 .scrapbook-polaroid:hover .scrapbook-caption {
-  color: #A44A4A;
+  color: #111111;
+}
+
+/* Force global logos to be circular and blend seamlessly */
+img[src*="logo.png"], 
+img[src*="logo-circle.png"],
+img[src*="logo-circle.svg"] {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }

@@ -6,7 +6,10 @@ import {
     Plus, 
     FileText, 
     TrendingUp, 
-    ArrowRight 
+    ArrowRight,
+    Calendar,
+    ChevronRight,
+    Clock
 } from 'lucide-react';
 import './Admin.css';
 
@@ -35,6 +38,11 @@ const MainDashboard = () => {
     const totalCount = quotations.length;
     const draftCount = quotations.filter(q => q.status?.toUpperCase() === 'DRAFT').length;
     const confirmedCount = quotations.filter(q => q.status?.toUpperCase() === 'CONFIRMED').length;
+    
+    // Revenue calculations (mocked or derived from confirmed quotes)
+    const totalRevenue = quotations
+        .filter(q => q.status?.toUpperCase() === 'CONFIRMED' || q.status?.toUpperCase() === 'COMPLETED')
+        .reduce((sum, q) => sum + (q.pricing?.finalTotal || 0), 0);
 
     // Get 5 most recent quotations
     const recentQuotations = [...quotations].reverse().slice(0, 5);
@@ -57,6 +65,11 @@ const MainDashboard = () => {
         });
     };
 
+    const getInitials = (name) => {
+        if (!name) return '??';
+        return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    };
+
     if (loading) {
         return <div className="al-ql-loading">Loading Dashboard...</div>;
     }
@@ -64,103 +77,128 @@ const MainDashboard = () => {
     return (
         <div className="al-db-container">
             {/* Header Greeting */}
-            <div className="al-db-header">
-                <div className="al-db-greeting">
-                    <h1>Good to see you, Rajarajan Vetrivendhan 👋</h1>
-                    <p>Here's a snapshot of your studio activity.</p>
+            <div className="al-db-header-premium">
+                <div className="al-db-greeting-premium">
+                    <span className="al-db-date-badge"><Calendar size={12} /> {new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
+                    <h1>Welcome back, Rajarajan <span>👋</span></h1>
+                    <p>Here is what's happening with your studio today.</p>
                 </div>
-                <button onClick={() => navigate('/admin/quotation/new')} className="al-db-create-btn">
-                    <Plus size={16} /> CREATE QUOTATION
+                <button onClick={() => navigate('/admin/quotation/new')} className="al-db-create-btn-premium">
+                    <Plus size={18} /> <span>Create New Quotation</span>
                 </button>
             </div>
 
             {/* Stats Cards */}
-            <div className="al-db-stats-grid">
+            <div className="al-db-stats-grid-premium">
                 {/* Total Quotations Card */}
-                <div className="al-db-stat-card" onClick={() => navigate('/admin')}>
-                    <div className="al-db-stat-left">
-                        <div className="al-db-stat-icon-wrapper blue">
-                            <FileText size={24} />
+                <div className="al-db-stat-card-premium al-stat-wine" onClick={() => navigate('/admin')}>
+                    <div className="al-stat-bg-shape"></div>
+                    <div className="al-db-stat-top">
+                        <div className="al-db-stat-icon-wrapper-premium">
+                            <FileText size={22} />
                         </div>
-                        <div className="al-db-stat-info">
-                            <span className="al-db-stat-number">{totalCount}</span>
-                            <span className="al-db-stat-label">Quotations</span>
-                            <span className="al-db-stat-sub">{draftCount} drafts</span>
-                        </div>
+                        <ArrowRight className="al-db-stat-arrow-premium" size={20} />
                     </div>
-                    <ArrowRight className="al-db-stat-arrow" size={18} />
+                    <div className="al-db-stat-info-premium">
+                        <span className="al-db-stat-number-premium">{totalCount}</span>
+                        <span className="al-db-stat-label-premium">Total Quotations</span>
+                        <span className="al-db-stat-sub-premium">{draftCount} pending drafts</span>
+                    </div>
                 </div>
 
                 {/* Confirmed Quotations Card */}
-                <div className="al-db-stat-card" onClick={() => navigate('/admin')}>
-                    <div className="al-db-stat-left">
-                        <div className="al-db-stat-icon-wrapper green">
-                            <TrendingUp size={24} />
+                <div className="al-db-stat-card-premium al-stat-gold" onClick={() => navigate('/admin')}>
+                    <div className="al-stat-bg-shape"></div>
+                    <div className="al-db-stat-top">
+                        <div className="al-db-stat-icon-wrapper-premium">
+                            <TrendingUp size={22} />
                         </div>
-                        <div className="al-db-stat-info">
-                            <span className="al-db-stat-number">{confirmedCount}</span>
-                            <span className="al-db-stat-label">Confirmed</span>
-                            <span className="al-db-stat-sub">of all quotes</span>
+                        <ArrowRight className="al-db-stat-arrow-premium" size={20} />
+                    </div>
+                    <div className="al-db-stat-info-premium">
+                        <span className="al-db-stat-number-premium">{confirmedCount}</span>
+                        <span className="al-db-stat-label-premium">Confirmed Events</span>
+                        <span className="al-db-stat-sub-premium">Successfully booked</span>
+                    </div>
+                </div>
+                
+                {/* Revenue Card (New) */}
+                <div className="al-db-stat-card-premium al-stat-light">
+                    <div className="al-stat-bg-shape"></div>
+                    <div className="al-db-stat-top">
+                        <div className="al-db-stat-icon-wrapper-premium">
+                            <Clock size={22} />
                         </div>
                     </div>
-                    <ArrowRight className="al-db-stat-arrow" size={18} />
+                    <div className="al-db-stat-info-premium">
+                        <span className="al-db-stat-number-premium">{formatCurrency(totalRevenue)}</span>
+                        <span className="al-db-stat-label-premium">Estimated Revenue</span>
+                        <span className="al-db-stat-sub-premium">From confirmed quotes</span>
+                    </div>
                 </div>
             </div>
 
-            {/* Recent Quotations List Table */}
-            <div className="al-db-recent-section">
-                <div className="al-db-section-header">
-                    <h2>Recent Quotations</h2>
-                    <Link to="/admin" className="al-db-view-all-btn">
-                        View all <ArrowRight size={14} />
+            {/* Recent Quotations List */}
+            <div className="al-db-recent-section-premium">
+                <div className="al-db-section-header-premium">
+                    <div className="al-db-section-title">
+                        <h2>Recent Quotations</h2>
+                        <span className="al-db-section-badge">{recentQuotations.length}</span>
+                    </div>
+                    <Link to="/admin" className="al-db-view-all-btn-premium">
+                        View all records <ChevronRight size={16} />
                     </Link>
                 </div>
 
-                <div className="al-db-table-wrapper">
+                <div className="al-db-list-wrapper">
                     {recentQuotations.length === 0 ? (
                         <div className="al-ql-empty">No quotations created yet.</div>
                     ) : (
-                        <table className="al-db-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Client</th>
-                                    <th>Event Type</th>
-                                    <th>Event Date</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {recentQuotations.map((quote) => {
-                                    const primaryEvent = quote.eventDetails?.events?.[0];
-                                    const eventDateStr = primaryEvent ? formatDate(primaryEvent.date) : 'TBD';
-                                    const totalEvents = quote.eventDetails?.events?.length || 0;
-                                    const eventDateText = totalEvents > 1 
-                                        ? `${eventDateStr} (+${totalEvents - 1} more)`
-                                        : eventDateStr;
+                        <div className="al-db-modern-list">
+                            {recentQuotations.map((quote) => {
+                                const primaryEvent = quote.eventDetails?.events?.[0];
+                                const eventDateStr = primaryEvent ? formatDate(primaryEvent.date) : 'TBD';
+                                const status = quote.status || 'SENT';
+                                
+                                return (
+                                    <div key={quote._id} className="al-db-list-item" onClick={() => navigate(`/admin/quotation/${quote._id}`)}>
+                                        <div className="al-db-list-item-left">
+                                            <div className="al-db-avatar">
+                                                {getInitials(quote.clientInfo?.name)}
+                                            </div>
+                                            <div className="al-db-item-details">
+                                                <h4 className="al-db-client-name-premium">{quote.clientInfo?.name}</h4>
+                                                <div className="al-db-item-meta">
+                                                    <span className="al-db-id-pill-premium">Q-{quote.quotationId || quote._id.substring(18)}</span>
+                                                    <span className="al-db-meta-dot">•</span>
+                                                    <span className="al-db-event-type-premium">{quote.eventDetails?.eventType || 'Wedding Photography'}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="al-db-list-item-center">
+                                            <div className="al-db-date-info">
+                                                <Calendar size={14} />
+                                                <span>{eventDateStr}</span>
+                                            </div>
+                                        </div>
 
-                                    return (
-                                        <tr key={quote._id} style={{ cursor: 'pointer' }} onClick={() => navigate(`/admin/quotation/${quote._id}`)}>
-                                            <td>
-                                                <span className="al-db-id-pill">Q-{quote.quotationId || quote._id.substring(18)}</span>
-                                            </td>
-                                            <td>
-                                                <span className="al-db-client-name">{quote.clientInfo?.name}</span>
-                                            </td>
-                                            <td>
-                                                {quote.eventDetails?.eventType || 'Wedding Photography'}
-                                            </td>
-                                            <td>
-                                                {eventDateText}
-                                            </td>
-                                            <td>
-                                                <span className="al-db-price">{formatCurrency(quote.pricing?.finalTotal || 0)}</span>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
+                                        <div className="al-db-list-item-right">
+                                            <div className="al-db-price-premium">
+                                                {formatCurrency(quote.pricing?.finalTotal || 0)}
+                                            </div>
+                                            <div className={`al-db-status-badge status-${status.toLowerCase()}`}>
+                                                <span className="status-dot"></span>
+                                                {status}
+                                            </div>
+                                            <button className="al-db-item-action">
+                                                <ChevronRight size={20} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     )}
                 </div>
             </div>

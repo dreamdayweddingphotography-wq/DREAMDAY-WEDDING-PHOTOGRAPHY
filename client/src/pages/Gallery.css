@@ -2,7 +2,7 @@
    NEGATIVEFILM — Unified Page Design System
    Aesthetic: Cinematic Luxury · Dark Editorial
    Font: Cormorant Garamond (display) + Instrument Sans (body)
-   Palette: Near-black #070604 · Warm gold #A44A4A · Cream #f0ead8
+   Palette: Near-black #070604 · Warm gold #111111 · Cream #f0ead8
    ================================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
@@ -15,7 +15,7 @@
   --pg-cream:       #f0ead8;
   --pg-cream-dim:   rgba(240, 234, 216, 0.55);
   --pg-muted:       rgba(240, 234, 216, 0.38);
-  --pg-gold:        #A44A4A;
+  --pg-gold:        #111111;
   --pg-gold-2:      #e8c060;
   --pg-gold-glow:   rgba(63, 63, 70, 0.18);
   --pg-border:      rgba(63, 63, 70, 0.14);
@@ -26,17 +26,17 @@
 
 /* ── Light Mode Override ── */
 [data-theme="light"] {
-  --pg-black: #F8F2EA;
+  --pg-black: #FFFCFB;
   --pg-surface:     #f8f7f4;
   --pg-surface-2:   #f0ede8;
-  --pg-cream:       #A44A4A;
+  --pg-cream:       #111111;
   --pg-cream-dim:   rgba(26, 26, 26, 0.7);
   --pg-muted:       rgba(26, 26, 26, 0.45);
   --pg-gold:        #b38a1a;
   --pg-gold-2:      #8a6a14;
   --pg-gold-glow:   rgba(179, 138, 26, 0.1);
   --pg-border:      rgba(179, 138, 26, 0.25);
-  --pg-border-soft: rgba(0, 0, 0, 0.08);
+  --pg-border-soft: rgba(46, 30, 28, 0.08);
 }
 
 /* ── Page Wrappers ── */
@@ -44,7 +44,7 @@
   min-height: 100vh;
   background: var(--pg-black);
   color: var(--pg-cream);
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   padding-top: 76px;
   overflow-x: hidden;
 }
@@ -107,7 +107,7 @@
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.28em;
@@ -126,7 +126,7 @@
 }
 
 .pg-hero-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(3rem, 7vw, 7rem);
   font-weight: 700;
   color: var(--pg-cream);
@@ -141,7 +141,7 @@
 }
 
 .pg-hero-sub {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 300;
   color: var(--pg-cream-dim);
@@ -180,7 +180,7 @@
 }
 
 .pg-section-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 3.2rem);
   font-weight: 700;
   color: var(--pg-cream);
@@ -196,7 +196,7 @@
   align-items: center;
   gap: 10px;
   padding: 14px 34px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -223,7 +223,7 @@
   align-items: center;
   gap: 10px;
   padding: 13px 32px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -256,7 +256,7 @@
 
 .pg-card:hover {
   border-color: rgba(63, 63, 70, 0.2);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 40px rgba(46, 30, 28,0.3);
   transform: translateY(-4px);
 }
 
@@ -271,7 +271,7 @@
 }
 
 .pg-form-group label {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -286,7 +286,7 @@
   border: 1px solid var(--pg-border-soft);
   border-radius: 10px;
   padding: 13px 18px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   color: var(--pg-cream);
@@ -356,7 +356,7 @@
   color: #000;
   padding: 16px 24px;
   border-radius: 12px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 700;
   line-height: 1;
@@ -365,7 +365,7 @@
 
 .about-img-badge span {
   display: block;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -374,7 +374,7 @@
 }
 
 .about-text-col h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3vw, 2.8rem);
   font-weight: 700;
   color: var(--pg-cream);
@@ -402,7 +402,7 @@
 
 .about-stat strong {
   display: block;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 3.2rem;
   font-weight: 700;
   color: var(--pg-gold);
@@ -445,7 +445,7 @@
 .value-item:hover {
   border-color: var(--pg-border);
   transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+  box-shadow: 0 16px 48px rgba(46, 30, 28,0.3);
 }
 
 .value-icon {
@@ -467,7 +467,7 @@
 }
 
 .value-item h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -488,7 +488,7 @@
 }
 
 .about-quote-text {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3.8rem);
   font-weight: 300;
   font-style: italic;
@@ -532,7 +532,7 @@
 .blog-card:hover {
   border-color: rgba(63, 63, 70,0.2);
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 60px rgba(46, 30, 28,0.35);
 }
 
 .blog-card-img {
@@ -559,7 +559,7 @@
   left: 20px;
   background: var(--pg-gold);
   color: #000;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -589,7 +589,7 @@
 }
 
 .blog-card-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -633,7 +633,7 @@
 }
 
 .newsletter-section h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 600;
   color: var(--pg-cream);
@@ -661,7 +661,7 @@
   border: 1px solid var(--pg-border);
   border-radius: 100px;
   padding: 14px 22px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   color: var(--pg-cream);
   outline: none;
@@ -694,7 +694,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -742,7 +742,7 @@
 }
 
 .booking-success-card h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 2.5rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -828,7 +828,7 @@
 }
 
 .contact-hours h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -852,7 +852,7 @@
 }
 
 .contact-form-card h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 2.2rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -895,7 +895,7 @@
 }
 
 .map-placeholder h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 400;
   color: var(--pg-cream-dim);
@@ -917,7 +917,7 @@
 }
 
 .gallery-filter-btn {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -993,7 +993,7 @@
 }
 
 .gallery-item-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -1059,7 +1059,7 @@
   max-height: 78vh;
   object-fit: contain;
   border-radius: 6px;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+  box-shadow: 0 24px 80px rgba(46, 30, 28,0.7);
 }
 
 .pg-lightbox-info {
@@ -1068,7 +1068,7 @@
 }
 
 .pg-lightbox-info h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -1142,7 +1142,7 @@
 }
 
 .featured-item-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -1173,7 +1173,7 @@
 .wedding-img:hover img { transform: scale(1.04); }
 
 .wedding-text h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3vw, 2.8rem);
   font-weight: 700;
   color: var(--pg-cream);
@@ -1230,7 +1230,7 @@
 }
 
 .service-mini-card h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -1282,7 +1282,7 @@
 }
 
 .testimonial-quote {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.25rem;
   font-style: italic;
   font-weight: 300;
@@ -1308,7 +1308,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.2rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -1368,7 +1368,7 @@
 }
 
 .cta-banner h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.2rem, 4vw, 3.5rem);
   font-weight: 700;
   color: var(--pg-cream);
@@ -1451,7 +1451,7 @@
 }
 
 .portfolio-item-text h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -1480,7 +1480,7 @@
 .service-card:hover {
   border-color: rgba(63, 63, 70,0.22);
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 60px rgba(46, 30, 28,0.35);
 }
 
 .service-icon-wrap {
@@ -1517,7 +1517,7 @@
 }
 
 .service-card h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.9rem;
   font-weight: 600;
   color: var(--pg-cream);
@@ -1525,7 +1525,7 @@
 }
 
 .service-price {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 3rem;
   font-weight: 700;
   color: var(--pg-cream);
@@ -1567,7 +1567,7 @@
 }
 
 .services-custom h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 600;
   color: var(--pg-cream);
@@ -1608,7 +1608,7 @@
 .testimonial-full-card:hover {
   border-color: rgba(63, 63, 70,0.2);
   transform: translateY(-6px);
-  box-shadow: 0 16px 52px rgba(0,0,0,0.3);
+  box-shadow: 0 16px 52px rgba(46, 30, 28,0.3);
 }
 
 .tfc-top {
@@ -1639,7 +1639,7 @@
 }
 
 .tfc-text {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.35rem;
   font-style: italic;
   font-weight: 300;
@@ -1662,7 +1662,7 @@
   background: var(--pg-gold);
   color: #000;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.2rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -1697,7 +1697,7 @@
 }
 
 .testimonials-cta h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 600;
   color: var(--pg-cream);
@@ -1726,7 +1726,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -1807,7 +1807,7 @@
 }
 
 .gallery-footer-text p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.25rem;
   font-style: italic;
   letter-spacing: 0.02em;

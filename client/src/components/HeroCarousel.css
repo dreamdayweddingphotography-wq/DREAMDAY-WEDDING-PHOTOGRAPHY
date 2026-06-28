@@ -1,321 +1,169 @@
 /* ============================================================
-   HERO — Cinematic Full-Screen Carousel
-   Inspired by luxury wedding photography websites
+   HERO — Interactive Expanding Panels (Accordion Slider)
    ============================================================ */
 
-/* ── WRAPPER ── */
 .hero-wrap {
-  position: relative;
   width: 100vw;
   height: 100vh;
+  background-color: var(--bg-primary);
   overflow: hidden;
-  background: #1a1208;
+  display: flex;
 }
 
-/* ── SLIDER ── */
-.hero-swiper {
-  position: absolute;
-  inset: 0;
+/* ── ACCORDION CONTAINER ── */
+.accordion-container {
+  display: flex;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  padding: 0;
+  margin: 0;
 }
 
-.hero-slide-img {
-  width: 100%;
-  height: 100%;
+/* ── ACCORDION PANELS ── */
+.accordion-panel {
   position: relative;
-}
-
-.hero-slide-img img {
-  width: 100%;
   height: 100%;
-  object-fit: cover;
-  animation: heroKenBurns 14s ease forwards;
+  flex: 1; /* Resting state */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
-@keyframes heroKenBurns {
-  from { transform: scale(1.12); }
-  to   { transform: scale(1.0); }
+.accordion-panel:last-child {
+  border-right: none;
 }
 
-/* Dark gradient scrim for text readability */
-.hero-scrim {
+/* The magic: when active, take up huge space */
+.accordion-panel.active {
+  flex: 10;
+  cursor: default;
+}
+
+/* ── OVERLAYS ── */
+.accordion-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.10) 30%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.55) 100%),
-    linear-gradient(to right, rgba(0,0,0,0.15) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.15) 100%);
-  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.3) 100%);
+  transition: all 0.8s ease;
+  opacity: 0.6;
 }
 
-/* ── UI LAYER (sits above slider) ── */
-.hero-ui {
+.accordion-panel.active .accordion-overlay {
+  opacity: 0.7; /* Slightly darker to make big text pop */
+}
+
+/* ── VERTICAL TITLE (INACTIVE STATE) ── */
+.accordion-vertical-title {
   position: absolute;
-  inset: 0;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
-}
-
-.hero-ui > * {
-  pointer-events: auto;
-}
-
-/* ── TOP RIGHT — Slide Counter ── */
-.hero-counter {
-  position: absolute;
-  top: 32px;
-  right: 56px;
-  z-index: 10;
-  display: flex;
-  align-items: baseline;
-  gap: 3px;
-  pointer-events: auto;
-}
-
-.hero-count-curr {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem;
-  font-weight: 600;
-  color: #C8A165;
-  line-height: 1;
-}
-
-.hero-count-sep {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.35);
-  font-weight: 400;
-  margin: 0 2px;
-}
-
-.hero-count-total {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.35);
-  font-weight: 400;
-}
-
-/* ── CENTER CONTENT ── */
-.hero-center {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 120px;
-  position: relative;
-  z-index: 5;
-}
-
-/* Category eyebrow */
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-
-.hero-eyebrow-diamond {
-  width: 8px;
-  height: 8px;
-  background: #C8A165;
-  transform: rotate(45deg);
-  flex-shrink: 0;
-}
-
-.hero-eyebrow-text {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 12px;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-family: var(--font-body);
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 5px;
+  color: #FFFFFF;
   text-transform: uppercase;
-  color: #C8A165;
+  white-space: nowrap;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
 }
 
-/* Giant centered title */
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.5rem, 9vw, 8rem);
+.accordion-panel.active .accordion-vertical-title {
+  opacity: 0;
+  transform: translateX(-50%) rotate(180deg) translateY(20px);
+}
+
+
+/* ── EXPANDED CONTENT (ACTIVE STATE) ── */
+.accordion-content {
+  position: relative;
+  z-index: 10;
+  padding: 80px 5vw;
+  width: 100%;
+  pointer-events: none; /* Let clicks pass to panel unless it's a button */
+}
+
+.accordion-panel.active .accordion-content {
+  pointer-events: auto;
+}
+
+.accordion-content-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Eyebrow */
+.accordion-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.accordion-diamond {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-color);
+  transform: rotate(45deg);
+}
+
+/* Main Title */
+.accordion-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 7rem);
   font-weight: 400;
-  line-height: 0.95;
+  line-height: 0.9;
   letter-spacing: -1px;
   color: #FFFFFF;
-  margin: 0 0 28px 0;
-  text-transform: uppercase;
-  white-space: pre-line;
-  user-select: none;
+  margin: 0 0 20px 0;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  max-width: 80%;
 }
 
-/* Subtitle / description */
-.hero-subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1rem, 1.8vw, 1.3rem);
-  font-weight: 300;
+/* Subtitle */
+.accordion-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 400;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.75);
-  max-width: 600px;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 500px;
   margin: 0 0 40px 0;
-  letter-spacing: 0.5px;
+  line-height: 1.5;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
 /* CTA Button */
-.hero-cta {
+.accordion-btn {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 40px;
-  background: #C8A165;
-  color: #FFFFFF;
-  text-decoration: none;
-  border: 2px solid #C8A165;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-
-.hero-cta:hover {
-  background: transparent;
-  color: #C8A165;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(200, 161, 101, 0.25);
-}
-
-.hero-cta-arrow {
-  display: flex;
-  align-items: center;
-  transition: transform 0.3s ease;
-}
-
-.hero-cta:hover .hero-cta-arrow {
-  transform: translateX(4px);
-}
-
-/* ── SIDE ARROWS ── */
-.hero-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: rgba(255, 255, 255, 0.7);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.35s ease;
-  pointer-events: auto;
-}
-
-.hero-arrow:hover {
-  border-color: #C8A165;
-  color: #C8A165;
-  background: rgba(200, 161, 101, 0.1);
-  transform: translateY(-50%) scale(1.08);
-}
-
-.hero-arrow-prev {
-  left: 32px;
-}
-
-.hero-arrow-next {
-  right: 32px;
-}
-
-/* ── BOTTOM DOT PAGINATION ── */
-.hero-dots {
-  position: absolute;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  pointer-events: auto;
-}
-
-.hero-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  border: none;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  padding: 0;
-}
-
-.hero-dot--active {
-  background: #C8A165;
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  transform: rotate(45deg);
-}
-
-/* ── SCROLL INDICATOR (right side) ── */
-.hero-scroll {
-  position: absolute;
-  right: 28px;
-  bottom: 120px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 12px;
+  padding: 16px 40px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-radius: 4px;
   pointer-events: auto;
+  text-decoration: none;
 }
 
-.hero-scroll-text {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-.hero-scroll-line {
-  width: 1px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #C8A165;
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-
-@keyframes scrollPulse {
-  0%   { top: -100%; }
-  50%  { top: 0; }
-  100% { top: 100%; }
-}
 
 /* ── WHATSAPP FLOATING BUTTON ── */
 .hero-whatsapp {
@@ -334,7 +182,6 @@
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
   transition: all 0.35s ease;
-  pointer-events: auto;
 }
 
 .hero-whatsapp:hover {
@@ -347,72 +194,50 @@
   height: 26px;
 }
 
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .hero-center {
-    padding: 0 80px;
-  }
-  .hero-arrow-prev { left: 18px; }
-  .hero-arrow-next { right: 18px; }
-  .hero-arrow {
-    width: 46px;
-    height: 46px;
+  .accordion-title {
+    font-size: clamp(3rem, 10vw, 5rem);
+    max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  .hero-center {
-    padding: 0 50px;
+  .accordion-container {
+    flex-direction: column;
   }
-  .hero-title {
-    font-size: clamp(2.8rem, 12vw, 5rem);
+  .accordion-panel {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 10vh; /* Resting vertical state */
   }
-  .hero-subtitle {
-    font-size: 1rem;
+  .accordion-panel:last-child {
+    border-bottom: none;
   }
-  .hero-counter {
-    top: 24px;
-    right: 28px;
-  }
-  .hero-count-curr {
-    font-size: 2rem;
-  }
-  .hero-arrow {
-    width: 40px;
-    height: 40px;
-  }
-  .hero-arrow-prev { left: 12px; }
-  .hero-arrow-next { right: 12px; }
-  .hero-scroll { display: none; }
-  .hero-whatsapp {
-    width: 46px;
-    height: 46px;
-    bottom: 20px;
-    right: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-center {
-    padding: 0 28px;
-  }
-  .hero-title {
-    font-size: clamp(2.2rem, 14vw, 3.8rem);
-    letter-spacing: 0;
-  }
-  .hero-eyebrow-text {
-    font-size: 10px;
-    letter-spacing: 3px;
-  }
-  .hero-cta {
-    padding: 14px 30px;
-    font-size: 11px;
+  .accordion-vertical-title {
+    bottom: auto;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: horizontal-tb;
     letter-spacing: 2px;
   }
-  .hero-dots {
-    bottom: 24px;
-    gap: 8px;
+  .accordion-panel.active .accordion-vertical-title {
+    transform: translateY(-50%) translateX(-20px);
   }
-  .hero-counter { display: none; }
-  .hero-arrow { display: none; }
+  .accordion-content {
+    padding: 40px 20px;
+  }
+  .accordion-title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+  .accordion-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+  }
+  .accordion-btn {
+    padding: 12px 24px;
+    font-size: 11px;
+  }
 }

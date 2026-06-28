@@ -8,7 +8,7 @@
   background-color: var(--pg-black); /* Or a specific dark green if preferred, but using theme black for consistency */
   position: relative;
   overflow: hidden;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
 }
 
 /* Subtle grid/grain background as seen in the mockup */
@@ -33,7 +33,7 @@
   border: 1px solid var(--pg-border-soft);
   border-radius: 12px;
   padding: 48px;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+  box-shadow: 0 24px 64px rgba(46, 30, 28,0.4);
 }
 
 .al-header {
@@ -45,10 +45,12 @@
   height: 40px;
   margin-bottom: 20px;
   opacity: 0.9;
+  mix-blend-mode: normal !important;
+  background-color: #fff;
 }
 
 .al-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 2.2rem;
   font-weight: 500;
   color: var(--pg-cream);
@@ -116,7 +118,7 @@
   border: 1px solid var(--pg-border);
   border-radius: 6px;
   padding: 14px 44px 14px 16px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   color: var(--pg-cream);
   outline: none;
@@ -168,7 +170,7 @@
   border: none;
   border-radius: 6px;
   color: #000;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.15em;

@@ -53,7 +53,7 @@ const AdminLayout = () => {
             {/* Sidebar */}
             <aside className={`al-sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div className="al-sidebar-header">
-                    <img src="/logo-circle.svg" alt="Logo" className="al-sidebar-logo-img" />
+                    <img src="/logo-circle.png" alt="Logo" className="al-sidebar-logo-img" />
                     <div className="al-sidebar-logo-text">
                         <h2>DREAMDAY WEDDING</h2>
                         <span>ADMIN PORTAL</span>

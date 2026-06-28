@@ -50,7 +50,7 @@ const Loader = ({ onLoaded }) => {
               animate={{ 
                 scale: [1, 1.05, 1],
                 opacity: [0.7, 1, 0.7],
-                filter: ["drop-shadow(0 0 10px rgba(200, 161, 101, 0.3))", "drop-shadow(0 0 30px rgba(200, 161, 101, 0.8))", "drop-shadow(0 0 10px rgba(200, 161, 101, 0.3))"]
+                filter: ["drop-shadow(0 0 10px rgba(188, 82, 65, 0.3))", "drop-shadow(0 0 30px rgba(188, 82, 65, 0.8))", "drop-shadow(0 0 10px rgba(188, 82, 65, 0.3))"]
               }}
               transition={{ 
                 duration: 2, 

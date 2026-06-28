@@ -1,31 +1,31 @@
 /* ── Design System Variables ── */
 :root {
-  --pg-black:       #8B3A3A; /* Deep Rose */
+  --pg-black:       #333333; /* Deep Rose */
   --pg-surface:     #FFFFFF; /* Pure White */
   --pg-surface-2:   #F9F9F9; /* Off-White */
-  --pg-cream:       #3F322D; /* Warm Charcoal Brown text */
-  --pg-cream-dim:   rgba(63, 50, 45, 0.7);
-  --pg-muted:       rgba(63, 50, 45, 0.45);
-  --pg-gold:        #C8A165; /* Accent Gold */
+  --pg-cream:       #2E1E1C; /* Warm Charcoal Brown text */
+  --pg-cream-dim:   rgba(46, 30, 28, 0.7);
+  --pg-muted:       rgba(46, 30, 28, 0.45);
+  --pg-gold:        #8A9BA8; /* Accent Gold */
   --pg-gold-2:      #E8DCCB; /* Soft Beige */
-  --pg-gold-glow:   rgba(200, 161, 101, 0.1);
-  --pg-border:      rgba(63, 50, 45, 0.1);
-  --pg-border-soft: rgba(63, 50, 45, 0.05);
+  --pg-gold-glow:   rgba(188, 82, 65, 0.1);
+  --pg-border:      rgba(46, 30, 28, 0.1);
+  --pg-border-soft: rgba(46, 30, 28, 0.05);
   --pg-ease:        cubic-bezier(0.16, 1, 0.3, 1);
   --pg-ease-out:    cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Light Mode Override ── */
 [data-theme="light"] {
-  --pg-black:       #8B3A3A; /* Deep Rose */
+  --pg-black:       #333333; /* Deep Rose */
   --pg-surface:     #FFFFFF; /* Pure White */
   --pg-surface-2:   #F9F9F9; /* Off-White */
-  --pg-cream:       #3F322D; /* Warm Charcoal Brown text */
-  --pg-cream-dim:   rgba(63, 50, 45, 0.7);
-  --pg-muted:       rgba(63, 50, 45, 0.45);
-  --pg-gold:        #C8A165; /* Accent Gold */
+  --pg-cream:       #2E1E1C; /* Warm Charcoal Brown text */
+  --pg-cream-dim:   rgba(46, 30, 28, 0.7);
+  --pg-muted:       rgba(46, 30, 28, 0.45);
+  --pg-gold:        #8A9BA8; /* Accent Gold */
   --pg-gold-2:      #E8DCCB; /* Soft Beige */
-  --pg-gold-glow:   rgba(200, 161, 101, 0.1);
-  --pg-border:      rgba(63, 50, 45, 0.1);
-  --pg-border-soft: rgba(63, 50, 45, 0.05);
+  --pg-gold-glow:   rgba(188, 82, 65, 0.1);
+  --pg-border:      rgba(46, 30, 28, 0.1);
+  --pg-border-soft: rgba(46, 30, 28, 0.05);
 }

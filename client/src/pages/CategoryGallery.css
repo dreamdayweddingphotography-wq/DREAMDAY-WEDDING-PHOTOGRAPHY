@@ -46,7 +46,7 @@
 }
 
 .cat-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(3rem, 6vw, 6rem);
   font-weight: 700;
   color: var(--pg-cream);
@@ -56,7 +56,7 @@
 }
 
 .cat-desc {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 300;
   line-height: 1.8;
@@ -109,7 +109,7 @@
 .gallery-img-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(46, 30, 28, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,7 +130,7 @@
 .gallery-item:hover {
   transform: translateY(-5px);
   border-color: var(--pg-border);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(46, 30, 28, 0.4);
 }
 
 .gallery-item:hover img {
@@ -202,7 +202,7 @@
   max-width: 90vw;
   max-height: 85vh;
   position: relative;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 40px 100px rgba(46, 30, 28, 0.8);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -220,12 +220,12 @@
   left: 0;
   width: 100%;
   padding: 24px 32px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  background: linear-gradient(to top, rgba(46, 30, 28, 0.8), transparent);
   color: #fff;
 }
 
 .pg-lightbox-info h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.4rem;
   font-weight: 500;
   margin-bottom: 4px;

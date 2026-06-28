@@ -5,10 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Instrument+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --hs-gold: #A44A4A;
+  --hs-gold: #111111;
   --hs-gold-dim: rgba(63, 63, 70, 0.18);
-  --hs-black: #F8F2EA;
-  --hs-cream: #A44A4A;
+  --hs-black: #FFFCFB;
+  --hs-cream: #111111;
   --hs-muted: rgba(24, 24, 27, 0.5);
   --hs-border: rgba(63, 63, 70, 0.18);
   --hs-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -154,7 +154,7 @@
 }
 
 .hero-brand-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--hs-cream);
@@ -165,7 +165,7 @@
 [data-theme-mode='light'] .hero-brand-name { color: #1a1208; }
 
 .hero-brand-sub {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.25em;
@@ -212,7 +212,7 @@
 
 /* Eyebrow */
 .hero-eyebrow-text {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.28em;
@@ -235,7 +235,7 @@
 
 /* Main title */
 .hero-main-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: clamp(3rem, 7.5vw, 7.2rem);
   font-weight: 700;
   line-height: 0.95;
@@ -248,7 +248,7 @@
 
 /* Tagline */
 .hero-tagline {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(0.9rem, 1.6vw, 1.1rem);
   font-weight: 300;
   color: var(--hs-muted);
@@ -268,7 +268,7 @@
 }
 
 .hero-nav-btn {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -372,7 +372,7 @@
 }
 
 .hero-count-current {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--hs-gold);
@@ -380,13 +380,13 @@
 }
 
 .hero-count-divider {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 13px;
   color: var(--hs-border);
 }
 
 .hero-count-total {
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   color: var(--hs-muted);
   font-weight: 400;
@@ -401,7 +401,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Instrument Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
