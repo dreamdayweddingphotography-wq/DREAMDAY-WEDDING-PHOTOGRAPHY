@@ -383,21 +383,31 @@
 
 @media (max-width: 735px) {
   .ig-profile-header {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 20px;
     margin-bottom: 24px;
     padding: 0 16px;
+  }
+  .ig-profile-pic-col {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin-right: 0;
   }
   .ig-story-ring-none, .ig-profile-pic {
     width: 80px;
     height: 80px;
   }
-  .ig-profile-pic-col {
-    flex-shrink: 0;
-    margin-right: 20px;
+  .ig-profile-info-col {
+    display: contents;
   }
   .ig-username-row {
-    flex-direction: row;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
+    align-self: center;
     gap: 8px;
   }
   .ig-ig-username {
@@ -405,15 +415,26 @@
     margin-right: 0;
   }
   .ig-stats-row {
-    display: none; /* Mobile puts stats below bio usually, but we'll just hide for simplicity */
+    display: none;
   }
   .ig-bio {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
     padding: 0;
-    margin-top: 10px;
+    margin-top: 20px;
   }
   .ig-large-actions {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
     margin-top: 16px;
-    flex-wrap: wrap;
+    display: flex;
+    width: 100%;
+    gap: 8px;
+  }
+  .ig-btn-large {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0; /* reduce side padding to prevent overflow */
   }
   .ig-profile-tabs {
     gap: 20px;
