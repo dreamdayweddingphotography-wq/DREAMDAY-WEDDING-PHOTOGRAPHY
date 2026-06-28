@@ -21,24 +21,39 @@ const team = [
 const About = () => (
   <div className="page-wrapper">
 
-    {/* ── About Hero (Cinematic Overlay) ── */}
-    <section className="about-cinematic-hero">
-      <div className="about-cinematic-overlay"></div>
-      
-      <motion.div {...vUp(0)} className="about-cinematic-content">
-        <p className="pg-section-eyebrow about-cinematic-eyebrow">Our Story</p>
-        <h1 className="about-cinematic-title">About DREAMDAY</h1>
-        <h2 className="about-cinematic-subtitle">WEDDING PHOTOGRAPHY</h2>
-        
-        <div className="about-cinematic-body">
-          <p className="about-cinematic-lead">
-            At DREAMDAY WEDDING PHOTOGRAPHY, we believe photography is more than just images—it is the art of preserving emotions and telling stories that last forever.
-          </p>
-          <p>
-            Our vision is to create timeless, elegant, and meaningful photographs that truly reflect the heart and soul of your unique journey. Crafting cinematic wedding visuals since 2012, we focus on high-end storytelling for couples who value artistry and authenticity.
-          </p>
+    {/* ── Elegant About Hero ── */}
+    <section className="about-elegant-hero">
+      <div className="pg-container">
+        <div className="about-elegant-grid">
+          <motion.div {...vUp(0)} className="about-elegant-text">
+            <div className="elegant-eyebrow">
+              <span className="line"></span>
+              <span className="text">Our Story</span>
+            </div>
+            <h1 className="elegant-title">About<br/><em>DREAMDAY</em></h1>
+            <p className="elegant-subtitle">WEDDING PHOTOGRAPHY</p>
+            
+            <div className="elegant-body">
+              <p className="elegant-lead">
+                At DREAMDAY WEDDING PHOTOGRAPHY, we believe photography is more than just images—it is the art of preserving emotions and telling stories that last forever.
+              </p>
+              <p>
+                Our vision is to create timeless, elegant, and meaningful photographs that truly reflect the heart and soul of your unique journey. Crafting cinematic wedding visuals since 2012, we focus on high-end storytelling for couples who value artistry and authenticity.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div {...vUp(0.2)} className="about-elegant-visuals">
+            <div className="elegant-img-main">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Cinematic Wedding" />
+              <div className="elegant-img-border"></div>
+            </div>
+            <div className="elegant-img-accent">
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Details" />
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
     {/* ── The Visionary Section ── */}
     <section className="pg-container">

@@ -135,6 +135,7 @@
   margin: -5px 0 -6px;
   color: #262626;
   margin-right: 20px;
+  word-break: break-word;
 }
 
 .ig-header-actions {
@@ -215,6 +216,7 @@
   align-items: center;
   gap: 4px;
   font-size: 14px;
+  word-break: break-word;
 }
 
 /* Followed By Section */
@@ -384,7 +386,7 @@
 @media (max-width: 735px) {
   .ig-profile-header {
     display: grid;
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 80px minmax(0, 1fr);
     gap: 0 20px;
     margin-bottom: 24px;
     padding: 0 16px;
@@ -413,6 +415,8 @@
   .ig-ig-username {
     font-size: 20px;
     margin-right: 0;
+    word-break: break-word;
+    max-width: 100%;
   }
   .ig-stats-row {
     display: none;
@@ -430,6 +434,7 @@
     display: flex;
     width: 100%;
     gap: 8px;
+    box-sizing: border-box;
   }
   .ig-btn-large {
     flex: 1;

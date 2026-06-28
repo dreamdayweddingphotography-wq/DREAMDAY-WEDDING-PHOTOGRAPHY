@@ -119,7 +119,7 @@ const Home = () => {
                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="Outdoor" />
                 <span className="scrapbook-caption">Moments under Open Skies</span>
               </div>
-              <p className="grid-label" style={{ marginTop: '28px', textAlign: 'center', fontWeight: '600', color: '#333333' }}>OUTDOOR STORIES</p>
+              <p className="grid-label" style={{ marginTop: '28px', textAlign: 'center', fontWeight: '600', color: '#333333' }}>PRE WEDDING</p>
             </motion.div>
           </div>
         </div>
