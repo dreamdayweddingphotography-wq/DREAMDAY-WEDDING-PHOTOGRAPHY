@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Alex+Brush&display=swap');
 
 :root {
-  /* Minimalist Light & Gold Palette */
-  --bg-primary:     #FAFAFA; /* Very subtle off-white background */
+  /* Warm Terracotta Theme */
+  --bg-primary:     #FCF9F2; /* Creamy warm background */
   --bg-secondary:   #FFFFFF; /* Pure White for cards/containers */
-  --text-primary:   #1A1A1A; /* Near Black Text for crisp readability */
-  --text-secondary: #666666; /* Elegant Dark Gray Text */
-  --accent-color:   #111111; /* Champagne Gold */
-  --accent-hover:   #000000; /* Darker Gold for hover */
-  --glass-bg:       rgba(255, 255, 255, 0.85); /* Frosty glass */
-  --glass-border:   rgba(17, 17, 17, 0.2); /* Gold glow border */
-  --border-color:   #EAEAEA;
+  --text-primary:   #4A3B32; /* Very dark warm brown Text */
+  --text-secondary: #9C8577; /* Soft taupe Text */
+  --accent-color:   #9C4B33; /* Rich Terracotta */
+  --accent-hover:   #D9734E; /* Lighter terracotta for hover */
+  --glass-bg:       rgba(252, 249, 242, 0.85); /* Frosty cream glass */
+  --glass-border:   rgba(156, 75, 51, 0.2); /* Terracotta border */
+  --border-color:   #E8E0D5;
   
   /* Luxury Effects */
-  --shadow-premium: 0 12px 30px rgba(0, 0, 0, 0.05); /* Soft, airy shadow */
-  --shadow-glow:    0 8px 30px rgba(17, 17, 17, 0.15);
-  --gradient-primary: linear-gradient(135deg, #333333 0%, #111111 50%, #000000 100%);
+  --shadow-premium: 0 12px 30px rgba(74, 59, 50, 0.08); /* Warm shadow */
+  --shadow-glow:    0 8px 30px rgba(156, 75, 51, 0.2);
+  --gradient-primary: linear-gradient(135deg, #9C4B33 0%, #D9734E 100%);
 
   /* Typography */
   --font-heading: 'Playfair Display', serif;
@@ -33,15 +33,15 @@
 }
 
 [data-theme='light'] {
-  --bg-primary:     #FAFAFA;
+  --bg-primary:     #FCF9F2;
   --bg-secondary:   #FFFFFF;
-  --text-primary:   #1A1A1A;
-  --text-secondary: #666666;
-  --accent-color:   #111111;
-  --accent-hover:   #000000;
-  --glass-bg:       rgba(255, 255, 255, 0.95);
-  --glass-border:   rgba(17, 17, 17, 0.2);
-  --border-color:   #EAEAEA;
+  --text-primary:   #4A3B32;
+  --text-secondary: #9C8577;
+  --accent-color:   #9C4B33;
+  --accent-hover:   #D9734E;
+  --glass-bg:       rgba(252, 249, 242, 0.95);
+  --glass-border:   rgba(156, 75, 51, 0.2);
+  --border-color:   #E8E0D5;
 }
 
 * {

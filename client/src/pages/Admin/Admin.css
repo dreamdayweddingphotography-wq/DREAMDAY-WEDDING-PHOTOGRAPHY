@@ -1,15 +1,15 @@
 /* ── Admin Dashboard Redesign (Dusty Blue + Cream Theme) ── */
 
 :root {
-  --al-bg: #2E1E1C; /* Deep Espresso for sidebar */
-  --al-surface: #FFFCFB; /* Pearl White for main area */
-  --al-card: #FFFFFF; /* White cards */
-  --al-card-hover: #f9f7f4; /* Light cream hover */
-  --al-text: #2E1E1C; /* Deep Espresso text */
-  --al-text-muted: #7A6663; /* Muted warm gray */
-  --al-gold: #111111; /* Champagne gold accent */
-  --al-border: #F0E7E5; /* Light borders */
-  --al-border-soft: #F0E7E5; /* Extra soft borders */
+  --al-bg: #9C4B33; /* Rich Terracotta / Burnt Orange */
+  --al-surface: #FCF9F2; /* Creamy warm workspace */
+  --al-card: #FFFFFF; 
+  --al-card-hover: #F8F4EA; 
+  --al-text: #4A3B32; /* Very dark warm brown */
+  --al-text-muted: #9C8577; /* Soft taupe */
+  --al-gold: #D9734E; /* Lighter terracotta accent */
+  --al-border: #E8E0D5; 
+  --al-border-soft: #F2ECE4; 
 }
 
 /* 1. Layout */
@@ -631,6 +631,7 @@
 
 .al-ql-card-footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
@@ -652,6 +653,7 @@
 
 .al-ql-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
