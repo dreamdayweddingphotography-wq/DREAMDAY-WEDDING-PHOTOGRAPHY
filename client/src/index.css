@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Alex+Brush&display=swap');
 
 :root {
-  /* Champagne Gold & Cream Theme */
-  --bg-primary:     #F6F4F0; /* Soft Ivory/Cream background */
-  --bg-secondary:   #FFFFFF; /* Pure White */
-  --text-primary:   #2C352D; /* Dark Charcoal / Espresso Text */
-  --text-secondary: #798075; /* Soft Grey/Taupe Text */
-  --accent-color:   #8B9A86; /* Champagne Gold */
-  --accent-hover:   #A5B3A1; /* Lighter Champagne Gold for hover */
-  --glass-bg:       rgba(246, 244, 240, 0.85); /* Frosty cream glass */
-  --glass-border:   rgba(139, 154, 134, 0.2); /* Champagne border */
-  --border-color:   #EAE8E2;
+  /* Modern Luxury Theme (Emerald, Champagne Gold & Ivory) */
+  --bg-primary:     #FDFBF7; /* Warm Ivory / Alabaster background */
+  --bg-secondary:   #FFFFFF; /* Pure White for cards/sections */
+  --text-primary:   #1E2B22; /* Deep Forest Green / Almost Black */
+  --text-secondary: #5C6B5F; /* Muted Green-Grey */
+  --accent-color:   #C5A880; /* Muted Champagne Gold */
+  --accent-hover:   #D8BC96; /* Lighter Gold */
+  --glass-bg:       rgba(253, 251, 247, 0.92); /* Frosty ivory glass */
+  --glass-border:   rgba(197, 168, 128, 0.25); /* Gold border */
+  --border-color:   #EAE5DC;
   
   /* Luxury Effects */
-  --shadow-premium: 0 12px 30px rgba(44, 53, 45, 0.05); /* Soft shadow */
-  --shadow-glow:    0 8px 30px rgba(139, 154, 134, 0.25);
-  --gradient-primary: linear-gradient(135deg, #8B9A86 0%, #A5B3A1 100%);
+  --shadow-premium: 0 12px 30px rgba(30, 43, 34, 0.06); /* Soft emerald shadow */
+  --shadow-glow:    0 8px 30px rgba(197, 168, 128, 0.25); /* Gold glow */
+  --gradient-primary: linear-gradient(135deg, #C5A880 0%, #D8BC96 100%);
 
   /* Typography */
   --font-heading: 'Outfit', sans-serif;
@@ -33,15 +33,15 @@
 }
 
 [data-theme='light'] {
-  --bg-primary:     #F6F4F0;
+  --bg-primary:     #FDFBF7;
   --bg-secondary:   #FFFFFF;
-  --text-primary:   #2C352D;
-  --text-secondary: #798075;
-  --accent-color:   #8B9A86;
-  --accent-hover:   #A5B3A1;
-  --glass-bg:       rgba(246, 244, 240, 0.95);
-  --glass-border:   rgba(139, 154, 134, 0.2);
-  --border-color:   #EAE8E2;
+  --text-primary:   #1E2B22;
+  --text-secondary: #5C6B5F;
+  --accent-color:   #C5A880;
+  --accent-hover:   #D8BC96;
+  --glass-bg:       rgba(253, 251, 247, 0.95);
+  --glass-border:   rgba(197, 168, 128, 0.25);
+  --border-color:   #EAE5DC;
 }
 
 * {

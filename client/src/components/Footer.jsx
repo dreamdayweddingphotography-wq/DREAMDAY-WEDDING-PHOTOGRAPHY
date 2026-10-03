@@ -51,15 +51,15 @@ const Footer = () => {
                         <h4 className="footer-heading-modern">Get In Touch</h4>
                         <ul className="footer-contact-list">
                             <li>
-                                <Phone size={18} color="#8A9BA8" />
+                                <Phone size={18} style={{ color: 'var(--accent-color)' }} />
                                 <span>Ring us: <a href="tel:+918883621113" style={{ color: 'inherit', textDecoration: 'none' }}>+91 88836 21113</a></span>
                             </li>
                             <li>
-                                <Mail size={18} color="#8A9BA8" />
+                                <Mail size={18} style={{ color: 'var(--accent-color)' }} />
                                 <span><a href="mailto:dreamdayweddingphotography@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>dreamdayweddingphotography@gmail.com</a></span>
                             </li>
                             <li>
-                                <MapPin size={18} color="#8A9BA8" />
+                                <MapPin size={18} style={{ color: 'var(--accent-color)' }} />
                                 <span>Coimbatore & Tirupur, India</span>
                             </li>
                         </ul>
@@ -67,10 +67,12 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-bottom-modern">
-                    <p>&copy; {new Date().getFullYear()} DREAMDAY WEDDING PHOTOGRAPHY Studio. All rights reserved.</p>
-                    <div className="footer-legal-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
+                    <div className="footer-bottom-modern-inner">
+                        <p>&copy; {new Date().getFullYear()} DREAMDAY WEDDING PHOTOGRAPHY Studio. All rights reserved.</p>
+                        <div className="footer-legal-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
                     </div>
                 </div>
             </div>
