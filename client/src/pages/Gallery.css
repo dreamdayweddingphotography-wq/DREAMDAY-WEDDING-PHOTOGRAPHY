@@ -9,34 +9,34 @@
 
 /* ── Design Tokens ── */
 :root {
-  --pg-black:       #070604;
-  --pg-surface:     #0f0d09;
-  --pg-surface-2:   #161410;
-  --pg-cream:       #f0ead8;
-  --pg-cream-dim:   rgba(240, 234, 216, 0.55);
-  --pg-muted:       rgba(240, 234, 216, 0.38);
-  --pg-gold:        #111111;
-  --pg-gold-2:      #e8c060;
-  --pg-gold-glow:   rgba(63, 63, 70, 0.18);
-  --pg-border:      rgba(63, 63, 70, 0.14);
-  --pg-border-soft: rgba(240, 234, 216, 0.07);
+  --pg-black:       var(--bg-primary);
+  --pg-surface:     var(--bg-secondary);
+  --pg-surface-2:   var(--bg-primary);
+  --pg-cream:       var(--text-primary);
+  --pg-cream-dim:   var(--text-secondary);
+  --pg-muted:       var(--text-secondary);
+  --pg-gold:        var(--accent-color);
+  --pg-gold-2:      var(--accent-hover);
+  --pg-gold-glow:   var(--glass-border);
+  --pg-border:      var(--border-color);
+  --pg-border-soft: var(--border-color);
   --pg-ease:        cubic-bezier(0.16, 1, 0.3, 1);
   --pg-ease-out:    cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Light Mode Override ── */
 [data-theme="light"] {
-  --pg-black: #FFFCFB;
-  --pg-surface:     #f8f7f4;
-  --pg-surface-2:   #f0ede8;
-  --pg-cream:       #111111;
-  --pg-cream-dim:   rgba(26, 26, 26, 0.7);
-  --pg-muted:       rgba(26, 26, 26, 0.45);
-  --pg-gold:        #b38a1a;
-  --pg-gold-2:      #8a6a14;
-  --pg-gold-glow:   rgba(179, 138, 26, 0.1);
-  --pg-border:      rgba(179, 138, 26, 0.25);
-  --pg-border-soft: rgba(46, 30, 28, 0.08);
+  --pg-black: var(--bg-primary);
+  --pg-surface:     var(--bg-secondary);
+  --pg-surface-2:   var(--bg-primary);
+  --pg-cream:       var(--text-primary);
+  --pg-cream-dim:   var(--text-secondary);
+  --pg-muted:       var(--text-secondary);
+  --pg-gold:        var(--accent-color);
+  --pg-gold-2:      var(--accent-hover);
+  --pg-gold-glow:   var(--glass-border);
+  --pg-border:      var(--border-color);
+  --pg-border-soft: var(--border-color);
 }
 
 /* ── Page Wrappers ── */

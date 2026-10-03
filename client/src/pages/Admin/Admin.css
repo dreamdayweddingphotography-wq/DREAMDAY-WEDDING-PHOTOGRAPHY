@@ -1,14 +1,14 @@
 /* ── Admin Dashboard Redesign (Dusty Blue + Cream Theme) ── */
 
 :root {
-  --al-bg: #9C4B33; /* Rich Terracotta / Burnt Orange */
-  --al-surface: #FCF9F2; /* Creamy warm workspace */
+  --al-bg: #8B9A86; /* Rich Terracotta / Burnt Orange */
+  --al-surface: #F6F4F0; /* Creamy warm workspace */
   --al-card: #FFFFFF; 
   --al-card-hover: #F8F4EA; 
-  --al-text: #4A3B32; /* Very dark warm brown */
-  --al-text-muted: #9C8577; /* Soft taupe */
-  --al-gold: #D9734E; /* Lighter terracotta accent */
-  --al-border: #E8E0D5; 
+  --al-text: #2C352D; /* Very dark warm brown */
+  --al-text-muted: #798075; /* Soft taupe */
+  --al-gold: #A5B3A1; /* Lighter terracotta accent */
+  --al-border: #EAE8E2; 
   --al-border-soft: #F2ECE4; 
 }
 

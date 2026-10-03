@@ -1,25 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Alex+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Alex+Brush&display=swap');
 
 :root {
-  /* Warm Terracotta Theme */
-  --bg-primary:     #FCF9F2; /* Creamy warm background */
-  --bg-secondary:   #FFFFFF; /* Pure White for cards/containers */
-  --text-primary:   #4A3B32; /* Very dark warm brown Text */
-  --text-secondary: #9C8577; /* Soft taupe Text */
-  --accent-color:   #9C4B33; /* Rich Terracotta */
-  --accent-hover:   #D9734E; /* Lighter terracotta for hover */
-  --glass-bg:       rgba(252, 249, 242, 0.85); /* Frosty cream glass */
-  --glass-border:   rgba(156, 75, 51, 0.2); /* Terracotta border */
-  --border-color:   #E8E0D5;
+  /* Champagne Gold & Cream Theme */
+  --bg-primary:     #F6F4F0; /* Soft Ivory/Cream background */
+  --bg-secondary:   #FFFFFF; /* Pure White */
+  --text-primary:   #2C352D; /* Dark Charcoal / Espresso Text */
+  --text-secondary: #798075; /* Soft Grey/Taupe Text */
+  --accent-color:   #8B9A86; /* Champagne Gold */
+  --accent-hover:   #A5B3A1; /* Lighter Champagne Gold for hover */
+  --glass-bg:       rgba(246, 244, 240, 0.85); /* Frosty cream glass */
+  --glass-border:   rgba(139, 154, 134, 0.2); /* Champagne border */
+  --border-color:   #EAE8E2;
   
   /* Luxury Effects */
-  --shadow-premium: 0 12px 30px rgba(74, 59, 50, 0.08); /* Warm shadow */
-  --shadow-glow:    0 8px 30px rgba(156, 75, 51, 0.2);
-  --gradient-primary: linear-gradient(135deg, #9C4B33 0%, #D9734E 100%);
+  --shadow-premium: 0 12px 30px rgba(44, 53, 45, 0.05); /* Soft shadow */
+  --shadow-glow:    0 8px 30px rgba(139, 154, 134, 0.25);
+  --gradient-primary: linear-gradient(135deg, #8B9A86 0%, #A5B3A1 100%);
 
   /* Typography */
-  --font-heading: 'Playfair Display', serif;
-  --font-body:    'Montserrat', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body:    'Outfit', sans-serif;
   --font-script:  'Alex Brush', cursive;
 
   /* Spacing */
@@ -33,15 +33,15 @@
 }
 
 [data-theme='light'] {
-  --bg-primary:     #FCF9F2;
+  --bg-primary:     #F6F4F0;
   --bg-secondary:   #FFFFFF;
-  --text-primary:   #4A3B32;
-  --text-secondary: #9C8577;
-  --accent-color:   #9C4B33;
-  --accent-hover:   #D9734E;
-  --glass-bg:       rgba(252, 249, 242, 0.95);
-  --glass-border:   rgba(156, 75, 51, 0.2);
-  --border-color:   #E8E0D5;
+  --text-primary:   #2C352D;
+  --text-secondary: #798075;
+  --accent-color:   #8B9A86;
+  --accent-hover:   #A5B3A1;
+  --glass-bg:       rgba(246, 244, 240, 0.95);
+  --glass-border:   rgba(139, 154, 134, 0.2);
+  --border-color:   #EAE8E2;
 }
 
 * {
@@ -148,10 +148,10 @@ p {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #EBA093 0%, #333333 50%, #9F4132 100%);
+  background: linear-gradient(135deg, #C1CCBD 0%, #333333 50%, #6F7E69 100%);
   color: #FFFFFF;
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(216, 106, 88, 0.4);
+  box-shadow: 0 12px 28px rgba(139, 154, 134, 0.4);
 }
 
 .btn-secondary {
@@ -229,7 +229,7 @@ p {
   padding: 16px 16px 48px 16px;
   border-radius: 4px;
   box-shadow: var(--shadow-premium);
-  border: 1px solid rgba(216, 106, 88, 0.15);
+  border: 1px solid rgba(139, 154, 134, 0.15);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   position: relative;
   display: block;

@@ -91,36 +91,77 @@ const Home = () => {
       {/* ── Full-screen hero ── */}
       <HeroCarousel />
 
-      {/* ── 1. Introduction & 2-Column Grid ── */}
+      {/* ── 1. Introduction & Arch Triptych Layout ── */}
       <section className="home-section intro-section">
         <div className="pg-container">
-          <motion.div {...vUp(0)} className="intro-header">
-            <h2 className="intro-title">YOUR LOVE, OUR PASSION,<br/>TIMELESS FRAMES</h2>
-            <p className="intro-desc">
-              Welcome to DREAMDAY WEDDING PHOTOGRAPHY, where elegance meets emotion. We specialize in capturing weddings
-              with a refined, cinematic approach that transforms fleeting moments into timeless memories. Your wedding is not
-              just a day—it's a masterpiece of love, and we are here to preserve it with grace and artistry.
-            </p>
-          </motion.div>
-
-          <div className="intro-grid">
-            <motion.div {...vUp(0.1)} className="grid-item">
-              <div className="scrapbook-polaroid">
-                <div className="scrapbook-tape"></div>
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Wedding" />
-                <span className="scrapbook-caption">A Celebration of Love</span>
-              </div>
-              <p className="grid-label" style={{ marginTop: '28px', textAlign: 'center', fontWeight: '600', color: '#333333' }}>WEDDING EXPERIENCES</p>
-            </motion.div>
+          <div className="intro-triptych-layout">
             
-            <motion.div {...vUp(0.2)} className="grid-item">
-              <div className="scrapbook-polaroid" style={{ transform: 'rotate(1.5deg)' }}>
-                <div className="scrapbook-tape"></div>
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="Outdoor" />
-                <span className="scrapbook-caption">Moments under Open Skies</span>
-              </div>
-              <p className="grid-label" style={{ marginTop: '28px', textAlign: 'center', fontWeight: '600', color: '#333333' }}>PRE WEDDING</p>
+            <motion.div {...vUp(0)} className="triptych-header">
+              <h4 className="intro-subtitle" style={{ textAlign: 'center' }}>Welcome to</h4>
+              <h2 className="intro-title" style={{ textAlign: 'center' }}>
+                <span className="title-line1">YOUR LOVE, OUR PASSION,</span>
+                <br/>
+                <span className="title-script">Timeless Frames</span>
+              </h2>
             </motion.div>
+
+            <div className="four-card-cross-layout">
+              {/* Left Column (1 card vertically centered) */}
+              <div className="cross-col cross-col-side">
+                <motion.div {...vUp(0.2)} className="rect-card">
+                  <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Wedding Details" />
+                  <div className="card-info">
+                    <h3>Praveen & Shruti</h3>
+                    <p>Traditional Wedding</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Middle Column (2 cards stacked) */}
+              <div className="cross-col cross-col-mid">
+                <motion.div {...vUp(0.4)} className="rect-card">
+                  <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Couple" />
+                  <div className="card-info">
+                    <h3>Arun & Sarah</h3>
+                    <p>Destination Wedding</p>
+                  </div>
+                </motion.div>
+                <motion.div {...vUp(0.6)} className="rect-card">
+                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80" alt="Pre Wedding Details" />
+                  <div className="card-info">
+                    <h3>Vikram & Neha</h3>
+                    <p>Pre-Wedding Shoot</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Column (1 card vertically centered) */}
+              <div className="cross-col cross-col-side">
+                <motion.div {...vUp(0.8)} className="rect-card">
+                  <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" alt="Reception Moments" />
+                  <div className="card-info">
+                    <h3>Rahul & Anjali</h3>
+                    <p>Reception Moments</p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            <motion.div {...vUp(0.8)} className="triptych-footer">
+              <div className="intro-separator" style={{ margin: '0 auto 30px' }}></div>
+              <p className="intro-desc-center">
+                Welcome to <span style={{ color: 'var(--accent-color)', fontWeight: 500 }}>DREAMDAY WEDDING PHOTOGRAPHY</span>, where elegance meets emotion. We specialize in capturing weddings
+                with a refined, cinematic approach that transforms fleeting moments into timeless memories. Your wedding is not
+                just a day—it's a masterpiece of love, and we are here to preserve it with grace and artistry.
+              </p>
+              
+              <motion.div whileHover={{ scale: 1.05 }} style={{ display: 'inline-block', marginTop: '20px' }}>
+                <Link to="/gallery" className="btn btn-primary">
+                  Explore Portfolio
+                </Link>
+              </motion.div>
+            </motion.div>
+
           </div>
         </div>
       </section>
@@ -151,7 +192,7 @@ const Home = () => {
             <motion.div variants={ruleRightVariants} className="insta-clean-rule"></motion.div>
           </motion.div>
         </div>
-        <div className="pg-container" style={{ marginTop: '60px', marginBottom: '40px' }}>
+        <div className="pg-container" style={{ marginTop: '30px', marginBottom: '20px' }}>
           <div className="ig-theme-container">
             {/* Instagram Profile Header */}
             <div className="ig-profile-header">

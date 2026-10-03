@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -44,59 +44,69 @@ const slides = [
 ];
 
 const HeroCarousel = () => {
-  const [activeIdx, setActiveIdx] = useState(1); // Default to the second slide (Endless Horizons)
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  // Auto slide every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="hero-wrap">
-      <div className="accordion-container">
-        {slides.map((slide, index) => {
-          const isActive = index === activeIdx;
+      {/* Background Images Crossfade */}
+      <AnimatePresence mode="popLayout">
+        <motion.div
+          key={activeIdx}
+          className="hero-bg-layer"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          style={{ backgroundImage: `url(${slides[activeIdx].image})` }}
+        />
+      </AnimatePresence>
 
-          return (
-            <div
-              key={slide.id}
-              className={`accordion-panel ${isActive ? 'active' : ''}`}
-              style={{ backgroundImage: `url(${slide.image})` }}
-              onMouseEnter={() => setActiveIdx(index)}
-              onClick={() => setActiveIdx(index)}
-            >
-              <div className="accordion-overlay" />
-              
-              {/* Vertical Title for inactive state */}
-              <div className="accordion-vertical-title">
-                {slide.category}
-              </div>
+      <div className="hero-overlay"></div>
 
-              {/* Expanded Content */}
-              <div className="accordion-content">
-                <AnimatePresence mode="wait">
-                  {isActive && (
-                    <motion.div
-                      className="accordion-content-inner"
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ delay: 0.3, duration: 0.6, ease: 'easeOut' }}
-                    >
-                      <div className="accordion-eyebrow">
-                        <span className="accordion-diamond" />
-                        <span>{slide.category}</span>
-                      </div>
-                      
-                      <h1 className="accordion-title">{slide.title}</h1>
-                      <p className="accordion-subtitle">{slide.subtitle}</p>
-                      
-                      <Link to="/booking" className="btn-primary hero-cta-btn accordion-btn">
-                        <span>START YOUR STORY</span>
-                        <ArrowRight size={16} />
-                      </Link>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+      {/* Centered Content */}
+      <div className="hero-content">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIdx}
+            className="hero-content-inner"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            <div className="hero-eyebrow">
+              <span className="hero-diamond" />
+              <span>{slides[activeIdx].category}</span>
+              <span className="hero-diamond" />
             </div>
-          );
-        })}
+            
+            <h1 className="hero-title">{slides[activeIdx].title}</h1>
+            <p className="hero-subtitle">{slides[activeIdx].subtitle}</p>
+            
+            <Link to="/booking" className="btn btn-primary hero-btn">
+              START YOUR STORY
+            </Link>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Slide Indicators */}
+        <div className="hero-indicators">
+          {slides.map((_, idx) => (
+            <div 
+              key={idx} 
+              className={`hero-dot ${idx === activeIdx ? 'active' : ''}`}
+              onClick={() => setActiveIdx(idx)}
+            />
+          ))}
+        </div>
       </div>
 
       {/* WhatsApp floating button */}

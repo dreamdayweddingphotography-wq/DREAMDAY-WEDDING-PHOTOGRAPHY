@@ -44,13 +44,12 @@ const Loader = ({ onLoaded }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Pulsing Camera Logo with CSS Magic */}
+            {/* Pulsing Camera Logo with elegant styling */}
             <motion.div 
               className="loading-camera-pulse"
               animate={{ 
                 scale: [1, 1.05, 1],
-                opacity: [0.7, 1, 0.7],
-                filter: ["drop-shadow(0 0 10px rgba(188, 82, 65, 0.3))", "drop-shadow(0 0 30px rgba(188, 82, 65, 0.8))", "drop-shadow(0 0 10px rgba(188, 82, 65, 0.3))"]
+                opacity: [0.85, 1, 0.85],
               }}
               transition={{ 
                 duration: 2, 
@@ -58,7 +57,7 @@ const Loader = ({ onLoaded }) => {
                 ease: "easeInOut" 
               }}
             >
-              <img src="/logo.png" alt="Dream Day Logo" className="loading-magic-logo" />
+              <img src="/logo.png" alt="Dream Day Logo" className="loading-elegant-logo" />
             </motion.div>
 
             {/* Subtle Text */}

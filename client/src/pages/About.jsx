@@ -21,37 +21,62 @@ const team = [
 const About = () => (
   <div className="page-wrapper">
 
-    {/* ── Elegant About Hero ── */}
-    <section className="about-elegant-hero">
-      <div className="pg-container">
-        <div className="about-elegant-grid">
-          <motion.div {...vUp(0)} className="about-elegant-text">
-            <div className="elegant-eyebrow">
-              <span className="line"></span>
-              <span className="text">Our Story</span>
-            </div>
-            <h1 className="elegant-title">About<br/><em>DREAMDAY</em></h1>
-            <p className="elegant-subtitle">WEDDING PHOTOGRAPHY</p>
-            
-            <div className="elegant-body">
-              <p className="elegant-lead">
-                At DREAMDAY WEDDING PHOTOGRAPHY, we believe photography is more than just images—it is the art of preserving emotions and telling stories that last forever.
+    {/* ── Minimalist About Hero ── */}
+    <section className="about-minimal-hero" style={{ padding: '60px 0 80px 0', backgroundColor: '#FFFFFF' }}>
+      <div className="pg-container" style={{ maxWidth: '1100px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '60px', alignItems: 'center' }}>
+          
+          {/* Logo Side (Left) */}
+          <motion.div {...vUp(0)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: '40px', borderRight: '1px solid var(--border-color)' }}>
+             
+             {/* Actual Image Logo */}
+             <img src="/logo.png" alt="Dreamday Logo" style={{ height: '180px', width: 'auto', marginBottom: '20px', objectFit: 'contain' }} />
+
+             {/* Premium Text Logo to mimic the reference image */}
+             <div style={{ 
+               fontFamily: 'var(--font-heading)', 
+               color: 'var(--text-primary)', 
+               textAlign: 'center',
+               textTransform: 'uppercase'
+             }}>
+               {/* Brand Name */}
+               <div style={{ fontSize: '1.4rem', letterSpacing: '0.15em', fontWeight: 500 }}>
+                 DREAMDAY
+               </div>
+               {/* Subtitle */}
+               <div style={{ fontSize: '0.85rem', letterSpacing: '0.3em', color: 'var(--text-secondary)', marginTop: '8px' }}>
+                 WEDDINGS
+               </div>
+             </div>
+          </motion.div>
+
+          {/* Content Side (Right) */}
+          <motion.div {...vUp(0.2)}>
+            <h2 style={{ 
+              fontFamily: 'var(--font-heading)', 
+              fontSize: '3rem', 
+              color: 'var(--accent-color)', 
+              marginBottom: '35px',
+              fontWeight: 500,
+              lineHeight: 1.1
+            }}>
+              About Dreamday<br/>Weddings
+            </h2>
+            <div style={{ 
+              fontFamily: 'var(--font-body)', 
+              fontSize: '1.15rem', 
+              color: 'var(--text-secondary)', 
+              lineHeight: 2.2 
+            }}>
+              <p style={{ marginBottom: '30px' }}>
+                At Dreamday Weddings, we believe photography is more than just images—it is the art of preserving emotions and telling stories that last forever. Our vision is to create timeless, elegant, and meaningful photographs that truly reflect the heart and soul of your unique journey.
               </p>
               <p>
-                Our vision is to create timeless, elegant, and meaningful photographs that truly reflect the heart and soul of your unique journey. Crafting cinematic wedding visuals since 2012, we focus on high-end storytelling for couples who value artistry and authenticity.
+                Crafting cinematic wedding visuals since 2012, we focus on high-end storytelling for couples who value artistry and authenticity. We are dedicated to turning your fleeting moments into a legacy you will cherish for a lifetime.
               </p>
             </div>
           </motion.div>
 
-          <motion.div {...vUp(0.2)} className="about-elegant-visuals">
-            <div className="elegant-img-main">
-              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Cinematic Wedding" />
-              <div className="elegant-img-border"></div>
-            </div>
-            <div className="elegant-img-accent">
-              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Details" />
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
@@ -148,8 +173,19 @@ const About = () => (
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <blockquote className="about-quote-text">
-            "Preserving the <em>poetry</em> of your most beautiful day."
+          <blockquote 
+            className="about-quote-text" 
+            style={{ 
+              fontFamily: 'var(--font-script)', 
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
+              fontWeight: 400, 
+              color: 'var(--accent-color)',
+              lineHeight: 1.3,
+              textTransform: 'none',
+              letterSpacing: 'normal'
+            }}
+          >
+            "Preserving the poetry of your most beautiful day."
           </blockquote>
           <p className="about-quote-sub">
             Let us write the next chapter of your journey. Connect with us to craft timeless artwork from your most treasured moments.

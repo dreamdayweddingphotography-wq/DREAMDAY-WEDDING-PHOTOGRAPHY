@@ -1,243 +1,168 @@
 /* ============================================================
-   HERO — Interactive Expanding Panels (Accordion Slider)
+   HERO CAROUSEL — Cinematic Crossfade Slider
    ============================================================ */
 
 .hero-wrap {
-  width: 100vw;
+  position: relative;
+  width: 100%;
   height: 100vh;
-  background-color: var(--bg-primary);
+  min-height: 600px;
   overflow: hidden;
+  background-color: var(--bg-primary);
   display: flex;
+  align-items: center;
+  /* removed justify-content: center so it aligns left */
 }
 
-/* ── ACCORDION CONTAINER ── */
-.accordion-container {
-  display: flex;
+.hero-bg-layer {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-/* ── ACCORDION PANELS ── */
-.accordion-panel {
-  position: relative;
-  height: 100%;
-  flex: 1; /* Resting state */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  cursor: pointer;
-  overflow: hidden;
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  z-index: 1;
 }
 
-.accordion-panel:last-child {
-  border-right: none;
-}
-
-/* The magic: when active, take up huge space */
-.accordion-panel.active {
-  flex: 10;
-  cursor: default;
-}
-
-/* ── OVERLAYS ── */
-.accordion-overlay {
+.hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.3) 100%);
-  transition: all 0.8s ease;
-  opacity: 0.6;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.3) 0%,
+    rgba(0,0,0,0.6) 100%
+  );
+  z-index: 2;
 }
 
-.accordion-panel.active .accordion-overlay {
-  opacity: 0.7; /* Slightly darker to make big text pop */
-}
-
-/* ── VERTICAL TITLE (INACTIVE STATE) ── */
-.accordion-vertical-title {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%) rotate(180deg);
-  writing-mode: vertical-rl;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 5px;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  pointer-events: none;
-}
-
-.accordion-panel.active .accordion-vertical-title {
-  opacity: 0;
-  transform: translateX(-50%) rotate(180deg) translateY(20px);
-}
-
-
-/* ── EXPANDED CONTENT (ACTIVE STATE) ── */
-.accordion-content {
+.hero-content {
   position: relative;
-  z-index: 10;
-  padding: 80px 5vw;
-  width: 100%;
-  pointer-events: none; /* Let clicks pass to panel unless it's a button */
-}
-
-.accordion-panel.active .accordion-content {
-  pointer-events: auto;
-}
-
-.accordion-content-inner {
+  z-index: 3;
+  text-align: left;
+  color: white; 
+  padding: 0 8%;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
-/* Eyebrow */
-.accordion-eyebrow {
-  display: inline-flex;
+.hero-content-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 80px; 
+}
+
+.hero-eyebrow {
+  display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: var(--accent-color);
+  font-size: 0.95rem;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 25px;
+  color: rgba(255,255,255,0.95);
 }
 
-.accordion-diamond {
+.hero-diamond {
   width: 8px;
   height: 8px;
-  background: var(--accent-color);
+  background-color: var(--accent-color);
   transform: rotate(45deg);
 }
 
-/* Main Title */
-.accordion-title {
+.hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 7vw, 7rem);
-  font-weight: 400;
-  line-height: 0.9;
-  letter-spacing: -1px;
-  color: #FFFFFF;
-  margin: 0 0 20px 0;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  max-width: 80%;
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* Subtitle */
-.accordion-subtitle {
-  font-family: var(--font-heading);
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
-  font-weight: 400;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 500px;
-  margin: 0 0 40px 0;
-  line-height: 1.5;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
-
-/* CTA Button */
-.accordion-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 40px;
+.hero-subtitle {
   font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  border-radius: 4px;
-  pointer-events: auto;
-  text-decoration: none;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 300;
+  max-width: 650px;
+  margin: 0 0 45px 0; /* removed auto margins so it aligns left */
+  line-height: 1.7;
+  opacity: 0.95;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
+.hero-indicators {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  margin-bottom: 40px;
+}
 
-/* ── WHATSAPP FLOATING BUTTON ── */
+.hero-dot {
+  width: 40px;
+  height: 3px;
+  background-color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-dot.active {
+  background-color: white;
+  width: 70px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.hero-dot:hover {
+  background-color: rgba(255,255,255,0.8);
+}
+
+/* Keep Whatsapp float */
 .hero-whatsapp {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 999;
-  width: 52px;
-  height: 52px;
+  position: fixed; /* changed from absolute to fixed */
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000; /* increased z-index so it stays above other sections */
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
   border-radius: 50%;
-  background: #25D366;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
-  text-decoration: none;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
-  transition: all 0.35s ease;
+  color: white;
+  box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .hero-whatsapp:hover {
-  transform: scale(1.1) translateY(-3px);
-  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+  transform: scale(1.1) translateY(-5px);
 }
 
 .hero-whatsapp svg {
-  width: 26px;
-  height: 26px;
-}
-
-
-/* ── RESPONSIVE ── */
-@media (max-width: 1024px) {
-  .accordion-title {
-    font-size: clamp(3rem, 10vw, 5rem);
-    max-width: 100%;
-  }
+  width: 34px;
+  height: 34px;
 }
 
 @media (max-width: 768px) {
-  .accordion-container {
-    flex-direction: column;
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    margin-bottom: 15px;
   }
-  .accordion-panel {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    min-height: 10vh; /* Resting vertical state */
+  .hero-indicators {
+    margin-top: 40px;
   }
-  .accordion-panel:last-child {
-    border-bottom: none;
+  .hero-dot {
+    width: 25px;
   }
-  .accordion-vertical-title {
-    bottom: auto;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    writing-mode: horizontal-tb;
-    letter-spacing: 2px;
-  }
-  .accordion-panel.active .accordion-vertical-title {
-    transform: translateY(-50%) translateX(-20px);
-  }
-  .accordion-content {
-    padding: 40px 20px;
-  }
-  .accordion-title {
-    font-size: clamp(2.5rem, 12vw, 4rem);
-  }
-  .accordion-subtitle {
-    font-size: 1.1rem;
-    margin-bottom: 24px;
-  }
-  .accordion-btn {
-    padding: 12px 24px;
-    font-size: 11px;
+  .hero-dot.active {
+    width: 40px;
   }
 }

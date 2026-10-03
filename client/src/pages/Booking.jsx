@@ -92,16 +92,17 @@ const Booking = () => {
           <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
 
             {/* ── Hero ── */}
-            <section className="pg-hero booking-hero">
+            <section className="pg-hero booking-hero" style={{ padding: '60px 0 40px', borderBottom: 'none' }}>
               <div className="pg-container">
                 <motion.div
                   className="pg-hero-inner"
+                  style={{ maxWidth: '700px', margin: '0 auto' }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <h1 className="pg-hero-title">Book Your <em>Session</em></h1>
-                  <p className="pg-hero-sub">
+                  <h1 className="pg-hero-title" style={{ marginBottom: '15px' }}>Book Your <em>Session</em></h1>
+                  <p className="pg-hero-sub" style={{ marginBottom: '0' }}>
                     Ready to capture your story? Select your preferred date and tell us
                     more about your vision. Let's create something beautiful together.
                   </p>
@@ -110,7 +111,7 @@ const Booking = () => {
             </section>
 
             {/* ── Form ── */}
-            <div className="pg-container booking-layout">
+            <div className="pg-container booking-layout" style={{ maxWidth: '750px', margin: '0 auto' }}>
               <motion.div
                 className="booking-form-wrap"
                 initial={{ opacity: 0, y: 28 }}

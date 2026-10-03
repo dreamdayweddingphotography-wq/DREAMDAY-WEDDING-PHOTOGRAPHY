@@ -3,10 +3,10 @@
    ════════════════════════════════════════ */
 
 .wf-page {
-  --pg-surface: #FFFFFF;
-  --pg-surface-2: #f8f7f4;
-  --pg-cream: #1a1a1a;
-  --pg-gold: #8A9BA8; /* Updated to global theme gold */
+  --pg-surface: var(--bg-secondary);
+  --pg-surface-2: var(--bg-primary);
+  --pg-cream: var(--text-primary);
+  --pg-gold: var(--accent-color); /* Updated to global theme gold */
   
   background-color: var(--pg-surface);
   min-height: 100vh;
