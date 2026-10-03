@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Alex+Brush&display=swap');
 
 :root {
-  /* Modern Luxury Theme (Emerald, Champagne Gold & Ivory) */
-  --bg-primary:     #FDFBF7; /* Warm Ivory / Alabaster background */
-  --bg-secondary:   #FFFFFF; /* Pure White for cards/sections */
-  --text-primary:   #1E2B22; /* Deep Forest Green / Almost Black */
-  --text-secondary: #5C6B5F; /* Muted Green-Grey */
-  --accent-color:   #C5A880; /* Muted Champagne Gold */
-  --accent-hover:   #D8BC96; /* Lighter Gold */
-  --glass-bg:       rgba(253, 251, 247, 0.92); /* Frosty ivory glass */
-  --glass-border:   rgba(197, 168, 128, 0.25); /* Gold border */
-  --border-color:   #EAE5DC;
+  /* Pearl White & Whisper Blush Theme (Ultra-Bright, Light & Airy) */
+  --bg-primary:     #FFFFFF; /* Pure Bright White */
+  --bg-secondary:   #FFFAFB; /* Barely-there blush/pearl off-white */
+  --text-primary:   #4A4445; /* Soft, airy charcoal (not harsh black) */
+  --text-secondary: #9B9495; /* Very soft light grey */
+  --accent-color:   #E6C8CB; /* Whisper Blush / Very Soft Pink */
+  --accent-hover:   #F2DCDD; /* Lighter Blush for hover */
+  --glass-bg:       rgba(255, 255, 255, 0.95); /* Bright frosted glass */
+  --glass-border:   rgba(230, 200, 203, 0.4); /* Soft blush border */
+  --border-color:   #F5EEEE; /* Very light pink-grey border */
   
-  /* Luxury Effects */
-  --shadow-premium: 0 12px 30px rgba(30, 43, 34, 0.06); /* Soft emerald shadow */
-  --shadow-glow:    0 8px 30px rgba(197, 168, 128, 0.25); /* Gold glow */
-  --gradient-primary: linear-gradient(135deg, #C5A880 0%, #D8BC96 100%);
+  /* Luxury Effects - Bright & Airy Shadows */
+  --shadow-premium: 0 15px 40px rgba(74, 68, 69, 0.04); /* Extremely faint shadow */
+  --shadow-glow:    0 8px 30px rgba(230, 200, 203, 0.25); /* Bright blush glow */
+  --gradient-primary: linear-gradient(135deg, #E6C8CB 0%, #F2DCDD 100%);
 
   /* Typography */
   --font-heading: 'Outfit', sans-serif;
@@ -33,15 +33,15 @@
 }
 
 [data-theme='light'] {
-  --bg-primary:     #FDFBF7;
-  --bg-secondary:   #FFFFFF;
-  --text-primary:   #1E2B22;
-  --text-secondary: #5C6B5F;
-  --accent-color:   #C5A880;
-  --accent-hover:   #D8BC96;
-  --glass-bg:       rgba(253, 251, 247, 0.95);
-  --glass-border:   rgba(197, 168, 128, 0.25);
-  --border-color:   #EAE5DC;
+  --bg-primary:     #FFFFFF;
+  --bg-secondary:   #FFFAFB;
+  --text-primary:   #4A4445;
+  --text-secondary: #9B9495;
+  --accent-color:   #E6C8CB;
+  --accent-hover:   #F2DCDD;
+  --glass-bg:       rgba(255, 255, 255, 0.98);
+  --glass-border:   rgba(230, 200, 203, 0.4);
+  --border-color:   #F5EEEE;
 }
 
 * {
