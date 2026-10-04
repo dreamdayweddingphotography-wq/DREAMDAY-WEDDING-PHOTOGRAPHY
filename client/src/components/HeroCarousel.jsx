@@ -8,14 +8,14 @@ import './HeroCarousel.css';
 const slides = [
   {
     id: 1,
-    image: '/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0007.jpg',
+    image: '/images/hero/hero1.jpg',
     category: 'WEDDING CINEMA',
     title: 'TIMELESS MOMENTS',
     subtitle: 'Capturing the beauty of your love story with cinematic elegance.',
   },
   {
     id: 2,
-    image: '/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1206.JPG',
+    image: '/images/hero/hero2.jpg',
     category: 'DESTINATION',
     bgPosition: 'center 20%', 
     title: 'ENDLESS HORIZONS',
@@ -23,7 +23,7 @@ const slides = [
   },
   {
     id: 3,
-    image: '/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 001.jpg',
+    image: '/images/hero/hero3.jpg',
     category: 'MODERN EDITORIAL',
     bgPosition: 'center 15%',
     title: 'ELEGANT STORIES',
@@ -31,14 +31,14 @@ const slides = [
   },
   {
     id: 4,
-    image: '/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0007.JPG',
+    image: '/images/hero/hero4.jpg',
     category: 'ROMANCE',
     title: 'FOREVER YOURS',
     subtitle: 'Every emotion, every detail, beautifully preserved for eternity.',
   },
   {
     id: 5,
-    image: '/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/IMG_2501.jpg',
+    image: '/images/hero/hero5.jpg',
     category: 'LUXURY WEDDINGS',
     title: 'DREAM DAY',
     subtitle: 'Where luxury meets love — crafting unforgettable memories.',
