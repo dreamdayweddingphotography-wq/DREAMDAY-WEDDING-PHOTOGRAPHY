@@ -7,7 +7,18 @@ import './Navbar.css';
 const navLinks = [
   { name: 'Home',          path: '/'          },
   { name: 'About Us',      path: '/about'     },
-  { name: 'Gallery',       path: '/gallery'   },
+  { 
+    name: 'Gallery',       
+    path: '/gallery',
+    dropdown: [
+      { name: 'ENGAGEMENT', path: '/gallery/engagement' },
+      { name: 'WEDDING', path: '/gallery/wedding' },
+      { name: 'RECEPTION', path: '/gallery/reception' },
+      { name: 'PRE/POST', path: '/gallery/outdoor' },
+      { name: 'MATERNITY/BABYSHOWER', path: '/gallery/baby-shower' },
+      { name: 'CEREMONY', path: '/gallery/ceremony' }
+    ]
+  },
   { name: 'Wedding Films', path: '/portfolio' },
   { name: 'Start Your Story',  path: '/booking'   },
   { name: 'Admin Panel',   path: '/admin/login', isAdmin: true },
@@ -92,6 +103,33 @@ const Navbar = () => {
                   </Link>
                 );
               }
+              if (link.dropdown) {
+                return (
+                  <div key={link.name} className="nb-dropdown-wrapper">
+                    <Link
+                      to={link.path}
+                      className={`nb-desktop-link ${location.pathname.startsWith('/gallery') ? 'nb-desktop-link--active' : ''}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      {link.name}
+                    </Link>
+                    <div className="nb-dropdown-menu">
+                      {link.dropdown.map((subLink) => (
+                        <Link 
+                          key={subLink.name} 
+                          to={subLink.path} 
+                          className="nb-dropdown-item"
+                        >
+                          {subLink.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={link.name}
@@ -180,18 +218,38 @@ const Navbar = () => {
                         <Lock size={18} style={{ display: 'inline', marginRight: 8 }} /> Admin Panel
                       </Link>
                     ) : (
-                      <Link
-                        to={link.path}
-                        className={`nb-drawer__link ${location.pathname === link.path ? 'nb-drawer__link--active' : ''}`}
-                        onClick={() => {
-                          setMenuOpen(false);
-                          if (location.pathname === link.path) {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                          }
-                        }}
-                      >
-                        {link.name}
-                      </Link>
+                      <div className={link.dropdown ? 'nb-drawer__dropdown-wrapper' : ''}>
+                        <Link
+                          to={link.path}
+                          className={`nb-drawer__link ${location.pathname.startsWith('/gallery') ? 'nb-drawer__link--active' : ''}`}
+                          onClick={(e) => {
+                            if (link.dropdown) {
+                                e.preventDefault();
+                            } else {
+                                setMenuOpen(false);
+                                if (location.pathname === link.path) {
+                                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }
+                            }
+                          }}
+                        >
+                          {link.name}
+                        </Link>
+                        {link.dropdown && (
+                          <div className="nb-drawer__dropdown">
+                            {link.dropdown.map(sub => (
+                              <Link 
+                                key={sub.name} 
+                                to={sub.path} 
+                                className="nb-drawer__dropdown-item"
+                                onClick={() => setMenuOpen(false)}
+                              >
+                                {sub.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     )}
                   </motion.div>
                 ))}

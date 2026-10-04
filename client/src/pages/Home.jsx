@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import HeroCarousel from '../components/HeroCarousel';
@@ -27,21 +27,28 @@ const reviews = [
   { initial: 'N', name: 'NEGATIVE FILM', text: 'Exceptional photography service! The team was professional, creative, and easy to work with. They captured every important moment perfectly and delivered stunning photos. Highly recommended!', color: '#111111' },
 ];
 
+const defaultHomeCards = [
+    { id: 1, category: 'WEDDING', title: 'A Celebration of Love & Traditions', image: '/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0005.jpg', link: '/gallery/wedding/vinesh-manjubashini-kongu-wedding' },
+    { id: 2, category: 'RECEPTION', title: 'Moments of joy, laughter, and togetherness.', image: '/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0009.jpg', link: '/gallery/reception/ravi-karisma-kongu-reception' },
+    { id: 3, category: 'CEREMONY', title: 'Celebrating the miracle of life and traditions.', image: '/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1272.JPG', link: '/gallery/ceremony/vikashini-saree-ceremony' },
+    { id: 4, category: 'OUTDOOR SHOOT', title: 'The Promise of Always — Framed under open skies.', image: '/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1129.JPG', link: '/gallery/outdoor/santhosh-emiliya' }
+];
+
 const row1 = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=400&q=80',
+  '/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0007.jpg',
+  '/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0006.JPG',
+  '/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1277.JPG',
+  '/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_0892.JPG',
+  '/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0010.jpg',
+  '/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0113.JPG',
 ];
 const row2 = [
-  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1505934333218-8fe21ff8cece?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1533148301552-09411f185c15?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1578774204375-826dc37d7309?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=400&q=80',
+  '/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1147.JPG',
+  '/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/IMG_2501.jpg',
+  '/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1532.JPG',
+  '/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0003.JPG',
+  '/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0008.jpg',
+  '/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1348.JPG',
 ];
 
 const StarRating = () => (
@@ -83,8 +90,39 @@ const ruleRightVariants = {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [homeCards, setHomeCards] = useState(defaultHomeCards);
+
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('dwp_home_cards_v2');
+    if (saved) {
+      try {
+        setHomeCards(JSON.parse(saved));
+      } catch (e) {
+        console.error("Failed to parse home cards");
+      }
+    }
+  }, []);
+
+  // Elfsight Badge Remover (MutationObserver to handle dynamic rendering)
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      // Look for the Elfsight free widget badge text and remove it
+      const allLinks = document.querySelectorAll('a');
+      allLinks.forEach(link => {
+        if (link.innerText && link.innerText.includes('Free Instagram Feed Widget')) {
+          link.style.display = 'none';
+          link.style.opacity = '0';
+          link.style.pointerEvents = 'none';
+        }
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="home-wrapper paper-texture">
@@ -108,42 +146,50 @@ const Home = () => {
             <div className="four-card-cross-layout">
               {/* Left Column (1 card vertically centered) */}
               <div className="cross-col cross-col-side">
-                <motion.div {...vUp(0.2)} className="rect-card">
-                  <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Wedding Details" />
-                  <div className="card-info">
-                    <h3>Praveen & Shruti</h3>
-                    <p>Traditional Wedding</p>
-                  </div>
-                </motion.div>
+                {homeCards[0] && (
+                  <motion.div {...vUp(0.2)} className="rect-card" onClick={() => navigate(homeCards[0].link || '/gallery')} style={{ cursor: 'pointer' }}>
+                    <img src={homeCards[0].image} alt={homeCards[0].category} />
+                    <div className="card-info">
+                      <h3>{homeCards[0].title}</h3>
+                      <p>{homeCards[0].category}</p>
+                    </div>
+                  </motion.div>
+                )}
               </div>
 
               {/* Middle Column (2 cards stacked) */}
               <div className="cross-col cross-col-mid">
-                <motion.div {...vUp(0.4)} className="rect-card">
-                  <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Couple" />
-                  <div className="card-info">
-                    <h3>Arun & Sarah</h3>
-                    <p>Destination Wedding</p>
-                  </div>
-                </motion.div>
-                <motion.div {...vUp(0.6)} className="rect-card">
-                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80" alt="Pre Wedding Details" />
-                  <div className="card-info">
-                    <h3>Vikram & Neha</h3>
-                    <p>Pre-Wedding Shoot</p>
-                  </div>
-                </motion.div>
+                {homeCards[1] && (
+                  <motion.div {...vUp(0.4)} className="rect-card" onClick={() => navigate(homeCards[1].link || '/gallery')} style={{ cursor: 'pointer' }}>
+                    <img src={homeCards[1].image} alt={homeCards[1].category} />
+                    <div className="card-info">
+                      <h3>{homeCards[1].title}</h3>
+                      <p>{homeCards[1].category}</p>
+                    </div>
+                  </motion.div>
+                )}
+                {homeCards[2] && (
+                  <motion.div {...vUp(0.6)} className="rect-card" onClick={() => navigate(homeCards[2].link || '/gallery')} style={{ cursor: 'pointer' }}>
+                    <img src={homeCards[2].image} alt={homeCards[2].category} />
+                    <div className="card-info">
+                      <h3>{homeCards[2].title}</h3>
+                      <p>{homeCards[2].category}</p>
+                    </div>
+                  </motion.div>
+                )}
               </div>
 
               {/* Right Column (1 card vertically centered) */}
               <div className="cross-col cross-col-side">
-                <motion.div {...vUp(0.8)} className="rect-card">
-                  <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" alt="Reception Moments" />
-                  <div className="card-info">
-                    <h3>Rahul & Anjali</h3>
-                    <p>Reception Moments</p>
-                  </div>
-                </motion.div>
+                {homeCards[3] && (
+                  <motion.div {...vUp(0.8)} className="rect-card" onClick={() => navigate(homeCards[3].link || '/gallery')} style={{ cursor: 'pointer' }}>
+                    <img src={homeCards[3].image} alt={homeCards[3].category} />
+                    <div className="card-info">
+                      <h3>{homeCards[3].title}</h3>
+                      <p>{homeCards[3].category}</p>
+                    </div>
+                  </motion.div>
+                )}
               </div>
             </div>
 
@@ -155,11 +201,6 @@ const Home = () => {
                 just a day—it's a masterpiece of love, and we are here to preserve it with grace and artistry.
               </p>
               
-              <motion.div whileHover={{ scale: 1.05 }} style={{ display: 'inline-block', marginTop: '20px' }}>
-                <Link to="/gallery" className="btn btn-primary">
-                  Explore Portfolio
-                </Link>
-              </motion.div>
             </motion.div>
 
           </div>
@@ -192,95 +233,20 @@ const Home = () => {
             <motion.div variants={ruleRightVariants} className="insta-clean-rule"></motion.div>
           </motion.div>
         </div>
-        <div className="pg-container" style={{ marginTop: '30px', marginBottom: '20px' }}>
-          <div className="ig-theme-container">
-            {/* Instagram Profile Header */}
-            <div className="ig-profile-header">
-              <div className="ig-profile-pic-col">
-                <div className="ig-story-ring-none">
-                  <div className="ig-profile-pic">
-                    {/* Placeholder image, representing the profile pic in screenshot */}
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80" alt="Dreamday Profile" />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="ig-profile-info-col">
-                <div className="ig-username-row">
-                  <h2 className="ig-ig-username">dreamday_weddingphotography</h2>
-                  <svg aria-label="Options" color="var(--text-primary)" fill="var(--text-primary)" height="24" role="img" viewBox="0 0 24 24" width="24" style={{ cursor: 'pointer', marginLeft: '8px' }}><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
-                </div>
-                
-                <div className="ig-stats-row">
-                  <div className="ig-stat"><strong>556</strong> posts</div>
-                  <div className="ig-stat"><strong>9,097</strong> followers</div>
-                  <div className="ig-stat"><strong>242</strong> following</div>
-                </div>
-                
-                <div className="ig-bio">
-                  <span className="ig-bio-name">DREAMDAY WEDDING PHOTOGRAPHY</span>
-                  <span className="ig-bio-category">Photographer</span>
-                  <p className="ig-bio-text">
-                    CANDID-WEDDING | PRE-POST WEDDING | MATERNITY<br/>
-                    Premium Wedding Photography & Cinematography<br/>
-                    Ring us: +918883621113... more
-                  </p>
-                  <a href="#" className="ig-bio-link">
-                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                    youtube.com/@dreamdayraja?si=ycmJV9xReZZZ1cHN
-                  </a>
-                </div>
-
-                <div className="ig-large-actions">
-                  <a href="https://www.instagram.com/dreamday_weddingphotography/" target="_blank" rel="noopener noreferrer" className="ig-btn-primary ig-btn-large">Follow</a>
-                  <a href="https://www.instagram.com/direct/t/100395641365204/" target="_blank" rel="noopener noreferrer" className="ig-btn-secondary ig-btn-large">Message</a>
-                </div>
-              </div>
-            </div>
-
-            {/* Instagram Tabs */}
-            <div className="ig-profile-tabs">
-              <div className="ig-tab ig-tab-active">
-                <svg aria-label="Posts" color="currentColor" fill="currentColor" height="12" role="img" viewBox="0 0 24 24" width="12"><rect fill="none" height="18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" width="18" x="3" y="3"></rect><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="9.015" x2="9.015" y1="3" y2="21"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="14.985" x2="14.985" y1="3" y2="21"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="21" x2="3" y1="9.015" y2="9.015"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="21" x2="3" y1="14.985" y2="14.985"></line></svg>
-                <span>POSTS</span>
-              </div>
-              <div className="ig-tab">
-                <svg aria-label="Reels" color="currentColor" fill="currentColor" height="12" role="img" viewBox="0 0 24 24" width="12"><line fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="2" x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="13.504" x2="16.362" y1="2.001" y2="7.002"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="7.207" x2="10.002" y1="2.11" y2="7.002"></line><path d="M2 12.001v3.449c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45v-3.449c0-2.849-.698-4.006-1.606-4.945C19.454 6.146 18.3 5.448 15.45 5.448H8.552c-2.848 0-4.006.699-4.946 1.608C2.698 8.005 2 9.152 2 12.001Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><path d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z" fillRule="evenodd"></path></svg>
-                <span>REELS</span>
-              </div>
-              <div className="ig-tab">
-                <svg aria-label="Tagged" color="currentColor" fill="currentColor" height="12" role="img" viewBox="0 0 24 24" width="12"><path d="M10.201 3.797 12 1.997l1.799 1.8a1.59 1.59 0 0 0 1.124.465h5.259A1.818 1.818 0 0 1 22 6.08v14.104a1.818 1.818 0 0 1-1.818 1.818H3.818A1.818 1.818 0 0 1 2 20.184V6.08a1.818 1.818 0 0 1 1.818-1.818h5.26a1.59 1.59 0 0 0 1.123-.465Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><path d="M18.598 22.002V21.4a3.949 3.949 0 0 0-3.948-3.949H9.495A3.949 3.949 0 0 0 5.546 21.4v.603" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><circle cx="12.072" cy="11.075" fill="none" r="3.556" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></circle></svg>
-                <span>TAGGED</span>
-              </div>
-            </div>
-
-            {/* Instagram Grid (Perfect 3-column squares) */}
-            <div className="ig-photo-grid">
-              {[...row1, ...row2].slice(0, 6).map((src, i) => (
-                <a 
-                  key={i} 
-                  href="https://www.instagram.com/dreamday_weddingphotography/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="ig-grid-item"
-                >
-                  <img src={src} alt={`Instagram capture ${i + 1}`} />
-                  <div className="ig-grid-overlay">
-                    <div className="ig-overlay-stats">
-                      <div className="ig-overlay-stat">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        <span>{Math.floor(Math.random() * 500) + 100}</span>
-                      </div>
-                      <div className="ig-overlay-stat">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
-                        <span>{Math.floor(Math.random() * 50) + 5}</span>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
+        <div className="pg-container" style={{ marginTop: '30px', marginBottom: '20px', position: 'relative' }}>
+          <div className="elfsight-app-cc9a5b7c-0e8a-4870-b1a7-00155536efc4" data-elfsight-app-lazy></div>
+          
+          {/* Cover for the Free Badge */}
+          <div style={{
+            position: 'absolute',
+            bottom: '-10px',
+            left: '0',
+            width: '100%',
+            height: '60px',
+            backgroundColor: 'var(--bg-primary)',
+            zIndex: 9999,
+            pointerEvents: 'none'
+          }}></div>
         </div>
       </section>
 

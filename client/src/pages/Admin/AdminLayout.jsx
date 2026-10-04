@@ -13,7 +13,8 @@ import {
     FileText,
     LogOut,
     Menu,
-    X
+    X,
+    Users
 } from 'lucide-react';
 import './Admin.css';
 
@@ -35,7 +36,11 @@ const AdminLayout = () => {
 
     const navItems = [
         { name: 'Dashboard', path: '/admin/dashboard', icon: <LayoutDashboard size={18} /> },
-        { name: 'Quotations', path: '/admin', icon: <FileText size={18} />, badge: 'NEW' }
+        { name: 'Home Cards', path: '/admin/images', icon: <Image size={18} /> },
+        { name: 'Our Team', path: '/admin/team', icon: <Users size={18} /> },
+        { name: 'Client Leads', path: '/admin/bookings', icon: <Briefcase size={18} /> },
+        { name: 'Quotations', path: '/admin', icon: <FileText size={18} />, badge: 'NEW' },
+        { name: 'Gallery', path: '/admin/gallery', icon: <Image size={18} /> }
     ];
 
     const currentNav = navItems.find(i => i.path === location.pathname) || navItems[0];

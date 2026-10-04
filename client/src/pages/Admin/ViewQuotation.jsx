@@ -28,10 +28,9 @@ const ViewQuotation = () => {
         fetchQuotation();
     }, [id]);
 
-    const handlePrint = useReactToPrint({
-        content: () => printRef.current,
-        documentTitle: `Quotation_${id}`,
-    });
+    const handlePrint = () => {
+        window.print();
+    };
 
     const handleDownload = () => {
         const element = printRef.current;

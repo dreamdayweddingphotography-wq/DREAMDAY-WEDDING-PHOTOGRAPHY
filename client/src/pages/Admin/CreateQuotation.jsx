@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useReactToPrint } from 'react-to-print';
+import html2pdf from 'html2pdf.js';
+import QuotationDocument from './QuotationDocument';
 import { 
     ArrowLeft, 
     User, 
@@ -11,7 +14,10 @@ import {
     X,
     Printer,
     Download,
-    Save
+    Save,
+    Monitor,
+    Camera,
+    Wand2
 } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -21,7 +27,7 @@ const CreateQuotation = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const isEditMode = Boolean(id);
-    
+    const printRef = useRef();
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     
@@ -45,6 +51,22 @@ const CreateQuotation = () => {
     const [packagePrice, setPackagePrice] = useState('');
     const [discount, setDiscount] = useState('');
     const [finalTotal, setFinalTotal] = useState(0);
+
+    const handlePrint = () => {
+        window.print();
+    };
+
+    const handleDownloadPDF = () => {
+        const element = printRef.current;
+        const opt = {
+            margin:       0,
+            filename:     `Quotation_${clientInfo?.name || 'Draft'}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
+    };
 
     useEffect(() => {
         if (isEditMode) {
@@ -286,11 +308,21 @@ const CreateQuotation = () => {
                                 }}
                             >
                                 <option value="">Select event type...</option>
-                                <option value="Wedding">Wedding</option>
+                                <option value="Tamil Wedding">Tamil Wedding</option>
+                                <option value="Telugu Wedding">Telugu Wedding</option>
+                                <option value="Brahmin Wedding">Brahmin Wedding</option>
+                                <option value="Christian Wedding">Christian Wedding</option>
+                                <option value="Nikkah">Nikkah</option>
+                                <option value="Valima">Valima</option>
+                                <option value="First holy communion">First holy communion</option>
                                 <option value="Engagement">Engagement</option>
-                                <option value="Pre-Wedding">Pre-Wedding</option>
+                                <option value="Pre-Wedding Shoot">Pre-Wedding Shoot</option>
+                                <option value="Post-Wedding Shoot">Post-Wedding Shoot</option>
                                 <option value="Maternity">Maternity</option>
                                 <option value="Baby Shower">Baby Shower</option>
+                                <option value="Haldi">Haldi</option>
+                                <option value="Sangeeth">Sangeeth</option>
+                                <option value="Other">Other</option>
                             </select>
                             {errors.eventType && <div className="cq-error-text">{errors.eventType}</div>}
                         </div>
@@ -327,14 +359,38 @@ const CreateQuotation = () => {
                                     
                                     <div style={{marginTop: 12, paddingLeft: 12, borderLeft: '2px solid var(--al-border)'}}>
                                         <label style={{fontSize: 9}}>REQUIREMENTS</label>
+                                        
+                                        <datalist id="req-options">
+                                            <option value="Traditional Photography" />
+                                            <option value="Traditional Videography" />
+                                            <option value="Candid Photography" />
+                                            <option value="Candid Videography" />
+                                            <option value="Semi candid photography" />
+                                            <option value="Semi candid videography" />
+                                            <option value="Drone" />
+                                            <option value="FPV Drone" />
+                                            <option value="YouTube live streaming" />
+                                            <option value="Pre-Wedding Shoot" />
+                                            <option value="Post-Wedding Shoot" />
+                                        </datalist>
+
                                         {event.requirements.map((req, reqIdx) => (
                                             <div key={reqIdx} className="cq-req-row">
                                                 <input 
                                                     type="text" 
+                                                    list="req-options"
                                                     className="cq-input" 
-                                                    placeholder="Traditional Photography"
+                                                    placeholder="e.g. Traditional Photography"
+                                                    style={{ flex: 1 }}
                                                     value={req}
                                                     onChange={e => handleRequirementChange(eventIdx, reqIdx, e.target.value)}
+                                                />
+                                                <input 
+                                                    type="number"
+                                                    className="cq-input"
+                                                    style={{ width: '60px', textAlign: 'center' }}
+                                                    defaultValue="1"
+                                                    title="Quantity (Coming Soon)"
                                                 />
                                                 <button className="cq-remove-btn" onClick={() => removeRequirement(eventIdx, reqIdx)}>
                                                     <X size={14} />
@@ -420,33 +476,55 @@ const CreateQuotation = () => {
                     <div className="cq-card">
                         <div className="cq-card-title"><Plus size={14} /> ADDITIONAL SERVICES</div>
                         
-                        <div className="cq-form-group">
-                            {additionalServices.map((service, i) => (
-                                <div key={i} className="cq-event-row" style={{marginBottom: '8px'}}>
-                                    <input 
-                                        type="text" 
-                                        className="cq-input" 
-                                        style={{flex: 2}}
-                                        placeholder="Service Name (e.g. Drone Camera)"
-                                        value={service.name}
-                                        onChange={e => handleAdditionalServiceChange(i, 'name', e.target.value)}
-                                    />
-                                    <input 
-                                        type="number" 
-                                        className="cq-input" 
-                                        style={{flex: 1}}
-                                        placeholder="Price (₹)"
-                                        value={service.price}
-                                        onChange={e => handleAdditionalServiceChange(i, 'price', e.target.value)}
-                                    />
-                                    <button className="cq-remove-btn" onClick={() => removeAdditionalService(i)}>
-                                        <X size={16} />
-                                    </button>
-                                </div>
-                            ))}
-                            <button className="cq-add-btn" onClick={addAdditionalService}>
-                                + Add Service
-                            </button>
+                        <div className="cq-predefined-services">
+                            {[
+                                { name: 'LED TV 55 inch', price: 5000, suffix: '/Session', icon: <Monitor size={15} color="var(--pg-gold)" /> },
+                                { name: 'Led Wall - 12x8', price: 36000, suffix: '/Session', icon: <Monitor size={15} color="var(--pg-gold)" /> },
+                                { name: 'Led Wall - 6x8', price: 18000, suffix: '/Session', icon: <Monitor size={15} color="var(--pg-gold)" /> },
+                                { name: 'Instant photo booth', price: 22000, suffix: '/Session', icon: <Camera size={15} color="var(--pg-gold)" /> },
+                                { name: 'Ai Photo sharing', price: 10000, suffix: '/Session', icon: <Wand2 size={15} color="var(--pg-gold)" /> }
+                            ].map((service, i) => {
+                                const isSelected = additionalServices.some(s => s.name === service.name);
+                                return (
+                                    <label key={i} className={`cq-service-toggle ${isSelected ? 'selected' : ''}`} style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                        padding: '12px 16px',
+                                        border: isSelected ? '1px solid var(--pg-gold)' : '1px solid #E5E7EB',
+                                        borderRadius: '8px',
+                                        marginBottom: '10px',
+                                        cursor: 'pointer',
+                                        background: '#fff',
+                                        transition: 'all 0.2s'
+                                    }}>
+                                        <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                                            <input 
+                                                type="checkbox" 
+                                                checked={isSelected}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        setAdditionalServices([...additionalServices, { name: service.name, price: service.price }]);
+                                                    } else {
+                                                        setAdditionalServices(additionalServices.filter(s => s.name !== service.name));
+                                                    }
+                                                }}
+                                                style={{
+                                                    accentColor: 'var(--pg-gold)', 
+                                                    width: '16px', 
+                                                    height: '16px',
+                                                    cursor: 'pointer'
+                                                }}
+                                            />
+                                            <span style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#4B5563', fontWeight: 500}}>
+                                                {service.icon}
+                                                {service.name}
+                                            </span>
+                                        </div>
+                                        <strong style={{fontSize: '13px', color: '#1F2937'}}>+₹{service.price.toLocaleString()}{service.suffix}</strong>
+                                    </label>
+                                );
+                            })}
                         </div>
                     </div>
 
@@ -486,19 +564,50 @@ const CreateQuotation = () => {
                             <div className="cq-total-value">₹{finalTotal.toLocaleString()}</div>
                         </div>
 
-                        <div className="cq-action-bar">
-                            <button className="cq-btn-outline" type="button" onClick={() => navigate(-1)}>Cancel</button>
+                        <div className="cq-action-bar" style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
+                            <button className="cq-btn-outline" type="button" onClick={handlePrint} style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#1B3C35', borderColor: '#E5E7EB', padding: '10px 16px', background: 'transparent', borderRadius: '6px', fontWeight: 600}}>
+                                <Printer size={16} /> Print
+                            </button>
+                            <button className="cq-btn-outline" type="button" onClick={handleDownloadPDF} style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#1B3C35', borderColor: '#E5E7EB', padding: '10px 16px', background: 'transparent', borderRadius: '6px', fontWeight: 600}}>
+                                <Download size={16} /> Download PDF
+                            </button>
                             <button 
-                                className="cq-btn-primary" 
+                                className="cq-btn-outline" 
+                                type="button"
                                 onClick={handleSave} 
                                 disabled={loading || !isFormValid}
+                                style={{
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    gap: '8px', 
+                                    color: (loading || !isFormValid) ? '#9CA3AF' : '#1B3C35', 
+                                    borderColor: '#E5E7EB', 
+                                    padding: '10px 16px', 
+                                    background: 'transparent', 
+                                    borderRadius: '6px',
+                                    fontWeight: 600,
+                                    cursor: (loading || !isFormValid) ? 'not-allowed' : 'pointer'
+                                }}
                             >
-                                <Save size={14} /> {loading ? 'Saving...' : (isEditMode ? 'Update Quotation' : 'Save Quotation')}
+                                <FileText size={16} /> {loading ? 'Saving...' : (isEditMode ? 'Update Quotation' : 'Save Quotation')}
                             </button>
                         </div>
                     </div>
 
                 </div>
+            </div>
+            <div id="print-preview-container" style={{ position: 'absolute', top: '-10000px', left: '-10000px', overflow: 'hidden', pointerEvents: 'none' }}>
+                <QuotationDocument 
+                    quotation={{
+                        clientInfo,
+                        eventDetails: { eventType, events, location },
+                        notes,
+                        deliverables: { albums, finalOut, complementary },
+                        additionalServices,
+                        pricing: { packagePrice: parseFloat(packagePrice) || 0, discountPercentage: parseFloat(discount) || 0, finalTotal }
+                    }} 
+                    printRef={printRef} 
+                />
             </div>
         </div>
     );

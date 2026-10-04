@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Alex+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Alex+Brush&display=swap');
 
 :root {
   /* Pearl White & Whisper Blush Theme (Ultra-Bright, Light & Airy) */
@@ -8,6 +8,7 @@
   --text-secondary: #9B9495; /* Very soft light grey */
   --accent-color:   #E6C8CB; /* Whisper Blush / Very Soft Pink */
   --accent-hover:   #F2DCDD; /* Lighter Blush for hover */
+  --pg-gold:        #D4AF37; /* Premium Gold for accents */
   --glass-bg:       rgba(255, 255, 255, 0.95); /* Bright frosted glass */
   --glass-border:   rgba(230, 200, 203, 0.4); /* Soft blush border */
   --border-color:   #F5EEEE; /* Very light pink-grey border */
@@ -18,7 +19,7 @@
   --gradient-primary: linear-gradient(135deg, #E6C8CB 0%, #F2DCDD 100%);
 
   /* Typography */
-  --font-heading: 'Outfit', sans-serif;
+  --font-heading: 'Playfair Display', serif;
   --font-body:    'Outfit', sans-serif;
   --font-script:  'Alex Brush', cursive;
 
@@ -292,3 +293,46 @@ img[src*="logo-circle.svg"] {
   object-fit: contain;
   mix-blend-mode: multiply;
 }
+
+/* ==========================================================================
+   GLOBAL WHATSAPP FLOATING BUTTON
+   ========================================================================== */
+.global-whatsapp {
+  position: fixed; 
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999; 
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.global-whatsapp:hover {
+  background-color: #1EBE57;
+  transform: scale(1.1) translateY(-5px);
+  color: white;
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+}
+
+.global-whatsapp svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Hide Elfsight Free Badge */
+a[href*="elfsight.com"],
+.eapps-link,
+[class^="Badge__BadgeComponent"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');

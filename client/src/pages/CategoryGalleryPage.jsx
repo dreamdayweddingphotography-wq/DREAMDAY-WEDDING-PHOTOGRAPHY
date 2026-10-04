@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X, ArrowLeft } from 'lucide-react';
-import { galleryCategories } from '../utils/galleryConfig';
+import defaultGalleryCategories from '../utils/galleryData.json';
+import { loadFromDB } from '../utils/db';
 import CategoryLoader from '../components/CategoryLoader';
 import './CategoryGallery.css';
 
@@ -11,27 +12,36 @@ const CategoryGalleryPage = () => {
   const navigate = useNavigate();
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+  const [galleryCategories, setGalleryCategories] = useState(defaultGalleryCategories);
+
+  useEffect(() => {
+    loadFromDB('dwp_gallery_data').then(data => {
+      if (data) setGalleryCategories(data);
+      else {
+        const ls = localStorage.getItem('dwp_gallery_data');
+        if (ls) setGalleryCategories(JSON.parse(ls));
+      }
+    }).catch(console.error);
+  }, []);
+
   const category = galleryCategories.find(c => c.id === categoryId);
 
-  // Scroll to top and validate category
+  // Scroll to top and validate category (only redirect if data is fully loaded and no category exists)
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (!category) {
-      navigate('/gallery');
-    }
-  }, [category, navigate]);
+    // Give it a moment to load from DB before redirecting
+    const timer = setTimeout(() => {
+        if (!category && galleryCategories !== defaultGalleryCategories) {
+          navigate('/');
+        }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [category, galleryCategories, navigate]);
 
   if (!category) return null;
 
-  // Generate image paths
-  const images = category.customNames 
-    ? category.customNames.map(name => `/images/${category.folder}/${name}`)
-    : Array.from({ length: category.count }, (_, i) => {
-        const num = i + 1;
-        const fileName = `${category.prefix}${num}.jpg`;
-        return `/images/${category.folder}/${fileName}`;
-      });
+  // Extract images from clients
+  const images = category.clients ? category.clients.map(client => client.coverImage) : [];
 
   // Image Pre-loading Logic
   useEffect(() => {
@@ -132,30 +142,82 @@ const CategoryGalleryPage = () => {
           </motion.div>
         </header>
 
-        {/* Masonry Grid */}
-        <div className="gallery-masonry-container">
-          <div className="gallery-masonry">
-            <AnimatePresence mode="popLayout">
-              {images.map((src, i) => (
-                <motion.div
-                  key={i}
-                  layout
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: (i % 12) * 0.05 }}
-                  className="gallery-item"
-                  onClick={() => openLightbox(i)}
-                >
-                  <div className="gallery-img-wrap">
-                    <img src={src} alt={`${category.title} moment ${i+1}`} loading="lazy" />
-                    <div className="gallery-img-overlay">
-                      <span className="expand-text">View Fullscreen</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+        {/* Alternating Rows Layout */}
+        <div className="cat-gallery-rows-container">
+          {images.map((src, i) => {
+            const quoteDictionary = {
+              'ceremony': [
+                "EMBRACING TRADITIONS, CELEBRATING LOVE",
+                "A BEAUTIFUL BEGINNING ROOTED IN HERITAGE",
+                "SACRED MOMENTS, TIMELESS MEMORIES",
+                "WHERE CULTURE MEETS LOVE AND JOY",
+                "HONORING THE PAST, CELEBRATING THE FUTURE",
+                "A CELEBRATION OF FAMILY, TRADITION, AND LOVE"
+              ],
+              'baby-shower': [
+                "A NEW LIFE BEGINS, A NEW LOVE BLOSSOMS",
+                "THE TINIEST FEET LEAVE THE BIGGEST FOOTPRINTS IN OUR HEARTS",
+                "WAITING FOR OUR LITTLE MIRACLE",
+                "FIRST WE HAD EACH OTHER, THEN WE HAD YOU"
+              ],
+              'wedding': [
+                "TWO SOULS, ONE HEART, A LIFETIME OF LOVE",
+                "THE START OF OUR FOREVER",
+                "A LOVE STORY WRITTEN IN THE STARS",
+                "TOGETHER IS A BEAUTIFUL PLACE TO BE",
+                "ALL OF ME LOVES ALL OF YOU",
+                "OUR HAPPILY EVER AFTER STARTS NOW"
+              ],
+              'reception': [
+                "DANCING INTO FOREVER TOGETHER",
+                "A NIGHT OF LOVE, LAUGHTER, AND HAPPILY EVER AFTER",
+                "SURROUNDED BY LOVE, CELEBRATING FOREVER",
+                "TO LOVE, LAUGHTER, AND OUR HAPPILY EVER AFTER",
+                "THE PERFECT END TO A PERFECT DAY",
+                "CHEERS TO A LIFETIME OF MEMORIES"
+              ],
+              'default': [
+                "ALL THE WORLD THERE IS NO HEART FOR ME LIKE YOURS",
+                "A HUNDRED HEARTS WOULD BE TOO FEW TO CARRY ALL MY LOVE FOR YOU",
+                "YOU ARE MY TODAY AND ALL OF MY TOMORROWS",
+                "TO LOVE AND BE LOVED IS TO FEEL THE SUN FROM BOTH SIDES",
+                "I HAVE FOUND THE ONE WHOM MY SOUL LOVES",
+                "EVERY LOVE STORY IS BEAUTIFUL, BUT OURS IS MY FAVORITE",
+                "GROW OLD ALONG WITH ME, THE BEST IS YET TO BE"
+              ]
+            };
+            
+            const quotes = quoteDictionary[category.id] || quoteDictionary['default'];
+            const quote = quotes[i % quotes.length];
+
+            return (
+            <motion.div
+              key={i}
+              className={`cat-row-item ${i % 2 !== 0 ? 'reverse' : ''}`}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              <div className="cat-row-polaroid">
+                <div className="cat-row-img-wrap" onClick={() => navigate(`/gallery/${category.id}/${category.clients[i].id}`)}>
+                  <img src={src} alt={`${category.title} moment ${i+1}`} loading="lazy" />
+                </div>
+                <p className="polaroid-text">{quote}</p>
+              </div>
+              <div className="cat-row-text elegant-row-text">
+                <div className="cat-row-top">
+                  <span className="cat-row-num">{i + 1 < 10 ? `0${i + 1}` : i + 1}</span>
+                  <div className="cat-row-line"></div>
+                </div>
+                <h3>{category.clients ? category.clients[i].name.replace(/-/g, ' & ') : `${category.title} Moment ${i + 1}`}</h3>
+                <span className="explore-story-btn" onClick={() => navigate(`/gallery/${category.id}/${category.clients[i].id}`)}>
+                  EXPLORE STORY
+                </span>
+              </div>
+            </motion.div>
+            );
+          })}
         </div>
       </motion.div>
 

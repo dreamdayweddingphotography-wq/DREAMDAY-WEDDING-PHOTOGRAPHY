@@ -41,8 +41,8 @@ const Footer = () => {
                     <div className="col-span-2">
                         <h4 className="footer-heading-modern">Explore</h4>
                         <ul className="footer-list-modern">
-                            <li><Link to="/gallery">Gallery</Link></li>
-                            <li><Link to="/booking">Enquire</Link></li>
+                            <li><Link to="/portfolio">Wedding Films</Link></li>
+                            <li><Link to="/booking">Book Us</Link></li>
                         </ul>
                     </div>
 

@@ -18,8 +18,8 @@ const QuotationDocument = ({ quotation, printRef }) => {
                 <div className="vq-header-right">
                     <h1>QUOTATION</h1>
                     <div className="vq-header-meta">
-                        <strong>ID:</strong> Q-{quotation._id.substring(quotation._id.length - 4).toUpperCase()}<br/>
-                        <strong>Date:</strong> {renderDate(quotation.createdAt)}
+                        <strong>ID:</strong> Q-{quotation._id ? quotation._id.substring(quotation._id.length - 4).toUpperCase() : 'DRAFT'}<br/>
+                        <strong>Date:</strong> {renderDate(quotation.createdAt || new Date())}
                     </div>
                 </div>
             </div>

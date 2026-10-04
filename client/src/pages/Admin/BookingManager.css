@@ -1,0 +1,337 @@
+.bm-container {
+    padding: 30px 40px;
+    font-family: var(--font-body);
+    background-color: var(--al-surface);
+    min-height: 100vh;
+}
+
+.bm-header {
+    margin-bottom: 30px;
+}
+
+.bm-title-highlight {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    color: #2F483D;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background-color: #D6D6D6; /* Grey highlight block from design */
+    padding: 2px 8px;
+    display: inline-block;
+}
+
+.bm-header p {
+    color: #6B7280;
+    font-size: 14px;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+}
+
+.bm-table-wrapper {
+    background: #FAFAFA;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bm-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bm-table th {
+    text-align: left;
+    padding: 20px 24px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #6B7280;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid #E5E7EB;
+    text-transform: uppercase;
+    line-height: 1.4;
+    background: #F8F9FA;
+}
+
+.bm-table td {
+    padding: 24px;
+    border-bottom: 1px solid #E5E7EB;
+    vertical-align: top;
+}
+
+.bm-table tr:last-child td {
+    border-bottom: none;
+}
+
+.bm-table tr:hover {
+    background-color: #F9FAFB;
+}
+
+.bm-date-primary {
+    font-size: 14px;
+    color: #1F2937;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.bm-date-secondary {
+    font-size: 12px;
+    color: #6B7280;
+}
+
+.bm-client-name {
+    font-size: 14px;
+    color: #064E3B; /* Dark green */
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.bm-contact-info {
+    font-size: 12px;
+    color: #6B7280;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.bm-event-type {
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.bm-event-date {
+    font-size: 12px;
+    color: #6B7280;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.bm-location-text {
+    font-size: 13px;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.bm-actions-cell {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.bm-btn-view, .bm-btn-delete {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.bm-btn-view {
+    border: 1px solid #D1D5DB;
+    color: #374151;
+}
+
+.bm-btn-view:hover {
+    border-color: #064E3B;
+    color: #064E3B;
+    background-color: #F0FDF4;
+}
+
+.bm-btn-delete {
+    border: 1px solid #FECACA;
+    color: #EF4444;
+}
+
+.bm-btn-delete:hover {
+    background-color: #FEF2F2;
+    border-color: #EF4444;
+}
+
+/* Modal Styles */
+.bm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.bm-modal {
+    background: #FCFCF9;
+    width: 100%;
+    max-width: 650px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.bm-modal-header {
+    background-color: #063124; /* Dark green */
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bm-modal-header h2 {
+    color: #D4AF37; /* Gold */
+    font-family: var(--font-heading), serif;
+    font-size: 26px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.bm-modal-close {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #D4AF37;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.bm-modal-close:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: #D4AF37;
+}
+
+.bm-modal-body {
+    padding: 30px;
+}
+
+.bm-details-card {
+    background: #F8F7F3;
+    border: 1px solid #EAE8E1;
+    border-radius: 10px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 20px;
+    margin-bottom: 30px;
+}
+
+.bm-detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bm-col-span-2 {
+    grid-column: span 2;
+}
+
+.bm-detail-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #A08C5B; /* Gold-ish label color */
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.bm-detail-value {
+    color: #4A4A4A;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.bm-email-value {
+    color: #8B8B8B;
+    font-size: 14px;
+    margin: 4px 0 0 0;
+}
+
+.bm-message-section {
+    margin-bottom: 30px;
+}
+
+.bm-message-section label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #A08C5B;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.bm-message-box {
+    border: 1px dashed #D3CDA1; /* Dashed gold-ish border */
+    border-radius: 8px;
+    padding: 20px;
+    color: #064E3B; /* Dark green text */
+    font-size: 15px;
+    min-height: 80px;
+}
+
+.bm-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #EAE8E1;
+    padding-top: 20px;
+}
+
+.bm-btn-call {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #063124; /* Dark green */
+    color: #D4AF37; /* Gold */
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.bm-btn-call:hover {
+    background-color: #04241A;
+}
+
+.bm-btn-close-modal {
+    background: transparent;
+    border: 1px solid #D1D5DB;
+    color: #374151;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.bm-btn-close-modal:hover {
+    background-color: #F3F4F6;
+    color: #111827;
+}

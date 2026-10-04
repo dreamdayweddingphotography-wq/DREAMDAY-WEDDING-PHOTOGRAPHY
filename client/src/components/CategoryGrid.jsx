@@ -2,10 +2,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import { galleryCategories } from '../utils/galleryConfig';
+import defaultGalleryCategories from '../utils/galleryData.json';
 import './CategoryGrid.css';
 
 const CategoryGrid = () => {
+  const [categories] = React.useState(() => {
+    const saved = localStorage.getItem('dwp_gallery_data');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
+    }
+    return defaultGalleryCategories;
+  });
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,7 +44,10 @@ const CategoryGrid = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {galleryCategories.map((cat) => (
+          {categories.map((cat) => {
+            const coverImage = cat.clients?.[0]?.coverImage || cat.clients?.[0]?.image || '';
+            const photoCount = cat.clients ? cat.clients.reduce((acc, c) => acc + (c.images?.length || 0), 0) : 0;
+            return (
             <motion.div 
               key={cat.id} 
               className="category-card-wrapper"
@@ -44,7 +55,7 @@ const CategoryGrid = () => {
             >
               <Link to={`/gallery/${cat.id}`} className="category-card">
                 <div className="category-card-img">
-                  <img src={cat.image} alt={cat.title} loading="lazy" />
+                  <img src={coverImage} alt={cat.title} loading="lazy" />
                   <div className="category-card-overlay" />
                 </div>
                 
@@ -59,7 +70,7 @@ const CategoryGrid = () => {
                     <span className="view-link">
                       View Collection <ChevronRight size={14} />
                     </span>
-                    <span className="photo-count">{cat.count} Photos</span>
+                    <span className="photo-count">{photoCount} Photos</span>
                   </div>
                 </div>
                 
@@ -67,7 +78,8 @@ const CategoryGrid = () => {
                 <div className="category-card-glow" />
               </Link>
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
     </section>

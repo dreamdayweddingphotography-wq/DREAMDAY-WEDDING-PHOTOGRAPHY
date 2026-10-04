@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
 
 // @desc    Get all bookings
 // @route   GET /api/bookings
-router.get('/', protect, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const bookings = await Booking.find().sort({ createdAt: -1 });
     res.json(bookings);
@@ -40,6 +40,22 @@ router.patch('/:id', protect, async (req, res) => {
       booking.status = req.body.status || booking.status;
       const updatedBooking = await booking.save();
       res.json(updatedBooking);
+    } else {
+      res.status(404).json({ message: 'Booking not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// @desc    Delete booking / client lead
+// @route   DELETE /api/bookings/:id
+router.delete('/:id', async (req, res) => {
+  try {
+    const booking = await Booking.findById(req.params.id);
+    if (booking) {
+      await booking.deleteOne();
+      res.json({ message: 'Booking deleted successfully' });
     } else {
       res.status(404).json({ message: 'Booking not found' });
     }

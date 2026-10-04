@@ -121,21 +121,6 @@ const MainDashboard = () => {
                         <span className="al-db-stat-sub-premium">Successfully booked</span>
                     </div>
                 </div>
-                
-                {/* Revenue Card (New) */}
-                <div className="al-db-stat-card-premium al-stat-light">
-                    <div className="al-stat-bg-shape"></div>
-                    <div className="al-db-stat-top">
-                        <div className="al-db-stat-icon-wrapper-premium">
-                            <Clock size={22} />
-                        </div>
-                    </div>
-                    <div className="al-db-stat-info-premium">
-                        <span className="al-db-stat-number-premium">{formatCurrency(totalRevenue)}</span>
-                        <span className="al-db-stat-label-premium">Estimated Revenue</span>
-                        <span className="al-db-stat-sub-premium">From confirmed quotes</span>
-                    </div>
-                </div>
             </div>
 
             {/* Recent Quotations List */}

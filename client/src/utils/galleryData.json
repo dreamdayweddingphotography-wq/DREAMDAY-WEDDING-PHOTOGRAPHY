@@ -1,0 +1,247 @@
+[
+  {
+    "id": "wedding",
+    "title": "Wedding",
+    "description": "Stunning memories from our wedding shoots.",
+    "clients": [
+      {
+        "id": "ravi-karisma-kongu-wedding",
+        "name": "RAVI KARISMA- KONGU WEDDING",
+        "coverImage": "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0008.jpg",
+        "images": [
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0001.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0002.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0003.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0004.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0005.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0006.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0007.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0008.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0009.jpg",
+          "/images/Wedding CC/RAVI KARISMA- KONGU WEDDING/DWP_0010.jpg"
+        ]
+      },
+      {
+        "id": "santhosh-jasmine-christian-wedding",
+        "name": "SANTHOSH JASMINE -CHRISTIAN WEDDING",
+        "coverImage": "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 001.jpg",
+        "images": [
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 001.jpg",
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 002.jpg",
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 003.jpg",
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 004.jpg",
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 005.jpg",
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 006.jpg",
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 007.jpg",
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 008.jpg",
+          "/images/Wedding CC/SANTHOSH JASMINE -CHRISTIAN WEDDING/CHRISTIAN WEDDING 009.jpg"
+        ]
+      },
+      {
+        "id": "vijay-jeevitha-kongu-wedding",
+        "name": "VIJAY JEEVITHA- KONGU WEDDING",
+        "coverImage": "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0007.jpg",
+        "images": [
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0001.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0002.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0003.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0004.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0005.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0006.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0007.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0008.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0009.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/DWP_0010.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/IMG_2324.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/IMG_2501.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/IMG_2665.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/IMG_2680.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/IMG_3415.jpg",
+          "/images/Wedding CC/VIJAY JEEVITHA- KONGU WEDDING/IMG_3454.jpg"
+        ]
+      },
+      {
+        "id": "vinesh-manjubashini-kongu-wedding",
+        "name": "VINESH MANJUBASHINI- KONGU WEDDING",
+        "coverImage": "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0004.jpg",
+        "images": [
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0001.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0002.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0003.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0004.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0005.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0006.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0007.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0008.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0009.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0010.jpg",
+          "/images/Wedding CC/VINESH MANJUBASHINI- KONGU WEDDING/DWP_0011.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reception",
+    "title": "Reception",
+    "description": "Stunning memories from our reception shoots.",
+    "clients": [
+      {
+        "id": "ravi-karisma-kongu-reception",
+        "name": "RAVI KARISMA- KONGU RECEPTION",
+        "coverImage": "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0007.JPG",
+        "images": [
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0001.JPG",
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0002.JPG",
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0003.JPG",
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0004.JPG",
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0005.JPG",
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0006.JPG",
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0007.JPG",
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0008.jpg",
+          "/images/RECEPTION CC/RAVI KARISMA- KONGU RECEPTION/DWP_0009.jpg"
+        ]
+      },
+      {
+        "id": "sagaptha-aishwarya-reception",
+        "name": "SAGAPTHA AISHWARYA RECEPTION",
+        "coverImage": "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_1006.JPG",
+        "images": [
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0099.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0113.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0160.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0247.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0265.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0278.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0295.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0971.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0979.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_0982.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_1006.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_1032.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_1058.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_1060.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_1089.JPG",
+          "/images/RECEPTION CC/SAGAPTHA AISHWARYA RECEPTION/DWP_1091.JPG"
+        ]
+      },
+      {
+        "id": "vijay-jeevitha-reception",
+        "name": "VIJAY JEEVITHA- RECEPTION",
+        "coverImage": "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/DWP_0005.jpg",
+        "images": [
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/DWP_0001.jpg",
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/DWP_0002.jpg",
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/DWP_0003.jpg",
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/DWP_0004.jpg",
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/DWP_0005.jpg",
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/DWP_0006.jpg",
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/IMG_0309.jpg",
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/IMG_0375.jpg",
+          "/images/RECEPTION CC/VIJAY JEEVITHA- RECEPTION/IMG_0401.jpg"
+        ]
+      },
+      {
+        "id": "vinesh-manjubashini-reception",
+        "name": "VINESH MANJUBASHINI-RECEPTION",
+        "coverImage": "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0013.jpg",
+        "images": [
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0001.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0002.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0003.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0004.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0005.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0006.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0007.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0008.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0009.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0010.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0011.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0012.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0013.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0014.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0015.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0016.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0017.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0018.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0019.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0020.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0021.jpg",
+          "/images/RECEPTION CC/VINESH MANJUBASHINI-RECEPTION/DWP_0022.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "outdoor",
+    "title": "Pre/Post Wedding",
+    "description": "Stunning memories from our pre/post wedding shoots.",
+    "clients": [
+      {
+        "id": "santhosh-emiliya",
+        "name": "SANTHOSH EMILIYA",
+        "coverImage": "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1367.JPG",
+        "images": [
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_0851.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_0892.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1047.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1069.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1073.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1077.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1114.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1129.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1146.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1147.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1156.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1165.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1170.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1196.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1206.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1348.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1360.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1367.JPG",
+          "/images/OUTDOOR CC/SANTHOSH EMILIYA/DWP_1398.JPG"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "baby-shower",
+    "title": "Maternity & Baby Shower",
+    "description": "Stunning memories from our maternity & baby shower shoots.",
+    "clients": []
+  },
+  {
+    "id": "ceremony",
+    "title": "Ceremony",
+    "description": "Stunning memories from our ceremony shoots.",
+    "clients": [
+      {
+        "id": "vikashini-saree-ceremony",
+        "name": "VIKASHINI SAREE CEREMONY",
+        "coverImage": "/images/Cermony CC/VIKASHINI SAREE CEREMONY/IMG02450.JPG",
+        "images": [
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1121.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1128.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1272.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1277.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1526.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1531.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1532.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1548.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1553.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1560.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1587.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1602.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/DWP_1784.JPG",
+          "/images/Cermony CC/VIKASHINI SAREE CEREMONY/IMG02450.JPG"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "engagement",
+    "title": "Engagement",
+    "description": "Stunning memories from our engagement shoots.",
+    "clients": []
+  }
+]

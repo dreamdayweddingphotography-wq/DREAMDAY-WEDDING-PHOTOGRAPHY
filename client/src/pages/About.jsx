@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Award, Camera, Heart, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,14 +11,28 @@ const vUp = (delay = 0) => ({
   transition: { duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] },
 });
 
-const team = [
+const defaultTeam = [
   { name: 'Rajarajan Vetrivendhan', role: 'Founder & Lead Photographer', image: '/images/Meet our Team/rajarajan.png' },
   { name: 'Arun Kumar', role: 'Cinematographer', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80' },
   { name: 'Priya Sharma', role: 'Creative Director', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80' },
   { name: 'Karthik Raj', role: 'Candid Specialist', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' }
 ];
 
-const About = () => (
+const About = () => {
+  const [team, setTeam] = useState(defaultTeam);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('dwp_team_data');
+    if (saved) {
+      try {
+        setTeam(JSON.parse(saved));
+      } catch (e) {
+        console.error("Failed to parse team data");
+      }
+    }
+  }, []);
+
+  return (
   <div className="page-wrapper">
 
     {/* ── Minimalist About Hero ── */}
@@ -69,10 +83,13 @@ const About = () => (
               lineHeight: 2.2 
             }}>
               <p style={{ marginBottom: '30px' }}>
-                At Dreamday Weddings, we believe photography is more than just images—it is the art of preserving emotions and telling stories that last forever. Our vision is to create timeless, elegant, and meaningful photographs that truly reflect the heart and soul of your unique journey.
+                Established in 2007, Our Photography has been dedicated to capturing life's most precious moments with creativity, passion, and professionalism. From weddings and engagements to family celebrations and special events, we transform memories into timeless visual stories.
               </p>
-              <p>
-                Crafting cinematic wedding visuals since 2012, we focus on high-end storytelling for couples who value artistry and authenticity. We are dedicated to turning your fleeting moments into a legacy you will cherish for a lifetime.
+              <p style={{ fontWeight: '500', color: 'var(--accent-color)', marginBottom: '15px' }}>
+                18+ Years of Excellence in Photography & Videography
+              </p>
+              <p style={{ fontStyle: 'italic', letterSpacing: '1px' }}>
+                Capturing Emotions &bull; Preserving Memories &bull; Creating Legacy
               </p>
             </div>
           </motion.div>
@@ -137,7 +154,7 @@ const About = () => (
           <motion.div {...vUp(0.1)} className="location-info-col">
             <div className="location-detail-box">
               <h3>DREAMDAY WEDDING PHOTOGRAPHY</h3>
-              <p>53A, Dr Rajendra Prasad Rd, Varuthiangara Palayam, Seth Narang Das Layout, Ram Nagar, Gandhipuram, Coimbatore, Tamil Nadu 641012</p>
+              <p>Gopal swamy, 9, Gopalasamy Koil St, Sridevi Nagar, Ganapathy, Coimbatore, Tamil Nadu 641006</p>
               
               <div className="location-contact-links">
                 <a href="tel:+918883621113" className="location-link">Phone: +91 88836 21113</a>
@@ -196,6 +213,7 @@ const About = () => (
     </section>
 
   </div>
-);
+  );
+};
 
 export default About;

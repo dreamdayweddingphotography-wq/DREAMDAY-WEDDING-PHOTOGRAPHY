@@ -39,6 +39,34 @@ const filmsData = [
     title: 'SANTHOSH BABU ❤️ JASMINE VINCY',
     category: 'GRAND CHRISTIAN WEDDING',
     filter: 'WEDDING & RECEPTION'
+  },
+  {
+    id: 'wNelEEcboDQ',
+    number: '06',
+    title: 'DHANUSH ADITHYA ❤️ ELLAKKIYA',
+    category: 'THE ESSENCE OF KONGU CULTURE',
+    filter: 'WEDDING & RECEPTION'
+  },
+  {
+    id: 'NYQsxFKMOck',
+    number: '07',
+    title: 'VINESH ❤️ MANJUBASHINI',
+    category: 'A GRAND RECEPTION',
+    filter: 'WEDDING & RECEPTION'
+  },
+  {
+    id: 'SbpK0IrnVbU',
+    number: '08',
+    title: 'A KONGU FLAVOUR - TIRUPUR',
+    category: 'TRADITIONAL LOVE STORY',
+    filter: 'WEDDING & RECEPTION'
+  },
+  {
+    id: 'Ks9RjBRnWeM',
+    number: '09',
+    title: 'A BEAUTIFUL VALIMA CELEBRATION',
+    category: 'TRADITIONAL MUSLIM VALIMA',
+    filter: 'WEDDING & RECEPTION'
   }
 ];
 

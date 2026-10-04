@@ -218,20 +218,15 @@
 
 .wf-film-strip {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
-  overflow-x: auto;
   padding-bottom: 30px;
-  scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -webkit-overflow-scrolling: touch;
-}
-
-.wf-film-strip::-webkit-scrollbar {
-  display: none;
 }
 
 .wf-strip-card {
-  flex: 0 0 300px;
+  flex: 0 0 calc(25% - 18px); /* 4 per row, accounting for gap */
+  max-width: calc(25% - 18px);
   cursor: pointer;
   opacity: 0.6;
   transition: all 0.4s ease;
@@ -382,3 +377,14 @@
 .wf-video-thumbnail:hover img { transform: scale(1.05); filter: brightness(0.7); }
 .wf-play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; background: rgba(188, 82, 65, 0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); box-shadow: 0 10px 30px rgba(46, 30, 28,0.3); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding-left: 4px; }
 .wf-video-thumbnail:hover .wf-play-button { background: var(--pg-gold); transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 15px 40px rgba(188, 82, 65, 0.4); }
+
+@media (max-width: 1024px) {
+  .wf-strip-card { flex: 0 0 calc(33.333% - 16px); max-width: calc(33.333% - 16px); }
+}
+@media (max-width: 768px) {
+  .wf-film-strip { gap: 16px; }
+  .wf-strip-card { flex: 0 0 calc(50% - 8px); max-width: calc(50% - 8px); }
+}
+@media (max-width: 480px) {
+  .wf-strip-card { flex: 0 0 100%; max-width: 100%; }
+}
