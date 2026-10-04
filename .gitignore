@@ -14,7 +14,7 @@ client/dist-ssr/
 .env.test.local
 .env.production.local
 client/.env
-server/.env
+# server/.env (Temporarily un-ignored for Vercel deployment)
 
 # Logs
 *.log
