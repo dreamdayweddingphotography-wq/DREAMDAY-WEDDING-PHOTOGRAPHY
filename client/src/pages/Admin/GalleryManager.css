@@ -528,3 +528,41 @@
     font-size: 14px;
 }
 
+@media (max-width: 768px) {
+    .gm-container {
+        padding: 15px;
+    }
+    
+    .gm-header h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .gm-tabs-container {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .gm-content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .gm-table-wrapper {
+        overflow-x: auto;
+    }
+    
+    .gm-image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gm-modal-footer {
+        flex-direction: column;
+    }
+    
+    .gm-modal-footer button {
+        width: 100%;
+    }
+}
+

@@ -450,3 +450,34 @@
     cursor: pointer;
     font-weight: 600;
 }
+
+@media (max-width: 768px) {
+    .im-container {
+        padding: 15px;
+    }
+    
+    .im-header h1 {
+        font-size: 24px;
+    }
+    
+    .im-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .im-content {
+        padding: 15px;
+    }
+    
+    .im-grid, .im-home-cards-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .im-modal-footer {
+        flex-direction: column;
+    }
+    
+    .im-modal-footer button {
+        width: 100%;
+    }
+}
+

@@ -335,3 +335,35 @@
     background-color: #F3F4F6;
     color: #111827;
 }
+
+@media (max-width: 768px) {
+    .bm-container {
+        padding: 15px;
+    }
+    
+    .bm-header h1 {
+        font-size: 22px;
+    }
+    
+    .bm-table-wrapper {
+        overflow-x: auto;
+    }
+    
+    .bm-details-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .bm-col-span-2 {
+        grid-column: span 1;
+    }
+    
+    .bm-modal-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .bm-btn-call, .bm-btn-close-modal {
+        width: 100%;
+        justify-content: center;
+    }
+}
