@@ -465,7 +465,8 @@
   border: 1px solid var(--al-border);
   border-radius: 8px;
   padding: 0 16px;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   height: 40px;
   transition: all 0.3s ease;
 }
@@ -1541,6 +1542,8 @@
   /* Main Area Adjustments */
   .al-main-area {
     width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   .al-topbar {
@@ -1557,7 +1560,11 @@
   }
 
   .al-content {
-    padding: 20px 16px 40px;
+    padding: 16px 12px 32px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   /* Dashboard Adjustments */

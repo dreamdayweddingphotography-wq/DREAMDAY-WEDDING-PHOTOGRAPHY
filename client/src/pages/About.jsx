@@ -36,59 +36,39 @@ const About = () => {
   <div className="page-wrapper">
 
     {/* ── Minimalist About Hero ── */}
-    <section className="about-minimal-hero" style={{ padding: '60px 0 80px 0', backgroundColor: '#FFFFFF' }}>
-      <div className="pg-container" style={{ maxWidth: '1100px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '60px', alignItems: 'center' }}>
+    <section className="about-minimal-hero">
+      <div className="pg-container about-minimal-container">
+        <div className="about-minimal-grid">
           
           {/* Logo Side (Left) */}
-          <motion.div {...vUp(0)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: '40px', borderRight: '1px solid var(--border-color)' }}>
-             
+          <motion.div {...vUp(0)} className="about-logo-col">
              {/* Actual Image Logo */}
-             <img src="/logo.png" alt="Dreamday Logo" style={{ height: '180px', width: 'auto', marginBottom: '20px', objectFit: 'contain' }} />
+             <img src="/logo.png" alt="Dreamday Logo" className="about-logo-img" />
 
              {/* Premium Text Logo to mimic the reference image */}
-             <div style={{ 
-               fontFamily: 'var(--font-heading)', 
-               color: 'var(--text-primary)', 
-               textAlign: 'center',
-               textTransform: 'uppercase'
-             }}>
-               {/* Brand Name */}
-               <div style={{ fontSize: '1.4rem', letterSpacing: '0.15em', fontWeight: 500 }}>
+             <div className="about-logo-text">
+               <div className="about-logo-brand">
                  DREAMDAY
                </div>
-               {/* Subtitle */}
-               <div style={{ fontSize: '0.85rem', letterSpacing: '0.3em', color: 'var(--text-secondary)', marginTop: '8px' }}>
+               <div className="about-logo-sub">
                  WEDDINGS
                </div>
              </div>
           </motion.div>
 
           {/* Content Side (Right) */}
-          <motion.div {...vUp(0.2)}>
-            <h2 style={{ 
-              fontFamily: 'var(--font-heading)', 
-              fontSize: '3rem', 
-              color: 'var(--accent-color)', 
-              marginBottom: '35px',
-              fontWeight: 500,
-              lineHeight: 1.1
-            }}>
+          <motion.div {...vUp(0.2)} className="about-content-col">
+            <h2 className="about-hero-title">
               About Dreamday<br/>Weddings
             </h2>
-            <div style={{ 
-              fontFamily: 'var(--font-body)', 
-              fontSize: '1.15rem', 
-              color: 'var(--text-secondary)', 
-              lineHeight: 2.2 
-            }}>
-              <p style={{ marginBottom: '30px' }}>
+            <div className="about-hero-body">
+              <p className="about-hero-desc">
                 Established in 2007, Our Photography has been dedicated to capturing life's most precious moments with creativity, passion, and professionalism. From weddings and engagements to family celebrations and special events, we transform memories into timeless visual stories.
               </p>
-              <p style={{ fontWeight: '500', color: 'var(--accent-color)', marginBottom: '15px' }}>
+              <p className="about-hero-highlight">
                 18+ Years of Excellence in Photography & Videography
               </p>
-              <p style={{ fontStyle: 'italic', letterSpacing: '1px' }}>
+              <p className="about-hero-motto">
                 Capturing Emotions &bull; Preserving Memories &bull; Creating Legacy
               </p>
             </div>

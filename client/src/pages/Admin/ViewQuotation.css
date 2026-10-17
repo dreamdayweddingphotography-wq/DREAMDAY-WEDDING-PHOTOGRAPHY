@@ -375,6 +375,10 @@
 @media (max-width: 768px) {
   .vq-page {
     padding: 16px 12px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .vq-actions {

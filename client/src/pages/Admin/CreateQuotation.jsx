@@ -334,8 +334,7 @@ const CreateQuotation = () => {
                                     <div className="cq-event-row">
                                         <input 
                                             type="date" 
-                                            className={`cq-input ${eventIdx === 0 && errors.eventDate ? 'error' : ''}`} 
-                                            style={{flex: 1}}
+                                            className={`cq-input cq-event-date ${eventIdx === 0 && errors.eventDate ? 'error' : ''}`} 
                                             value={event.date}
                                             onChange={e => {
                                                 handleEventChange(eventIdx, 'date', e.target.value);
@@ -344,21 +343,20 @@ const CreateQuotation = () => {
                                         />
                                         <input 
                                             type="text" 
-                                            className="cq-input" 
-                                            style={{flex: 2}}
+                                            className="cq-input cq-event-detail" 
                                             placeholder="e.g. Reception, Haldi..."
                                             value={event.details}
                                             onChange={e => handleEventChange(eventIdx, 'details', e.target.value)}
                                         />
                                         {events.length > 1 && (
-                                            <button className="cq-remove-btn" onClick={() => removeEvent(eventIdx)}>
+                                            <button className="cq-remove-btn cq-event-remove" onClick={() => removeEvent(eventIdx)} title="Remove Event">
                                                 <X size={16} />
                                             </button>
                                         )}
                                     </div>
                                     
-                                    <div style={{marginTop: 12, paddingLeft: 12, borderLeft: '2px solid var(--al-border)'}}>
-                                        <label style={{fontSize: 9}}>REQUIREMENTS</label>
+                                    <div className="cq-req-section">
+                                        <label className="cq-req-label">REQUIREMENTS</label>
                                         
                                         <datalist id="req-options">
                                             <option value="Traditional Photography" />
@@ -379,20 +377,18 @@ const CreateQuotation = () => {
                                                 <input 
                                                     type="text" 
                                                     list="req-options"
-                                                    className="cq-input" 
+                                                    className="cq-input cq-req-input" 
                                                     placeholder="e.g. Traditional Photography"
-                                                    style={{ flex: 1 }}
                                                     value={req}
                                                     onChange={e => handleRequirementChange(eventIdx, reqIdx, e.target.value)}
                                                 />
                                                 <input 
                                                     type="number"
-                                                    className="cq-input"
-                                                    style={{ width: '60px', textAlign: 'center' }}
+                                                    className="cq-input cq-req-qty"
                                                     defaultValue="1"
-                                                    title="Quantity (Coming Soon)"
+                                                    title="Quantity"
                                                 />
-                                                <button className="cq-remove-btn" onClick={() => removeRequirement(eventIdx, reqIdx)}>
+                                                <button className="cq-remove-btn" onClick={() => removeRequirement(eventIdx, reqIdx)} title="Remove Requirement">
                                                     <X size={14} />
                                                 </button>
                                             </div>
@@ -486,19 +482,8 @@ const CreateQuotation = () => {
                             ].map((service, i) => {
                                 const isSelected = additionalServices.some(s => s.name === service.name);
                                 return (
-                                    <label key={i} className={`cq-service-toggle ${isSelected ? 'selected' : ''}`} style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '12px 16px',
-                                        border: isSelected ? '1px solid var(--pg-gold)' : '1px solid #E5E7EB',
-                                        borderRadius: '8px',
-                                        marginBottom: '10px',
-                                        cursor: 'pointer',
-                                        background: '#fff',
-                                        transition: 'all 0.2s'
-                                    }}>
-                                        <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                                    <label key={i} className={`cq-service-toggle ${isSelected ? 'selected' : ''}`}>
+                                        <div className="cq-service-info">
                                             <input 
                                                 type="checkbox" 
                                                 checked={isSelected}
@@ -509,19 +494,14 @@ const CreateQuotation = () => {
                                                         setAdditionalServices(additionalServices.filter(s => s.name !== service.name));
                                                     }
                                                 }}
-                                                style={{
-                                                    accentColor: 'var(--pg-gold)', 
-                                                    width: '16px', 
-                                                    height: '16px',
-                                                    cursor: 'pointer'
-                                                }}
+                                                className="cq-service-checkbox"
                                             />
-                                            <span style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#4B5563', fontWeight: 500}}>
+                                            <span className="cq-service-name">
                                                 {service.icon}
                                                 {service.name}
                                             </span>
                                         </div>
-                                        <strong style={{fontSize: '13px', color: '#1F2937'}}>+₹{service.price.toLocaleString()}{service.suffix}</strong>
+                                        <strong className="cq-service-price">+₹{service.price.toLocaleString()}{service.suffix}</strong>
                                     </label>
                                 );
                             })}
@@ -564,30 +544,18 @@ const CreateQuotation = () => {
                             <div className="cq-total-value">₹{finalTotal.toLocaleString()}</div>
                         </div>
 
-                        <div className="cq-action-bar" style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
-                            <button className="cq-btn-outline" type="button" onClick={handlePrint} style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#1B3C35', borderColor: '#E5E7EB', padding: '10px 16px', background: 'transparent', borderRadius: '6px', fontWeight: 600}}>
+                        <div className="cq-action-bar">
+                            <button className="cq-btn-outline cq-btn-print" type="button" onClick={handlePrint}>
                                 <Printer size={16} /> Print
                             </button>
-                            <button className="cq-btn-outline" type="button" onClick={handleDownloadPDF} style={{display: 'flex', alignItems: 'center', gap: '8px', color: '#1B3C35', borderColor: '#E5E7EB', padding: '10px 16px', background: 'transparent', borderRadius: '6px', fontWeight: 600}}>
+                            <button className="cq-btn-outline cq-btn-download" type="button" onClick={handleDownloadPDF}>
                                 <Download size={16} /> Download PDF
                             </button>
                             <button 
-                                className="cq-btn-outline" 
+                                className={`cq-btn-primary cq-btn-save ${loading || !isFormValid ? 'disabled' : ''}`} 
                                 type="button"
                                 onClick={handleSave} 
                                 disabled={loading || !isFormValid}
-                                style={{
-                                    display: 'flex', 
-                                    alignItems: 'center', 
-                                    gap: '8px', 
-                                    color: (loading || !isFormValid) ? '#9CA3AF' : '#1B3C35', 
-                                    borderColor: '#E5E7EB', 
-                                    padding: '10px 16px', 
-                                    background: 'transparent', 
-                                    borderRadius: '6px',
-                                    fontWeight: 600,
-                                    cursor: (loading || !isFormValid) ? 'not-allowed' : 'pointer'
-                                }}
                             >
                                 <FileText size={16} /> {loading ? 'Saving...' : (isEditMode ? 'Update Quotation' : 'Save Quotation')}
                             </button>

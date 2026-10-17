@@ -53,11 +53,12 @@
 
 .wf-title {
   font-family: var(--font-body);
-  font-size: 4.5rem;
+  font-size: clamp(2.2rem, 6.5vw, 4.5rem);
   font-weight: 400;
   color: #1a1a1a;
   margin: 0 0 20px 0;
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .wf-title em {
