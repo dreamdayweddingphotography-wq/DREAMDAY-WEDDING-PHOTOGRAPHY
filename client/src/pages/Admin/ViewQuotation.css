@@ -31,20 +31,20 @@
 }
 .vq-btn-print {
   background: #fff;
-  border: 1px solid var(--al-border);
-  color: var(--al-bg);
+  border: 1px solid #d5dbd7;
+  color: #002d24;
 }
 .vq-btn-print:hover {
-  background: var(--al-surface);
-  border-color: var(--al-bg);
+  background: #f7f4ed;
+  border-color: #002d24;
 }
 .vq-btn-download {
-  background: var(--al-bg);
+  background: #002d24;
   color: #fff;
 }
 .vq-btn-download:hover {
-  background: var(--al-gold);
-  color: var(--al-bg);
+  background: #004d3d;
+  color: #fff;
 }
 .vq-btn-back {
   background: transparent;
@@ -52,7 +52,7 @@
   margin-right: auto;
 }
 .vq-btn-back:hover {
-  color: var(--al-bg);
+  color: #002d24;
 }
 
 /* =========================================================
@@ -63,17 +63,21 @@
   width: 210mm;
   min-height: 297mm;
   padding: 20mm;
-  box-shadow: 0 10px 40px rgba(46, 30, 28, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 45, 36, 0.08);
   margin: 0 auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Define CSS Variables for the specific PDF theme (Red Wine & Gold) */
+/* Define CSS Variables for the specific PDF theme (Emerald & Warm Ivory) */
 .vq-document-wrapper {
-  --pdf-dark: #3d0c15; /* Brand Dark Red Wine */
-  --pdf-light: #fffaf9; /* Soft blush/cream */
-  --pdf-accent: #8A9BA8; /* Brand Gold */
-  --pdf-text: #444444;
+  --pdf-dark: #002d24; /* Deep Luxury Emerald / Forest Green */
+  --pdf-light: #f7f4ed; /* Soft warm ivory / linen cream */
+  --pdf-border: #eae6dc; /* Subtle border for info cards */
+  --pdf-accent: #002d24; /* Deep emerald line */
+  --pdf-text: #333333;
+  --pdf-muted: #77827b;
 }
 
 /* Header */
@@ -84,11 +88,12 @@
   margin-bottom: 30px;
 }
 .vq-logo {
-  height: 60px;
-  width: 60px;
+  height: 90px;
+  width: 90px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 4px 10px rgba(46, 30, 28,0.1);
+  box-shadow: 0 4px 14px rgba(0, 45, 36, 0.15);
+  display: block;
 }
 .vq-header-right {
   text-align: right;
@@ -104,7 +109,7 @@
 .vq-header-meta {
   font-family: var(--font-body);
   font-size: 11px;
-  color: var(--pdf-text);
+  color: #666666;
   line-height: 1.6;
 }
 .vq-header-meta strong {
@@ -120,15 +125,16 @@
 .vq-info-box {
   flex: 1;
   background: var(--pdf-light);
+  border: 1px solid var(--pdf-border);
   padding: 20px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 .vq-info-label {
   font-family: var(--font-body);
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #777;
+  letter-spacing: 0.12em;
+  color: var(--pdf-muted);
   text-transform: uppercase;
   margin-bottom: 12px;
 }
@@ -145,11 +151,20 @@
   gap: 8px;
   font-family: var(--font-body);
   font-size: 11px;
-  color: var(--pdf-text);
+  color: #444444;
   margin-bottom: 6px;
 }
 .vq-info-detail svg {
-  color: var(--pdf-accent);
+  color: var(--pdf-dark);
+}
+.vq-info-detail svg.vq-icon-phone {
+  color: #d9536f;
+}
+.vq-info-detail svg.vq-icon-calendar {
+  color: #3b7cb9;
+}
+.vq-info-detail svg.vq-icon-location {
+  color: #d9536f;
 }
 
 /* Main Table */
@@ -161,22 +176,30 @@
 }
 .vq-table th {
   background: var(--pdf-dark);
-  color: var(--pdf-accent);
+  color: #ffffff;
   font-family: var(--font-body);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 16px;
+  padding: 14px 16px;
   text-align: left;
-  border-bottom: 2px solid var(--pdf-accent);
+  border-bottom: none;
 }
-.vq-table th:first-child { border-radius: 8px 0 0 0; text-align: center; width: 60px; }
-.vq-table th:last-child { border-radius: 0 8px 0 0; text-align: center; width: 60px; }
+.vq-table th:first-child { 
+  border-radius: 6px 0 0 0; 
+  text-align: center; 
+  width: 60px; 
+}
+.vq-table th:last-child { 
+  border-radius: 0 6px 0 0; 
+  text-align: center; 
+  width: 60px; 
+}
 
 .vq-table td {
-  padding: 24px 16px;
-  border-bottom: 1px dashed rgba(61, 12, 21, 0.2);
+  padding: 22px 16px;
+  border-bottom: 1px dashed rgba(0, 45, 36, 0.15);
   vertical-align: top;
 }
 .vq-table td:first-child {
@@ -196,6 +219,12 @@
   background: var(--pdf-light);
   border-bottom: none;
 }
+.vq-table tr.vq-bg-light td:first-child {
+  border-radius: 6px 0 0 6px;
+}
+.vq-table tr.vq-bg-light td:last-child {
+  border-radius: 0 6px 6px 0;
+}
 .vq-table tr:last-child td {
   border-bottom: none;
 }
@@ -212,7 +241,7 @@
 .vq-td-sub {
   font-family: var(--font-body);
   font-size: 10px;
-  color: #888;
+  color: #777777;
 }
 .vq-req-list {
   list-style: none;
@@ -227,7 +256,7 @@
 /* Total Row */
 .vq-total-line {
   height: 2px;
-  background: var(--pdf-accent);
+  background: var(--pdf-dark);
   margin-bottom: 16px;
 }
 .vq-total-wrapper {
@@ -245,23 +274,24 @@
 }
 .vq-total-amount {
   font-family: var(--font-body);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--pdf-dark);
 }
 
 /* Terms Footer */
 .vq-terms {
-  background: var(--pdf-light);
-  padding: 24px;
-  border-top: 4px solid var(--pdf-dark);
+  background: transparent;
+  padding: 20px 0;
+  border-top: 1px solid #e0e5e2;
   margin-bottom: 40px;
 }
 .vq-terms h4 {
   font-family: var(--font-body);
   font-size: 10px;
   font-weight: 700;
-  color: var(--pdf-text);
+  letter-spacing: 0.08em;
+  color: #333333;
   margin: 0 0 12px 0;
 }
 .vq-terms ul {
@@ -270,46 +300,45 @@
   margin: 0;
   font-family: var(--font-body);
   font-size: 9px;
-  color: #666;
+  color: #666666;
   line-height: 1.8;
 }
 .vq-terms li::before {
   content: "• ";
-  color: #999;
+  color: #999999;
 }
 
-/* Bottom Footer (Absolute at bottom of page usually, or just end of content) */
+/* Bottom Footer (Social Media Links) */
 .vq-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  border-top: 1px solid #eaeaea;
-  padding-top: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  border-top: 1px solid #e0e5e2;
+  padding-top: 24px;
   margin-top: auto;
 }
-.vq-footer-logo {
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.vq-footer-contact {
-  text-align: right;
-  font-family: var(--font-body);
-  font-size: 9px;
-  color: #777;
-  line-height: 1.6;
-}
-.vq-footer-icons {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-  margin-bottom: 4px;
-}
-.vq-footer-icons span {
-  display: flex;
+
+.vq-footer-item {
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--pdf-dark);
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s ease;
+}
+
+.vq-footer-item:hover {
+  opacity: 0.75;
+}
+
+.vq-footer-svg {
+  flex-shrink: 0;
+  display: block;
 }
 
 /* ── PRINT MEDIA QUERY ── */
@@ -445,16 +474,8 @@
   .vq-footer {
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     text-align: center;
-  }
-
-  .vq-footer-contact {
-    text-align: center;
-  }
-
-  .vq-footer-icons {
-    justify-content: center;
   }
 }
 

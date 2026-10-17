@@ -14,7 +14,13 @@ const QuotationDocument = ({ quotation, printRef }) => {
         <div className="vq-document-wrapper" ref={printRef}>
             {/* Header */}
             <div className="vq-header">
-                <img src="/logo.png" alt="Logo" className="vq-logo" crossOrigin="anonymous" />
+                <img 
+                    src="/images/Dream Day Logo/2026 DREAMDAY Green LOGO.jpg" 
+                    alt="Dreamday Logo" 
+                    className="vq-logo" 
+                    crossOrigin="anonymous" 
+                    onError={(e) => { e.currentTarget.src = '/logo-green.jpg'; }}
+                />
                 <div className="vq-header-right">
                     <h1>QUOTATION</h1>
                     <div className="vq-header-meta">
@@ -30,7 +36,7 @@ const QuotationDocument = ({ quotation, printRef }) => {
                     <div className="vq-info-label">PREPARED FOR:</div>
                     <h2 className="vq-info-title">{quotation.clientInfo?.name}</h2>
                     <div className="vq-info-detail">
-                        <Phone size={12} /> {quotation.clientInfo?.phone}
+                        <Phone size={12} className="vq-icon-phone" /> {quotation.clientInfo?.phone}
                     </div>
                 </div>
                 <div className="vq-info-box">
@@ -38,12 +44,12 @@ const QuotationDocument = ({ quotation, printRef }) => {
                     <h2 className="vq-info-title">{quotation.eventDetails?.eventType}</h2>
                     {quotation.eventDetails?.events?.length > 0 && (
                         <div className="vq-info-detail">
-                            <Calendar size={12} /> {renderDate(quotation.eventDetails.events[0].date)} [{quotation.eventDetails.events[0].details}]
+                            <Calendar size={12} className="vq-icon-calendar" /> {renderDate(quotation.eventDetails.events[0].date)} [{quotation.eventDetails.events[0].details}]
                         </div>
                     )}
                     {quotation.eventDetails?.location && (
                         <div className="vq-info-detail">
-                            <MapPin size={12} /> {quotation.eventDetails.location}
+                            <MapPin size={12} className="vq-icon-location" /> {quotation.eventDetails.location}
                         </div>
                     )}
                 </div>
@@ -170,33 +176,45 @@ const QuotationDocument = ({ quotation, printRef }) => {
                 <span className="vq-total-amount">₹{quotation.pricing?.finalTotal.toLocaleString()}</span>
             </div>
 
-            {/* Terms */}
-            <div className="vq-terms">
-                <h4>TERMS & CONDITIONS</h4>
-                <ul>
-                    <li>Travel & accommodation charges will be additional for Out of Coimbatore events.</li>
-                    <li>40% of amount should be paid in advance after confirmation.</li>
-                    <li>50% of the total amount should be paid after the completion of the shoot.</li>
-                    <li>Pending 10% should be paid after album design confirmed and before print.</li>
-                </ul>
-            </div>
 
             {/* Footer */}
             <div className="vq-footer">
-                <img src="/logo.png" alt="Logo" className="vq-footer-logo" crossOrigin="anonymous" />
-                <div className="vq-footer-contact">
-                    <div className="vq-footer-icons">
-                        <a href="https://www.instagram.com/dreamday_weddingphotography/" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}}>
-                            <Instagram size={10} style={{display:'inline', verticalAlign:'middle'}}/> @dreamday_weddingphotography
-                        </a>
-                        <a href="https://www.youtube.com/@dreamdayraja" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}}>
-                            <Youtube size={10} style={{display:'inline', verticalAlign:'middle'}}/> @dreamdayraja
-                        </a>
-                    </div>
-                    <div>
-                        Contact: <a href="tel:+918883621113" style={{color: 'inherit', textDecoration: 'none'}}>+91 88836 21113</a> | <a href="mailto:dreamdayweddingphotography@gmail.com" style={{color: 'inherit', textDecoration: 'none'}}>dreamdayweddingphotography@gmail.com</a>
-                    </div>
-                </div>
+                <a 
+                    href="https://www.youtube.com/@dreamdayraja" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="vq-footer-item"
+                >
+                    <svg viewBox="0 0 24 17" width="22" height="15.5" fill="none" xmlns="http://www.w3.org/2000/svg" className="vq-footer-svg">
+                        <rect width="24" height="17" rx="4.5" fill="#FF0000" />
+                        <polygon points="9.5,4.5 16,8.5 9.5,12.5" fill="#FFFFFF" />
+                    </svg>
+                    <span>www.youtube.com/@DreamdayRaja</span>
+                </a>
+
+                <a 
+                    href="https://www.instagram.com/dreamday_weddingphotography/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="vq-footer-item"
+                >
+                    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" className="vq-footer-svg">
+                        <defs>
+                            <linearGradient id="vqIgGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#f09433"/>
+                                <stop offset="25%" stopColor="#e6683c"/>
+                                <stop offset="50%" stopColor="#dc2743"/>
+                                <stop offset="75%" stopColor="#cc2366"/>
+                                <stop offset="100%" stopColor="#bc1888"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="20" height="20" rx="5.5" fill="url(#vqIgGrad)"/>
+                        <rect x="4" y="4" width="12" height="12" rx="3.5" stroke="#ffffff" strokeWidth="1.4" fill="none"/>
+                        <circle cx="10" cy="10" r="2.8" stroke="#ffffff" strokeWidth="1.4" fill="none"/>
+                        <circle cx="13.3" cy="6.7" r="0.75" fill="#ffffff"/>
+                    </svg>
+                    <span>instagram.com/Dreamday_weddingphotography</span>
+                </a>
             </div>
         </div>
     );
