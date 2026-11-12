@@ -47,6 +47,11 @@
   gap: 32px;
 }
 
+.cq-left,
+.cq-right {
+  min-width: 0;
+}
+
 /* Common Card Styling */
 .cq-card {
   background: #fff;
@@ -93,6 +98,8 @@
 
 .cq-input {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 14px 16px;
   border: 1px solid var(--al-border);
   border-radius: 8px;
@@ -410,11 +417,31 @@ textarea.cq-input {
     width: 100%;
   }
 
+  .cq-left,
+  .cq-right {
+    width: 100%;
+    min-width: 0;
+  }
+
   .cq-card {
     padding: 18px 14px;
     margin-bottom: 16px;
     border-radius: 10px;
     box-sizing: border-box;
+    width: 100%;
+  }
+
+  .cq-input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .cq-event-box {
+    padding: 14px 12px;
+  }
+
+  .cq-req-section {
+    padding-left: 8px;
   }
 
   .cq-card-title {

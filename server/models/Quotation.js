@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const EventDateSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     details: { type: String },
-    requirements: [{ type: String }]
+    requirements: [{ type: mongoose.Schema.Types.Mixed }]
 });
 
 const QuotationSchema = new mongoose.Schema({

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useReactToPrint } from 'react-to-print';
-import html2pdf from 'html2pdf.js';
 import QuotationDocument from './QuotationDocument';
+import { downloadQuotationPdf } from '../../utils/quotationPdf';
 import { 
     ArrowLeft, 
     User, 
@@ -37,8 +37,21 @@ const CreateQuotation = () => {
     const [notes, setNotes] = useState('');
     
     // Arrays for dynamic lists
+    const createEmptyRequirement = () => ({ name: '', quantity: 1 });
+
+    const normalizeRequirement = (req) => {
+        if (typeof req === 'string') {
+            return { name: req, quantity: 1 };
+        }
+        const qty = parseInt(req?.quantity, 10);
+        return {
+            name: req?.name || '',
+            quantity: !isNaN(qty) && qty > 0 ? qty : 1
+        };
+    };
+
     const [events, setEvents] = useState([
-        { date: '', details: '', requirements: [''] }
+        { date: '', details: '', requirements: [createEmptyRequirement()] }
     ]);
     
     const [albums, setAlbums] = useState(['']);
@@ -57,15 +70,7 @@ const CreateQuotation = () => {
     };
 
     const handleDownloadPDF = () => {
-        const element = printRef.current;
-        const opt = {
-            margin:       0,
-            filename:     `Quotation_${clientInfo?.name || 'Draft'}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-        };
-        html2pdf().set(opt).from(element).save();
+        downloadQuotationPdf(printRef.current, `Quotation_${clientInfo?.name || 'Draft'}.pdf`);
     };
 
     useEffect(() => {
@@ -78,7 +83,14 @@ const CreateQuotation = () => {
                     setClientInfo(q.clientInfo || { name: '', phone: '' });
                     setEventType(q.eventDetails?.eventType || '');
                     setLocation(q.eventDetails?.location || '');
-                    setEvents(q.eventDetails?.events || [{ date: '', details: '', requirements: [''] }]);
+                    const loadedEvents = (q.eventDetails?.events || []).map(ev => ({
+                        date: ev.date ? String(ev.date).split('T')[0] : '',
+                        details: ev.details || '',
+                        requirements: ev.requirements?.length
+                            ? ev.requirements.map(normalizeRequirement)
+                            : [createEmptyRequirement()]
+                    }));
+                    setEvents(loadedEvents.length ? loadedEvents : [{ date: '', details: '', requirements: [createEmptyRequirement()] }]);
                     setNotes(q.notes || '');
                     setAlbums(q.deliverables?.albums || ['']);
                     setFinalOut(q.deliverables?.finalOut || ['']);
@@ -94,24 +106,28 @@ const CreateQuotation = () => {
         }
     }, [isEditMode, id]);
 
-    // Auto-calculate final total
-    useEffect(() => {
-        let total = parseFloat(packagePrice) || 0;
-        
-        // Add dynamic services
-        additionalServices.forEach(service => {
+    const calculateFinalTotal = (pkgPrice, disc, services) => {
+        let total = parseFloat(pkgPrice) || 0;
+
+        services.forEach(service => {
             const price = parseFloat(service.price);
             if (!isNaN(price)) {
                 total += price;
             }
         });
-        
-        // Apply discount
-        if (discount && parseFloat(discount) > 0) {
-            total = total - (total * (parseFloat(discount) / 100));
+
+        const parsedDiscount = parseFloat(disc);
+        if (!isNaN(parsedDiscount) && parsedDiscount > 0) {
+            const clampedDiscount = Math.min(parsedDiscount, 100);
+            total = total - (total * (clampedDiscount / 100));
         }
-        
-        setFinalTotal(total);
+
+        return Math.max(0, Math.round(total));
+    };
+
+    // Auto-calculate final total
+    useEffect(() => {
+        setFinalTotal(calculateFinalTotal(packagePrice, discount, additionalServices));
     }, [packagePrice, discount, additionalServices]);
 
     // Helpers for dynamic arrays
@@ -121,15 +137,21 @@ const CreateQuotation = () => {
         setEvents(newEvents);
     };
 
-    const handleRequirementChange = (eventIndex, reqIndex, value) => {
+    const handleRequirementChange = (eventIndex, reqIndex, field, value) => {
         const newEvents = [...events];
-        newEvents[eventIndex].requirements[reqIndex] = value;
+        const currentReq = normalizeRequirement(newEvents[eventIndex].requirements[reqIndex]);
+        if (field === 'quantity') {
+            currentReq.quantity = value;
+        } else {
+            currentReq.name = value;
+        }
+        newEvents[eventIndex].requirements[reqIndex] = currentReq;
         setEvents(newEvents);
     };
 
     const addRequirement = (eventIndex) => {
         const newEvents = [...events];
-        newEvents[eventIndex].requirements.push('');
+        newEvents[eventIndex].requirements.push(createEmptyRequirement());
         setEvents(newEvents);
     };
 
@@ -140,7 +162,7 @@ const CreateQuotation = () => {
     };
 
     const addEvent = () => {
-        setEvents([...events, { date: '', details: '', requirements: [''] }]);
+        setEvents([...events, { date: '', details: '', requirements: [createEmptyRequirement()] }]);
     };
 
     const removeEvent = (index) => {
@@ -185,6 +207,11 @@ const CreateQuotation = () => {
         if (!clientInfo.phone.trim()) newErrors.phone = 'Phone number is required';
         if (!eventType) newErrors.eventType = 'Please select an event type';
         if (!packagePrice || parseFloat(packagePrice) <= 0) newErrors.packagePrice = 'Valid package price is required';
+
+        const parsedDiscount = discount === '' ? 0 : parseFloat(discount);
+        if (discount !== '' && (isNaN(parsedDiscount) || parsedDiscount < 0 || parsedDiscount >= 100)) {
+            newErrors.discount = 'Discount must be between 0% and 99%';
+        }
         
         // Ensure at least one event date/detail is filled if multiple exist, or just check first one
         if (!events[0].date) newErrors.eventDate = 'At least one event date is required';
@@ -200,12 +227,22 @@ const CreateQuotation = () => {
 
         try {
             setLoading(true);
+
+            const filteredServices = additionalServices.filter(s => s.name.trim() !== '');
+            const computedTotal = calculateFinalTotal(packagePrice, discount, filteredServices);
             
             const payload = {
                 clientInfo,
                 eventDetails: {
                     eventType,
-                    events: events.filter(e => e.date), // Filter empty dates, details optional
+                    events: events
+                        .filter(e => e.date) // Filter empty dates, details optional
+                        .map(e => ({
+                            ...e,
+                            requirements: (e.requirements || [])
+                                .map(normalizeRequirement)
+                                .filter(r => r.name.trim() !== '')
+                        })),
                     location
                 },
                 notes,
@@ -214,11 +251,11 @@ const CreateQuotation = () => {
                     finalOut: finalOut.filter(a => a.trim() !== ''),
                     complementary: complementary.filter(a => a.trim() !== '')
                 },
-                additionalServices: additionalServices.filter(s => s.name.trim() !== ''),
+                additionalServices: filteredServices,
                 pricing: {
                     packagePrice: parseFloat(packagePrice) || 0,
-                    discountPercentage: parseFloat(discount) || 0,
-                    finalTotal
+                    discountPercentage: parsedDiscount || 0,
+                    finalTotal: computedTotal
                 }
             };
 
@@ -238,12 +275,17 @@ const CreateQuotation = () => {
         }
     };
 
+    const isDiscountValid =
+        discount === '' ||
+        (!isNaN(parseFloat(discount)) && parseFloat(discount) >= 0 && parseFloat(discount) < 100);
+
     const isFormValid = 
         clientInfo.name.trim() !== '' && 
         clientInfo.phone.trim() !== '' && 
         eventType !== '' && 
         events[0]?.date &&
-        parseFloat(packagePrice) > 0;
+        parseFloat(packagePrice) > 0 &&
+        isDiscountValid;
 
     return (
         <div className="cq-container">
@@ -372,27 +414,41 @@ const CreateQuotation = () => {
                                             <option value="Post-Wedding Shoot" />
                                         </datalist>
 
-                                        {event.requirements.map((req, reqIdx) => (
-                                            <div key={reqIdx} className="cq-req-row">
-                                                <input 
-                                                    type="text" 
-                                                    list="req-options"
-                                                    className="cq-input cq-req-input" 
-                                                    placeholder="e.g. Traditional Photography"
-                                                    value={req}
-                                                    onChange={e => handleRequirementChange(eventIdx, reqIdx, e.target.value)}
-                                                />
-                                                <input 
-                                                    type="number"
-                                                    className="cq-input cq-req-qty"
-                                                    defaultValue="1"
-                                                    title="Quantity"
-                                                />
-                                                <button className="cq-remove-btn" onClick={() => removeRequirement(eventIdx, reqIdx)} title="Remove Requirement">
-                                                    <X size={14} />
-                                                </button>
-                                            </div>
-                                        ))}
+                                        {event.requirements.map((req, reqIdx) => {
+                                            const reqName = typeof req === 'string' ? req : req?.name || '';
+                                            const reqQty = typeof req === 'string' ? 1 : (req?.quantity ?? 1);
+                                            return (
+                                                <div key={reqIdx} className="cq-req-row">
+                                                    <input 
+                                                        type="text" 
+                                                        list="req-options"
+                                                        className="cq-input cq-req-input" 
+                                                        placeholder="e.g. Traditional Photography"
+                                                        value={reqName}
+                                                        onChange={e => handleRequirementChange(eventIdx, reqIdx, 'name', e.target.value)}
+                                                    />
+                                                    <input 
+                                                        type="number"
+                                                        min="1"
+                                                        className="cq-input cq-req-qty"
+                                                        value={reqQty}
+                                                        onChange={e => {
+                                                            const val = e.target.value;
+                                                            if (val === '') {
+                                                                handleRequirementChange(eventIdx, reqIdx, 'quantity', '');
+                                                            } else {
+                                                                const parsed = parseInt(val, 10);
+                                                                handleRequirementChange(eventIdx, reqIdx, 'quantity', !isNaN(parsed) && parsed > 0 ? parsed : 1);
+                                                            }
+                                                        }}
+                                                        title="Quantity"
+                                                    />
+                                                    <button className="cq-remove-btn" onClick={() => removeRequirement(eventIdx, reqIdx)} title="Remove Requirement">
+                                                        <X size={14} />
+                                                    </button>
+                                                </div>
+                                            );
+                                        })}
                                         <button className="cq-add-btn" onClick={() => addRequirement(eventIdx)}>
                                             + Add Requirement
                                         </button>
@@ -531,12 +587,26 @@ const CreateQuotation = () => {
                             <label>% DISCOUNT (%)</label>
                             <input 
                                 type="number" 
-                                className="cq-input" 
+                                min="0"
+                                max="99"
+                                className={`cq-input ${errors.discount || !isDiscountValid ? 'error' : ''}`}
                                 placeholder="e.g. 10"
                                 style={{background: '#fff'}}
                                 value={discount}
-                                onChange={e => setDiscount(e.target.value)}
+                                onChange={e => {
+                                    const val = e.target.value;
+                                    setDiscount(val);
+                                    const parsed = parseFloat(val);
+                                    if (val !== '' && (isNaN(parsed) || parsed < 0 || parsed >= 100)) {
+                                        setErrors({...errors, discount: 'Discount must be between 0% and 99%'});
+                                    } else if (errors.discount) {
+                                        setErrors({...errors, discount: null});
+                                    }
+                                }}
                             />
+                            {(errors.discount || (!isDiscountValid && discount !== '')) && (
+                                <div className="cq-error-text">{errors.discount || 'Discount must be between 0% and 99%'}</div>
+                            )}
                         </div>
 
                         <div className="cq-total-row">
@@ -574,7 +644,8 @@ const CreateQuotation = () => {
                         additionalServices,
                         pricing: { packagePrice: parseFloat(packagePrice) || 0, discountPercentage: parseFloat(discount) || 0, finalTotal }
                     }} 
-                    printRef={printRef} 
+                    printRef={printRef}
+                    isPdfExport
                 />
             </div>
         </div>

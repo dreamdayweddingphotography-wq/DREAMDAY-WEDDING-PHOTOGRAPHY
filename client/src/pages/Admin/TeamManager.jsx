@@ -1,37 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, X, UploadCloud, Users } from 'lucide-react';
+import { Plus, Edit, Trash2, X, UploadCloud } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { optimizeImage } from '../../utils/imageOptimizer';
+import { DEFAULT_TEAM, loadTeamMembers, saveTeamMembers, uploadTeamPhoto } from '../../utils/teamService';
 import './TeamManager.css';
 
-const defaultTeam = [
-  { id: '1', name: 'Rajarajan Vetrivendhan', role: 'Founder & Lead Photographer', image: '/images/Meet our Team/rajarajan.png' },
-  { id: '2', name: 'Arun Kumar', role: 'Cinematographer', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80' },
-  { id: '3', name: 'Priya Sharma', role: 'Creative Director', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80' },
-  { id: '4', name: 'Karthik Raj', role: 'Candid Specialist', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' }
-];
-
 const TeamManager = () => {
-    const [team, setTeam] = useState(() => {
-        const saved = localStorage.getItem('dwp_team_data');
-        if (saved) return JSON.parse(saved);
-        return defaultTeam;
-    });
+    const [team, setTeam] = useState(DEFAULT_TEAM);
+    const [loading, setLoading] = useState(true);
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [saving, setSaving] = useState(false);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingMember, setEditingMember] = useState(null);
     const [form, setForm] = useState({ name: '', role: '', image: '' });
-    
+
     useEffect(() => {
-        try {
-            localStorage.setItem('dwp_team_data', JSON.stringify(team));
-        } catch (e) {
-            console.error("Failed to save team data:", e);
-            if (e.name === 'QuotaExceededError') {
-                toast.error("Storage limit exceeded! Image is too large.");
-            }
-        }
-    }, [team]);
+        let mounted = true;
+        loadTeamMembers({ migrateLocalToDb: true })
+            .then((members) => {
+                if (mounted) setTeam(members);
+            })
+            .catch((err) => {
+                console.error('Failed to load team data:', err);
+                toast.error('Failed to load team members from server.');
+            })
+            .finally(() => {
+                if (mounted) setLoading(false);
+            });
+        return () => {
+            mounted = false;
+        };
+    }, []);
 
     const handleOpenModal = (member = null) => {
         if (member) {
@@ -46,37 +45,63 @@ const TeamManager = () => {
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
-        if (file) {
-            try {
-                const optimizedDataUrl = await optimizeImage(file);
-                setForm({ ...form, image: optimizedDataUrl });
-            } catch (err) {
-                toast.error("Failed to process image.");
-            }
+        if (!file) return;
+        const toastId = toast.loading('Uploading photo...');
+        try {
+            setUploadingImage(true);
+            const imageUrl = await uploadTeamPhoto(file);
+            setForm((prev) => ({ ...prev, image: imageUrl }));
+            toast.success('Photo uploaded', { id: toastId });
+        } catch (err) {
+            console.error(err);
+            toast.error('Failed to upload image.', { id: toastId });
+        } finally {
+            setUploadingImage(false);
         }
     };
 
-    const handleSubmit = (e) => {
+    const persistTeam = async (updatedTeam, successMessage) => {
+        const previousTeam = team;
+        setTeam(updatedTeam);
+        try {
+            setSaving(true);
+            await saveTeamMembers(updatedTeam);
+            toast.success(successMessage);
+        } catch (err) {
+            console.error('Failed to save team data:', err);
+            setTeam(previousTeam);
+            toast.error('Failed to save changes to server.');
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!form.name || !form.role || !form.image) {
+        if (uploadingImage) {
+            toast.error('Please wait for image upload to finish.');
+            return;
+        }
+        if (!form.name.trim() || !form.role.trim() || !form.image) {
             toast.error('Please fill all fields');
             return;
         }
 
-        if (editingMember) {
-            setTeam(team.map(t => t.id === editingMember.id ? { ...t, ...form } : t));
-            toast.success('Team member updated');
-        } else {
-            setTeam([...team, { id: Date.now().toString(), ...form }]);
-            toast.success('Team member added');
-        }
+        const updatedTeam = editingMember
+            ? team.map((t) => (t.id === editingMember.id ? { ...t, ...form } : t))
+            : [...team, { id: Date.now().toString(), ...form }];
+
         setIsModalOpen(false);
+        await persistTeam(
+            updatedTeam,
+            editingMember ? 'Team member updated' : 'Team member added'
+        );
     };
 
-    const handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to remove this team member?")) {
-            setTeam(team.filter(t => t.id !== id));
-            toast.success("Team member removed");
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure you want to remove this team member?')) {
+            const updatedTeam = team.filter((t) => t.id !== id);
+            await persistTeam(updatedTeam, 'Team member removed');
         }
     };
 
@@ -93,7 +118,9 @@ const TeamManager = () => {
             </div>
 
             <div className="tm-grid">
-                {team.length === 0 ? (
+                {loading ? (
+                    <div className="tm-empty">Loading team members...</div>
+                ) : team.length === 0 ? (
                     <div className="tm-empty">No team members found. Click "Add Team Member" to add one.</div>
                 ) : (
                     team.map(member => (
@@ -127,24 +154,24 @@ const TeamManager = () => {
                                 <X size={18} />
                             </button>
                         </div>
-                        
+
                         <form onSubmit={handleSubmit} className="tm-modal-body">
                             <div className="tm-form-group">
                                 <label>MEMBER NAME</label>
-                                <input 
-                                    type="text" 
-                                    value={form.name} 
-                                    onChange={(e) => setForm({...form, name: e.target.value})} 
+                                <input
+                                    type="text"
+                                    value={form.name}
+                                    onChange={(e) => setForm({ ...form, name: e.target.value })}
                                     placeholder="e.g. Rajarajan Vetrivendhan"
                                 />
                             </div>
-                            
+
                             <div className="tm-form-group">
                                 <label>ROLE / POSITION</label>
-                                <input 
-                                    type="text" 
-                                    value={form.role} 
-                                    onChange={(e) => setForm({...form, role: e.target.value})} 
+                                <input
+                                    type="text"
+                                    value={form.role}
+                                    onChange={(e) => setForm({ ...form, role: e.target.value })}
                                     placeholder="e.g. Lead Photographer"
                                 />
                             </div>
@@ -166,10 +193,12 @@ const TeamManager = () => {
                                     <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
                                 </label>
                             </div>
-                            
+
                             <div className="tm-modal-footer">
                                 <button type="button" className="tm-btn-cancel" onClick={() => setIsModalOpen(false)}>Cancel</button>
-                                <button type="submit" className="tm-btn-save">{editingMember ? 'SAVE CHANGES' : 'ADD MEMBER'}</button>
+                                <button type="submit" className="tm-btn-save" disabled={uploadingImage || saving}>
+                                    {uploadingImage ? 'UPLOADING...' : saving ? 'SAVING...' : (editingMember ? 'SAVE CHANGES' : 'ADD MEMBER')}
+                                </button>
                             </div>
                         </form>
                     </div>

@@ -16,8 +16,8 @@ import {
     Calendar,
     FileText
 } from 'lucide-react';
-import html2pdf from 'html2pdf.js';
 import QuotationDocument from './QuotationDocument';
+import { downloadQuotationPdf } from '../../utils/quotationPdf';
 import './Admin.css';
 
 const AdminDashboard = () => {
@@ -101,15 +101,12 @@ const AdminDashboard = () => {
         // Wait a bit for DOM to render the hidden component
         setTimeout(() => {
             if (downloadRef.current) {
-                const opt = {
-                    margin:       0,
-                    filename:     `Quotation_${quote._id.substring(quote._id.length - 4).toUpperCase()}.pdf`,
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { scale: 2, useCORS: true },
-                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-                };
-                html2pdf().set(opt).from(downloadRef.current).save().then(() => {
+                const filename = `Quotation_${quote._id.substring(quote._id.length - 4).toUpperCase()}.pdf`;
+                downloadQuotationPdf(downloadRef.current, filename).then(() => {
                     toast.success('Download Complete', { id: toastId });
+                    setDownloadingQuote(null);
+                }).catch(() => {
+                    toast.error('Failed to generate PDF', { id: toastId });
                     setDownloadingQuote(null);
                 });
             } else {
@@ -139,8 +136,8 @@ const AdminDashboard = () => {
         <div className="al-dashboard">
             {/* Hidden PDF Generator */}
             {downloadingQuote && (
-                <div style={{ display: 'none' }}>
-                    <QuotationDocument quotation={downloadingQuote} printRef={downloadRef} />
+                <div style={{ position: 'fixed', top: '-10000px', left: '-10000px', pointerEvents: 'none' }}>
+                    <QuotationDocument quotation={downloadingQuote} printRef={downloadRef} isPdfExport />
                 </div>
             )}
 

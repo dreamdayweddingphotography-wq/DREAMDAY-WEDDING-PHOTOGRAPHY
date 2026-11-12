@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useReactToPrint } from 'react-to-print';
-import html2pdf from 'html2pdf.js';
 import { Printer, Download, ArrowLeft } from 'lucide-react';
 import QuotationDocument from './QuotationDocument';
+import { downloadQuotationPdf } from '../../utils/quotationPdf';
 import './ViewQuotation.css';
 
 const ViewQuotation = () => {
@@ -13,6 +13,7 @@ const ViewQuotation = () => {
     const [quotation, setQuotation] = useState(null);
     const [loading, setLoading] = useState(true);
     const printRef = useRef();
+    const pdfRef = useRef();
 
     useEffect(() => {
         const fetchQuotation = async () => {
@@ -33,15 +34,7 @@ const ViewQuotation = () => {
     };
 
     const handleDownload = () => {
-        const element = printRef.current;
-        const opt = {
-            margin:       0,
-            filename:     `Quotation_${id}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-        };
-        html2pdf().set(opt).from(element).save();
+        downloadQuotationPdf(pdfRef.current || printRef.current, `Quotation_${id}.pdf`);
     };
 
     if (loading) return <div style={{padding: '50px', textAlign: 'center'}}>Loading Quotation...</div>;
@@ -61,6 +54,9 @@ const ViewQuotation = () => {
                 </button>
             </div>
             <QuotationDocument quotation={quotation} printRef={printRef} />
+            <div style={{ position: 'fixed', top: '-10000px', left: '-10000px', pointerEvents: 'none' }}>
+                <QuotationDocument quotation={quotation} printRef={pdfRef} isPdfExport />
+            </div>
         </div>
     );
 };

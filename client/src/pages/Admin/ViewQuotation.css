@@ -60,14 +60,26 @@
    ========================================================= */
 .vq-document-wrapper {
   background: #fff;
-  width: 210mm;
+  width: 100%;
+  max-width: 210mm;
   min-height: 297mm;
-  padding: 20mm;
+  padding: 15mm 18mm;
+  box-sizing: border-box;
   box-shadow: 0 10px 40px rgba(0, 45, 36, 0.08);
   margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.vq-document-wrapper.vq-pdf-export {
+  width: 210mm;
+  max-width: none;
+  min-height: 297mm;
+  padding: 15mm 18mm;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
 }
 
 /* Define CSS Variables for the specific PDF theme (Emerald & Warm Ivory) */
@@ -85,7 +97,9 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 30px;
+  margin-bottom: 22px;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 .vq-logo {
   height: 90px;
@@ -120,7 +134,9 @@
 .vq-info-row {
   display: flex;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 22px;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 .vq-info-box {
   flex: 1;
@@ -168,11 +184,21 @@
 }
 
 /* Main Table */
+.vq-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+}
 .vq-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin-bottom: 30px;
+  margin-bottom: 0;
+}
+.vq-table tr {
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 .vq-table th {
   background: var(--pdf-dark);
@@ -198,7 +224,7 @@
 }
 
 .vq-table td {
-  padding: 22px 16px;
+  padding: 14px 16px;
   border-bottom: 1px dashed rgba(0, 45, 36, 0.15);
   vertical-align: top;
 }
@@ -264,7 +290,9 @@
   justify-content: flex-end;
   align-items: baseline;
   gap: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 .vq-total-label {
   font-family: var(--font-body);
@@ -313,10 +341,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 48px;
+  gap: 40px;
   border-top: 1px solid #e0e5e2;
-  padding-top: 24px;
+  padding-top: 16px;
   margin-top: auto;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .vq-footer-item {
@@ -329,6 +359,9 @@
   font-weight: 500;
   color: var(--pdf-dark);
   letter-spacing: 0.01em;
+  white-space: nowrap;
+  break-inside: avoid;
+  page-break-inside: avoid;
   transition: opacity 0.2s ease;
 }
 
@@ -353,7 +386,11 @@
   .al-sidebar, .al-topbar, .vq-actions {
     display: none !important;
   }
-  .al-main-area {
+  .al-layout,
+  .al-main-area,
+  .al-content {
+    height: auto !important;
+    overflow: visible !important;
     margin-left: 0 !important;
     padding: 0 !important;
     background: #fff !important;
@@ -374,7 +411,7 @@
 /* ── Mobile Responsive Styles (max-width: 768px) ── */
 @media (max-width: 768px) {
   .vq-page {
-    padding: 16px 12px;
+    padding: 8px 0;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -398,10 +435,11 @@
     order: 3; /* Push back button to bottom */
   }
 
-  .vq-document-wrapper {
+  .vq-document-wrapper:not(.vq-pdf-export) {
     width: 100%;
+    max-width: 100%;
     min-height: auto;
-    padding: 16px;
+    padding: 16px 12px;
     box-sizing: border-box;
     box-shadow: none;
     border: 1px solid var(--al-border);
@@ -409,77 +447,108 @@
   }
 
   /* Stack header elements */
-  .vq-header {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-header {
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
-  .vq-header-right {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-header-right {
     text-align: center;
     width: 100%;
   }
 
-  .vq-header-right h1 {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-header-right h1 {
     font-size: 26px;
     margin-bottom: 6px;
   }
 
   /* Stack info boxes */
-  .vq-info-row {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-info-row {
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 12px;
+    margin-bottom: 20px;
   }
 
-  .vq-info-box {
-    padding: 16px;
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-info-box {
+    padding: 14px;
   }
 
-  .vq-info-title {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-info-title {
     font-size: 18px;
   }
 
-  /* Make table scrollable on mobile */
-  .vq-table {
-    display: block;
+  /* Keep real table layout on mobile with compact sizing */
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-table {
+    display: table;
     width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap; /* Avoid wrapping cell contents aggressively */
+    white-space: normal;
   }
 
-  .vq-table th, .vq-table td {
-    padding: 12px 10px;
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-table th {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    padding: 10px 6px;
+  }
+
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-table th:first-child {
+    width: 30px;
+  }
+
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-table th:last-child {
+    width: 54px;
+  }
+
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-table td {
+    padding: 10px 6px;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+  }
+
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-td-title {
+    font-size: 10.5px;
+  }
+
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-req-list {
+    font-size: 10.5px;
+    line-height: 1.5;
   }
 
   /* Adjust totals layout */
-  .vq-total-wrapper {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-total-wrapper {
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
   }
 
-  .vq-total-label {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-total-label {
     font-size: 16px;
   }
 
-  .vq-total-amount {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-total-amount {
     font-size: 20px;
   }
 
   /* Terms and footer styling */
-  .vq-terms {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-terms {
     padding: 16px;
     margin-bottom: 24px;
   }
 
-  .vq-footer {
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-footer {
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     text-align: center;
+  }
+
+  .vq-document-wrapper:not(.vq-pdf-export) .vq-footer-item {
+    white-space: normal;
+    word-break: break-word;
+    font-size: 12px;
+    justify-content: center;
+    max-width: 100%;
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, Calendar, MapPin, Globe, Instagram, Youtube } from 'lucide-react';
 import './ViewQuotation.css'; // Reuse the same CSS
 
-const QuotationDocument = ({ quotation, printRef }) => {
+const QuotationDocument = ({ quotation, printRef, isPdfExport = false }) => {
     if (!quotation) return null;
 
     const renderDate = (dateString) => {
@@ -10,8 +10,16 @@ const QuotationDocument = ({ quotation, printRef }) => {
         return new Date(dateString).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
     };
 
+    const getRequirementName = (req) => (typeof req === 'string' ? req : req?.name || '');
+
+    const getRequirementQty = (req) => {
+        if (typeof req === 'string') return 1;
+        const qty = parseInt(req?.quantity, 10);
+        return !isNaN(qty) && qty > 0 ? qty : 1;
+    };
+
     return (
-        <div className="vq-document-wrapper" ref={printRef}>
+        <div className={`vq-document-wrapper ${isPdfExport ? 'vq-pdf-export' : ''}`} ref={printRef}>
             {/* Header */}
             <div className="vq-header">
                 <img 
@@ -56,6 +64,7 @@ const QuotationDocument = ({ quotation, printRef }) => {
             </div>
 
             {/* Main Table */}
+            <div className="vq-table-scroll">
             <table className="vq-table">
                 <thead>
                     <tr>
@@ -76,12 +85,12 @@ const QuotationDocument = ({ quotation, printRef }) => {
                             </td>
                             <td>
                                 <ul className="vq-req-list">
-                                    {ev.requirements?.map((req, i) => <li key={i}>{req}</li>)}
+                                    {ev.requirements?.map((req, i) => <li key={i}>{getRequirementName(req)}</li>)}
                                 </ul>
                             </td>
                             <td>
                                 <ul className="vq-req-list" style={{textAlign: 'center', listStyle: 'none'}}>
-                                    {ev.requirements?.map((req, i) => <li key={i}>1</li>)}
+                                    {ev.requirements?.map((req, i) => <li key={i}>{getRequirementQty(req)}</li>)}
                                 </ul>
                             </td>
                         </tr>
@@ -168,12 +177,13 @@ const QuotationDocument = ({ quotation, printRef }) => {
                     )}
                 </tbody>
             </table>
+            </div>
 
             {/* Total */}
             <div className="vq-total-line"></div>
             <div className="vq-total-wrapper">
                 <span className="vq-total-label">Total</span>
-                <span className="vq-total-amount">₹{quotation.pricing?.finalTotal.toLocaleString()}</span>
+                <span className="vq-total-amount">₹{(quotation.pricing?.finalTotal ?? 0).toLocaleString()}</span>
             </div>
 
 
